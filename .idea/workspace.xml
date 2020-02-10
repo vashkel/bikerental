@@ -6,7 +6,10 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="90c1688a-1441-4184-ab0d-dbe3e4204b7b" name="Default" comment="/" />
+    <list default="true" id="90c1688a-1441-4184-ab0d-dbe3e4204b7b" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -189,11 +192,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserDAOImpl.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UserDAOImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/Impl/UserDAOImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="141">
               <caret line="194" column="16" selection-start-line="194" selection-start-column="16" selection-end-line="194" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1003">
+              <caret line="59" column="61" selection-start-line="59" selection-start-column="61" selection-end-line="59" selection-end-column="61" />
             </state>
           </provider>
         </entry>
@@ -254,7 +266,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/webapp/jsp/user/orderReport.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/jsp/user/login.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/resources/js1/user.js" />
         <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/exception/ServiceException.java" />
@@ -305,6 +316,7 @@
         <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/entity/UserRoleEnum.java" />
         <option value="$PROJECT_DIR$/src/test/java/by/training/vashkevichyura/service/impl/UserServiceImplTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/by/training/vashkevichyura/dao/Impl/UserDAOImplTest.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -340,10 +352,9 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="9" />
-    <option name="y" value="7" />
+    <option name="x" value="-7" />
     <option name="width" value="811" />
-    <option name="height" value="871" />
+    <option name="height" value="858" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -360,222 +371,6 @@
             <path>
               <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
               <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="vashkevichyura" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="vashkevichyura" type="462c0819:PsiDirectoryNode" />
-              <item name="command" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="vashkevichyura" type="462c0819:PsiDirectoryNode" />
-              <item name="command" type="462c0819:PsiDirectoryNode" />
-              <item name="impl" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="vashkevichyura" type="462c0819:PsiDirectoryNode" />
-              <item name="dao" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="vashkevichyura" type="462c0819:PsiDirectoryNode" />
-              <item name="dao" type="462c0819:PsiDirectoryNode" />
-              <item name="Impl" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="vashkevichyura" type="462c0819:PsiDirectoryNode" />
-              <item name="entity" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="vashkevichyura" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="vashkevichyura" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="impl" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="jsp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="jsp" type="462c0819:PsiDirectoryNode" />
-              <item name="bike" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="jsp" type="462c0819:PsiDirectoryNode" />
-              <item name="error" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="jsp" type="462c0819:PsiDirectoryNode" />
-              <item name="order" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="jsp" type="462c0819:PsiDirectoryNode" />
-              <item name="rentalpoint" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="jsp" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="jsp" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="js1" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="vashkevichyura" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -600,7 +395,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.37241378" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Ignored.Files" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
@@ -988,7 +783,7 @@
       <workItem from="1580311444532" duration="220591000" />
       <workItem from="1581153852185" duration="4892000" />
       <workItem from="1581172290376" duration="10683000" />
-      <workItem from="1581239565528" duration="79997000" />
+      <workItem from="1581239565528" duration="82055000" />
     </task>
     <task id="LOCAL-00001" summary="/">
       <created>1581321063862</created>
@@ -1011,7 +806,14 @@
       <option name="project" value="LOCAL" />
       <updated>1581357661507</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="/">
+      <created>1581359348852</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1581359348852</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1047,7 +849,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="884351000" />
+    <option name="totallyTimeSpent" value="886409000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1084,8 +886,8 @@
       <window_info anchor="right" id="Capture Analysis" order="10" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8084833" weight="0.27653632" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.32681563" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.49800265" visible="true" weight="0.33100557" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4944134" visible="true" weight="0.35732648" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49800265" visible="true" weight="0.33100557" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4944134" visible="true" weight="0.12403599" />
       <window_info anchor="right" id="Bean Validation" order="2" show_stripe_button="false" weight="0.3288948" />
       <window_info id="Web" order="6" sideWeight="0.5049702" side_tool="true" weight="0.311054" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49800265" weight="0.3058659" />
@@ -1249,13 +1051,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/Impl/OrderDAOImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-720">
-          <caret line="251" column="89" selection-start-line="251" selection-start-column="89" selection-end-line="251" selection-end-column="89" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/Impl/BikeDAOImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1241">
@@ -1620,6 +1415,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="141">
           <caret line="194" column="16" selection-start-line="194" selection-start-column="16" selection-end-line="194" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1003">
+          <caret line="59" column="61" selection-start-line="59" selection-start-column="61" selection-end-line="59" selection-end-column="61" />
         </state>
       </provider>
     </entry>

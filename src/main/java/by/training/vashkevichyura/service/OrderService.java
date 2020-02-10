@@ -1,0 +1,14 @@
+package by.training.vashkevichyura.service;
+
+import by.training.vashkevichyura.entity.Order;
+import by.training.vashkevichyura.entity.User;
+import by.training.vashkevichyura.exception.ServiceException;
+import by.training.vashkevichyura.util.PageInfo;
+
+import java.util.List;
+
+public interface OrderService {
+    List<Order> getAllOrderByUser(User user) throws ServiceException;
+    List<Order> getAllOrders(PageInfo pageInfo) throws  ServiceException;
+
+}

@@ -1,0 +1,76 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<fmt:setLocale value="${sessionScope.local}" />
+<fmt:setBundle basename="local"/>
+<style>
+
+	<%@include file="/resources/css/labelStyle.css"%>
+</style>
+
+<div>
+	<div class="row">
+		<div class="col-md-4"><label><fmt:message key="loginLabel"/>*</label></div>
+		<div class="col-md-4">
+			<input
+				type="text" 
+				name="login"
+				class="form-control" 
+				<c:if test="${login!=null}"> value="${login}"</c:if>
+				<c:if test="${login==null}"> value="${user.login}"</c:if>
+				value="${user.login}${userWrong.login}"
+				placeholder="${loginPlaceholder}"
+				pattern="[a-zA-Z]{1}[a-zA-Z0-9]{2,20}"
+				required
+				oninvalid="setCustomValidity('${loginWarn}')"
+				oninput="setCustomValidity('')">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4"><label><fmt:message key="nameLabel"/>*</label></div>
+		<div class="col-md-4">
+				<input 	type="text"	
+						name="name" 
+						class="form-control"
+						<c:if test="${name!=null}"> value="${name}"</c:if>
+						<c:if test="${name==null}"> value="${user.name}"</c:if>
+						placeholder="${namePlaceholder}"
+						pattern="[a-zA-Zа-яА-ЯЁё]{3,15}"
+						required
+						oninvalid="setCustomValidity('${nameWarnLabel}')"
+						oninput="setCustomValidity('')">	
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4"><label><fmt:message key="surnameLabel"/>*</label></div>
+		<div class="col-md-4">
+				<input 	type="text"
+						name="surname" 
+						class="form-control"
+						<c:if test="${surname!=null}">value="${surname}"</c:if>
+						<c:if test="${surname==null}">value="${user.surname}"</c:if> 
+						value="${user.surname}${userWrong.surname}" 
+						placeholder="${surnamePlaceholder}"
+						required
+						pattern="[a-zA-Zа-яА-ЯЁё]{3,15}"
+						oninvalid="setCustomValidity('${surnameWarnLabel}')"
+						oninput="setCustomValidity('')">	
+		</div>
+	</div>	
+	<div class="row">
+		<div class="col-md-4"><label><fmt:message key="emailLabel"/>*</label></div>
+		<div class="col-md-4">
+				<input 	type="email" 
+						name="email" 
+						class="form-control"
+						<c:if test="${email ne null}">value="${email}"</c:if>
+						<c:if test="${email eq null}">value="${user.email}"</c:if>
+						value="${user.email}${userWrong.email}"
+						placeholder="${emailPlaceholder}"
+						required
+						oninvalid="setCustomValidity('${emailWarnLabel}')"
+						oninput="setCustomValidity('')">	
+		</div>
+	</div>

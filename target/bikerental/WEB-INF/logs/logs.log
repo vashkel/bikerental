@@ -1,0 +1,406 @@
+2019-12-27 09:02:50.071 [main] INFO  java.sql.Connection - Current catalog bike-rental
+2019-12-27 09:04:49.246 [main] INFO  java.sql.Connection - Current catalog bike-rental
+2019-12-27 09:06:24.737 [main] INFO  java.sql.Connection - Current catalog 4
+2019-12-27 09:46:07.584 [main] INFO  java.sql.Connection - Current catalog 4
+2019-12-27 10:47:59.050 [main] INFO  java.sql.Connection - 1 yura vashkevich
+2019-12-27 10:55:40.779 [main] INFO  java.sql.Connection - 1 yura vashkevich
+2019-12-27 10:58:35.287 [main] INFO  java.sql.Connection - 1 igor petrov
+2019-12-27 11:01:25.163 [main] INFO  java.sql.Connection - 1 yura vashkevich
+2019-12-27 11:01:25.170 [main] INFO  java.sql.Connection - 2 pavel popov
+2019-12-27 11:21:02.347 [main] INFO  java.sql.Connection - 1 yura vashkevich
+2019-12-27 11:21:02.355 [main] INFO  java.sql.Connection - 2 pavel popov
+2019-12-27 17:16:56.813 [main] INFO  java.sql.Connection - 1 yura vashkevich
+2019-12-27 17:16:56.850 [main] INFO  java.sql.Connection - 2 pavel popov
+2019-12-27 17:17:17.188 [main] INFO  java.sql.Connection - 1 yura vashkevich
+2019-12-27 17:17:17.198 [main] INFO  java.sql.Connection - 2 pavel popov
+2019-12-29 10:40:02.559 [main] INFO  java.sql.Connection - 1 yura vashkevich
+2019-12-29 10:40:02.591 [main] INFO  java.sql.Connection - 2 igor petrov
+2019-12-29 10:40:02.592 [main] INFO  java.sql.Connection - 3 pavel popov
+2019-12-29 11:31:52.603 [main] INFO  java.sql.Connection - First 1yura vashkevich
+2019-12-29 11:31:52.611 [main] INFO  java.sql.Connection - First 3pavel popov
+2019-12-29 11:31:52.613 [main] INFO  java.sql.Connection - First 3pavel popov
+2019-12-29 11:31:52.613 [main] INFO  java.sql.Connection - First 2igor petrov
+2019-12-29 11:31:52.614 [main] INFO  java.sql.Connection - First 1yura vashkevich
+2019-12-29 17:36:38.719 [main] INFO  java.sql.Connection - First 1yura vashkevich
+2019-12-29 17:36:38.727 [main] INFO  java.sql.Connection - Last 3pavel popov
+2019-12-29 17:36:38.727 [main] INFO  java.sql.Connection - Row 3pavel popov
+2019-12-29 17:36:38.727 [main] INFO  java.sql.Connection - Row 2igor petrov
+2019-12-29 17:36:38.728 [main] INFO  java.sql.Connection - Row 1yura vashkevich
+2019-12-29 17:38:48.642 [main] INFO  java.sql.Connection - First 1yura vashkevich
+2019-12-29 17:38:48.656 [main] INFO  java.sql.Connection - Last 3pavel popov
+2019-12-29 17:38:48.657 [main] INFO  java.sql.Connection - Row 3pavel popov
+2019-12-29 17:38:48.657 [main] INFO  java.sql.Connection - Row 2igor petrov
+2019-12-29 17:38:48.658 [main] INFO  java.sql.Connection - Row 1yura vashkevich
+2019-12-29 18:59:38.642 [main] INFO  java.sql.Connection - 1 vashkevich
+2019-12-29 19:05:33.818 [main] INFO  java.sql.Connection - 1 vashkevich
+2020-01-03 20:09:08.013 [main] FATAL by.training.vashkevichyura.connection.ProxyConnectionFactory - Connection to database: null was not established
+java.sql.SQLException: Access denied for user ''@'localhost' (using password: NO)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129) ~[mysql-connector-java-8.0.18.jar:8.0.18]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97) ~[mysql-connector-java-8.0.18.jar:8.0.18]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.18.jar:8.0.18]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:836) ~[mysql-connector-java-8.0.18.jar:8.0.18]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:456) ~[mysql-connector-java-8.0.18.jar:8.0.18]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:246) ~[mysql-connector-java-8.0.18.jar:8.0.18]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:199) ~[mysql-connector-java-8.0.18.jar:8.0.18]
+	at java.sql.DriverManager.getConnection(DriverManager.java:664) ~[?:1.8.0_151]
+	at java.sql.DriverManager.getConnection(DriverManager.java:208) ~[?:1.8.0_151]
+	at by.training.vashkevichyura.connection.ProxyConnectionFactory.createProxyConnection(ProxyConnectionFactory.java:54) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionPool.<init>(ConnectionPool.java:54) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionPool.getInstance(ConnectionPool.java:31) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionImpr.main(ConnectionImpr.java:13) [classes/:?]
+2020-01-10 12:36:27.517 [main] ERROR by.training.vashkevichyura.dao.Impl.BikeDAOImpl - Exception in BikeDAOImpl add method. Impossible insert bike
+java.sql.SQLIntegrityConstraintViolationException: Cannot add or update a child row: a foreign key constraint fails (`bike-rental`.`bikes`, CONSTRAINT `bikes_bike-type__fk` FOREIGN KEY (`bike_type_id`) REFERENCES `bike_types` (`id`))
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117) ~[mysql-connector-java-8.0.18.jar:8.0.18]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97) ~[mysql-connector-java-8.0.18.jar:8.0.18]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.18.jar:8.0.18]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953) ~[mysql-connector-java-8.0.18.jar:8.0.18]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1092) ~[mysql-connector-java-8.0.18.jar:8.0.18]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1040) ~[mysql-connector-java-8.0.18.jar:8.0.18]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1347) ~[mysql-connector-java-8.0.18.jar:8.0.18]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1025) ~[mysql-connector-java-8.0.18.jar:8.0.18]
+	at by.training.vashkevichyura.dao.Impl.BikeDAOImpl.add(BikeDAOImpl.java:29) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionImpr.main(ConnectionImpr.java:25) [classes/:?]
+2020-01-12 10:32:54.255 [main] ERROR by.training.vashkevichyura.dao.Impl.BikeTypeDAOImpl - update bikeType error
+java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '1' for key 'PRIMARY'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117) ~[mysql-connector-java-8.0.18.jar:8.0.18]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97) ~[mysql-connector-java-8.0.18.jar:8.0.18]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.18.jar:8.0.18]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953) ~[mysql-connector-java-8.0.18.jar:8.0.18]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1092) ~[mysql-connector-java-8.0.18.jar:8.0.18]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1040) ~[mysql-connector-java-8.0.18.jar:8.0.18]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1347) ~[mysql-connector-java-8.0.18.jar:8.0.18]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1025) ~[mysql-connector-java-8.0.18.jar:8.0.18]
+	at by.training.vashkevichyura.dao.Impl.BikeTypeDAOImpl.update(BikeTypeDAOImpl.java:117) ~[classes/:?]
+	at BikeTypeDAOImplTest.testUpdate(BikeTypeDAOImplTest.java:50) ~[classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_151]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_151]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_151]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_151]
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133) ~[testng-7.0.0.jar:?]
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:584) ~[testng-7.0.0.jar:?]
+	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:172) ~[testng-7.0.0.jar:?]
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46) ~[testng-7.0.0.jar:?]
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:804) ~[testng-7.0.0.jar:?]
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:145) ~[testng-7.0.0.jar:?]
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146) ~[testng-7.0.0.jar:?]
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128) ~[testng-7.0.0.jar:?]
+	at java.util.ArrayList.forEach(ArrayList.java:1255) [?:1.8.0_151]
+	at org.testng.TestRunner.privateRun(TestRunner.java:770) [testng-7.0.0.jar:?]
+	at org.testng.TestRunner.run(TestRunner.java:591) [testng-7.0.0.jar:?]
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:402) [testng-7.0.0.jar:?]
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:396) [testng-7.0.0.jar:?]
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:355) [testng-7.0.0.jar:?]
+	at org.testng.SuiteRunner.run(SuiteRunner.java:304) [testng-7.0.0.jar:?]
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53) [testng-7.0.0.jar:?]
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96) [testng-7.0.0.jar:?]
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1180) [testng-7.0.0.jar:?]
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1102) [testng-7.0.0.jar:?]
+	at org.testng.TestNG.runSuites(TestNG.java:1032) [testng-7.0.0.jar:?]
+	at org.testng.TestNG.run(TestNG.java:1000) [testng-7.0.0.jar:?]
+	at org.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:72) [testng-plugin.jar:?]
+	at org.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:123) [testng-plugin.jar:?]
+2020-01-15 11:18:07.124 [main] INFO  by.training.vashkevichyura.dao.Impl.BikeDAOImpl - count changed element 1
+2020-01-15 11:18:47.084 [main] INFO  by.training.vashkevichyura.dao.Impl.BikeDAOImpl - count changed element 1
+2020-01-15 11:19:03.156 [main] INFO  by.training.vashkevichyura.dao.Impl.BikeDAOImpl - count changed element 1
+2020-01-15 11:25:10.178 [main] INFO  by.training.vashkevichyura.dao.Impl.BikeDAOImpl - count changed element 1
+2020-01-15 11:25:26.263 [main] INFO  by.training.vashkevichyura.dao.Impl.BikeDAOImpl - count changed element 1
+2020-01-15 11:25:38.202 [main] INFO  by.training.vashkevichyura.dao.Impl.BikeDAOImpl - count changed element 1
+2020-01-15 11:26:09.208 [main] INFO  by.training.vashkevichyura.dao.Impl.BikeDAOImpl - count changed element 1
+2020-01-15 11:26:25.478 [main] INFO  by.training.vashkevichyura.dao.Impl.BikeDAOImpl - count changed element 1
+2020-01-15 11:26:38.248 [main] INFO  by.training.vashkevichyura.dao.Impl.BikeDAOImpl - count changed element 1
+2020-01-15 11:33:41.300 [main] INFO  by.training.vashkevichyura.dao.Impl.BikeDAOImpl - count changed element 1
+2020-01-15 11:33:55.387 [main] INFO  by.training.vashkevichyura.dao.Impl.BikeDAOImpl - count changed element 1
+2020-01-15 11:34:06.885 [main] INFO  by.training.vashkevichyura.dao.Impl.BikeDAOImpl - count changed element 1
+2020-01-15 11:34:47.218 [main] INFO  by.training.vashkevichyura.dao.Impl.BikeDAOImpl - count changed element 1
+2020-01-15 11:34:58.727 [main] INFO  by.training.vashkevichyura.dao.Impl.BikeDAOImpl - count changed element 1
+2020-01-15 11:36:16.203 [main] INFO  by.training.vashkevichyura.dao.Impl.BikeDAOImpl - count changed element 1
+2020-01-15 11:36:43.085 [main] INFO  by.training.vashkevichyura.dao.Impl.BikeDAOImpl - count changed element 1
+2020-01-15 11:36:52.870 [main] INFO  by.training.vashkevichyura.dao.Impl.BikeDAOImpl - count changed element 1
+2020-01-15 11:37:01.224 [main] INFO  by.training.vashkevichyura.dao.Impl.BikeDAOImpl - count changed element 1
+2020-01-15 11:43:43.586 [main] INFO  by.training.vashkevichyura.dao.Impl.BikeDAOImpl - count changed element 1
+2020-01-15 11:43:54.094 [main] INFO  by.training.vashkevichyura.dao.Impl.BikeDAOImpl - count changed element 1
+2020-01-15 11:44:03.873 [main] INFO  by.training.vashkevichyura.dao.Impl.BikeDAOImpl - count changed element 1
+2020-01-15 11:44:46.254 [main] INFO  by.training.vashkevichyura.dao.Impl.BikeDAOImpl - count changed element 1
+2020-01-15 11:45:00.080 [main] INFO  by.training.vashkevichyura.dao.Impl.BikeDAOImpl - count changed element 1
+2020-01-15 11:45:25.136 [main] INFO  by.training.vashkevichyura.dao.Impl.BikeDAOImpl - count changed element 1
+2020-01-15 11:45:48.506 [main] INFO  by.training.vashkevichyura.dao.Impl.BikeDAOImpl - count changed element 1
+2020-01-15 11:45:57.751 [main] INFO  by.training.vashkevichyura.dao.Impl.BikeDAOImpl - count changed element 1
+2020-01-15 11:46:05.809 [main] INFO  by.training.vashkevichyura.dao.Impl.BikeDAOImpl - count changed element 1
+2020-01-16 09:08:19.225 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 09:08:19.251 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 09:09:15.602 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 09:09:15.609 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 10:27:04.074 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 10:27:04.081 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 10:27:39.511 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 10:27:39.519 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 10:31:14.690 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 10:31:14.698 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 10:32:16.222 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 10:32:16.235 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 11:02:43.019 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 11:02:43.028 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 11:09:34.111 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 11:09:34.118 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 11:10:17.841 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 11:10:17.851 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 11:13:50.038 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 11:13:50.045 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 12:04:47.480 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 12:04:47.488 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 12:10:39.200 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 12:10:39.220 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 12:10:49.585 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 12:10:49.606 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 12:13:53.120 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 12:13:53.127 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 15:21:55.328 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 15:21:55.414 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 15:24:45.621 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 15:24:45.628 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 15:25:23.476 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 15:25:23.484 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 15:26:41.886 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 15:26:41.894 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 15:29:15.533 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 15:29:15.549 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 15:36:00.601 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 15:36:00.608 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 15:40:49.034 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 15:40:49.042 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 15:45:49.673 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 15:45:49.686 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 15:51:03.151 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 15:51:03.158 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 15:52:55.391 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 15:52:55.399 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 16:01:24.904 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 16:01:24.910 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 16:01:56.321 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 16:01:56.329 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 16:03:24.215 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 16:03:24.222 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 16:06:24.356 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 16:06:24.368 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 16:08:32.265 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 16:08:32.273 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 16:17:15.886 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 16:17:15.893 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 16:18:24.931 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 16:18:24.939 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 16:27:36.435 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 16:27:36.450 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 16:28:41.991 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 16:28:42.006 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 16:29:24.490 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 16:29:24.501 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 16:37:48.564 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 16:37:48.577 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 16:38:47.306 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 16:38:47.314 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 16:44:54.902 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 16:44:54.913 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 16:49:01.987 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 16:49:01.996 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 16:52:03.060 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 16:52:03.069 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 16:55:16.140 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 16:55:16.146 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 16:56:18.233 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 16:56:18.241 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 17:03:27.827 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 17:03:27.844 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 17:03:46.743 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 17:03:46.750 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 17:04:23.939 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 17:04:23.946 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 17:04:41.772 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 17:04:41.782 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 17:07:13.288 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 17:07:13.302 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 17:07:32.439 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 17:07:32.447 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-16 17:09:34.263 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-16 17:09:34.277 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-17 11:50:01.701 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-17 11:50:01.710 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-17 11:50:51.420 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-17 11:50:51.427 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-17 11:57:13.802 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-17 11:57:13.816 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-17 11:58:51.326 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-17 11:58:51.335 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-17 12:00:33.613 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-17 12:00:33.622 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-21 18:55:56.597 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-21 18:55:56.813 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-21 21:01:30.556 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-21 21:01:30.565 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-21 21:01:50.715 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-21 21:01:50.725 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-23 09:01:52.377 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-23 09:01:52.408 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-23 12:24:23.088 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-23 12:24:23.096 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-28 19:54:30.897 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-28 19:54:30.925 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-28 19:56:47.563 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-28 19:56:47.573 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-28 20:01:19.922 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-28 20:01:19.934 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-28 20:02:28.714 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-28 20:02:28.724 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-29 11:27:28.273 [main] FATAL by.training.vashkevichyura.connection.ProxyConnectionFactory - Connection to database: jdbc:mysql://localhost/bike-rental?useSSL=false&serverTimezone=UTC was not established
+java.sql.SQLException: The url cannot be null
+	at java.sql.DriverManager.getConnection(DriverManager.java:649) ~[?:1.8.0_151]
+	at java.sql.DriverManager.getConnection(DriverManager.java:247) ~[?:1.8.0_151]
+	at by.training.vashkevichyura.connection.ProxyConnectionFactory.createProxyConnection(ProxyConnectionFactory.java:52) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionPool.<init>(ConnectionPool.java:58) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionPool.getInstance(ConnectionPool.java:33) [classes/:?]
+	at by.training.vashkevichyura.dao.Impl.UserDAOImpl.add(UserDAOImpl.java:37) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionImpr.main(ConnectionImpr.java:37) [classes/:?]
+2020-01-29 11:30:17.433 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-29 11:30:17.446 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-29 11:50:50.043 [main] FATAL by.training.vashkevichyura.connection.ProxyConnectionFactory - Driver unable to read from properties 
+java.io.FileNotFoundException: jdbc.properties (Не удается найти указанный файл)
+	at java.io.FileInputStream.open0(Native Method) ~[?:1.8.0_151]
+	at java.io.FileInputStream.open(FileInputStream.java:195) ~[?:1.8.0_151]
+	at java.io.FileInputStream.<init>(FileInputStream.java:138) ~[?:1.8.0_151]
+	at java.io.FileInputStream.<init>(FileInputStream.java:93) ~[?:1.8.0_151]
+	at by.training.vashkevichyura.connection.ProxyConnectionFactory.<init>(ProxyConnectionFactory.java:28) [classes/:?]
+	at by.training.vashkevichyura.connection.ProxyConnectionFactory.getInstance(ProxyConnectionFactory.java:22) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionPool.<init>(ConnectionPool.java:56) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionPool.getInstance(ConnectionPool.java:33) [classes/:?]
+	at by.training.vashkevichyura.dao.Impl.UserDAOImpl.add(UserDAOImpl.java:37) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionImpr.main(ConnectionImpr.java:36) [classes/:?]
+2020-01-29 11:52:23.257 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-29 11:52:23.275 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov
+2020-01-29 12:35:47.076 [main] FATAL by.training.vashkevichyura.connection.ProxyConnectionFactory - Connection to database: jdbc:mysql://localhost/bike-rental?useSSL=false&serverTimezone=UTC was not established
+java.sql.SQLException: Access denied for user ''@'localhost' (using password: YES)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129) ~[mysql-connector-java-8.0.18.jar:8.0.18]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97) ~[mysql-connector-java-8.0.18.jar:8.0.18]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.18.jar:8.0.18]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:836) ~[mysql-connector-java-8.0.18.jar:8.0.18]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:456) ~[mysql-connector-java-8.0.18.jar:8.0.18]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:246) ~[mysql-connector-java-8.0.18.jar:8.0.18]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:199) ~[mysql-connector-java-8.0.18.jar:8.0.18]
+	at java.sql.DriverManager.getConnection(DriverManager.java:664) ~[?:1.8.0_151]
+	at java.sql.DriverManager.getConnection(DriverManager.java:208) ~[?:1.8.0_151]
+	at by.training.vashkevichyura.connection.ProxyConnectionFactory.createProxyConnection(ProxyConnectionFactory.java:58) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionPool.<init>(ConnectionPool.java:58) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionPool.getInstance(ConnectionPool.java:33) [classes/:?]
+	at by.training.vashkevichyura.dao.Impl.UserDAOImpl.add(UserDAOImpl.java:37) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionImpr.main(ConnectionImpr.java:36) [classes/:?]
+2020-01-29 12:37:15.004 [main] FATAL by.training.vashkevichyura.connection.ProxyConnectionFactory - Connection to database: jdbc:mysql://localhost/bike-rental?useSSL=false&serverTimezone=UTC was not established
+java.sql.SQLException: The url cannot be null
+	at java.sql.DriverManager.getConnection(DriverManager.java:649) ~[?:1.8.0_151]
+	at java.sql.DriverManager.getConnection(DriverManager.java:247) ~[?:1.8.0_151]
+	at by.training.vashkevichyura.connection.ProxyConnectionFactory.createProxyConnection(ProxyConnectionFactory.java:46) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionPool.<init>(ConnectionPool.java:58) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionPool.getInstance(ConnectionPool.java:33) [classes/:?]
+	at by.training.vashkevichyura.dao.Impl.UserDAOImpl.add(UserDAOImpl.java:37) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionImpr.main(ConnectionImpr.java:36) [classes/:?]
+2020-01-29 12:38:59.306 [main] FATAL by.training.vashkevichyura.connection.ProxyConnectionFactory - Driver unable to read from properties 
+java.io.FileNotFoundException: jdbc.properties (Не удается найти указанный файл)
+	at java.io.FileInputStream.open0(Native Method) ~[?:1.8.0_151]
+	at java.io.FileInputStream.open(FileInputStream.java:195) ~[?:1.8.0_151]
+	at java.io.FileInputStream.<init>(FileInputStream.java:138) ~[?:1.8.0_151]
+	at java.io.FileInputStream.<init>(FileInputStream.java:93) ~[?:1.8.0_151]
+	at by.training.vashkevichyura.connection.ProxyConnectionFactory.<init>(ProxyConnectionFactory.java:27) [classes/:?]
+	at by.training.vashkevichyura.connection.ProxyConnectionFactory.getInstance(ProxyConnectionFactory.java:22) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionPool.<init>(ConnectionPool.java:56) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionPool.getInstance(ConnectionPool.java:33) [classes/:?]
+	at by.training.vashkevichyura.dao.Impl.UserDAOImpl.add(UserDAOImpl.java:37) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionImpr.main(ConnectionImpr.java:36) [classes/:?]
+2020-01-29 12:39:45.935 [main] FATAL by.training.vashkevichyura.connection.ProxyConnectionFactory - Driver unable to read from properties 
+java.io.FileNotFoundException: resources\jdbc.properties (Системе не удается найти указанный путь)
+	at java.io.FileInputStream.open0(Native Method) ~[?:1.8.0_151]
+	at java.io.FileInputStream.open(FileInputStream.java:195) ~[?:1.8.0_151]
+	at java.io.FileInputStream.<init>(FileInputStream.java:138) ~[?:1.8.0_151]
+	at java.io.FileInputStream.<init>(FileInputStream.java:93) ~[?:1.8.0_151]
+	at by.training.vashkevichyura.connection.ProxyConnectionFactory.<init>(ProxyConnectionFactory.java:27) [classes/:?]
+	at by.training.vashkevichyura.connection.ProxyConnectionFactory.getInstance(ProxyConnectionFactory.java:22) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionPool.<init>(ConnectionPool.java:56) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionPool.getInstance(ConnectionPool.java:33) [classes/:?]
+	at by.training.vashkevichyura.dao.Impl.UserDAOImpl.add(UserDAOImpl.java:37) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionImpr.main(ConnectionImpr.java:36) [classes/:?]
+2020-01-29 12:40:35.460 [main] FATAL by.training.vashkevichyura.connection.ProxyConnectionFactory - Connection to database: jdbc:mysql://localhost/bike-rental?useSSL=false&serverTimezone=UTC was not established
+java.sql.SQLException: The url cannot be null
+	at java.sql.DriverManager.getConnection(DriverManager.java:649) ~[?:1.8.0_151]
+	at java.sql.DriverManager.getConnection(DriverManager.java:247) ~[?:1.8.0_151]
+	at by.training.vashkevichyura.connection.ProxyConnectionFactory.createProxyConnection(ProxyConnectionFactory.java:46) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionPool.<init>(ConnectionPool.java:58) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionPool.getInstance(ConnectionPool.java:33) [classes/:?]
+	at by.training.vashkevichyura.dao.Impl.UserDAOImpl.add(UserDAOImpl.java:37) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionImpr.main(ConnectionImpr.java:36) [classes/:?]
+2020-01-29 12:40:45.451 [main] FATAL by.training.vashkevichyura.connection.ProxyConnectionFactory - Connection to database: jdbc:mysql://localhost/bike-rental?useSSL=false&serverTimezone=UTC was not established
+java.sql.SQLException: The url cannot be null
+	at java.sql.DriverManager.getConnection(DriverManager.java:649) ~[?:1.8.0_151]
+	at java.sql.DriverManager.getConnection(DriverManager.java:247) ~[?:1.8.0_151]
+	at by.training.vashkevichyura.connection.ProxyConnectionFactory.createProxyConnection(ProxyConnectionFactory.java:46) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionPool.<init>(ConnectionPool.java:58) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionPool.getInstance(ConnectionPool.java:33) [classes/:?]
+	at by.training.vashkevichyura.dao.Impl.UserDAOImpl.add(UserDAOImpl.java:37) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionImpr.main(ConnectionImpr.java:36) [classes/:?]
+2020-01-29 12:52:14.656 [main] FATAL by.training.vashkevichyura.connection.ProxyConnectionFactory - Driver unable to read from properties 
+java.io.FileNotFoundException: resources\jdbc.properties (Системе не удается найти указанный путь)
+	at java.io.FileInputStream.open0(Native Method) ~[?:1.8.0_151]
+	at java.io.FileInputStream.open(FileInputStream.java:195) ~[?:1.8.0_151]
+	at java.io.FileInputStream.<init>(FileInputStream.java:138) ~[?:1.8.0_151]
+	at java.io.FileInputStream.<init>(FileInputStream.java:93) ~[?:1.8.0_151]
+	at by.training.vashkevichyura.connection.ProxyConnectionFactory.<init>(ProxyConnectionFactory.java:30) [classes/:?]
+	at by.training.vashkevichyura.connection.ProxyConnectionFactory.getInstance(ProxyConnectionFactory.java:22) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionPool.<init>(ConnectionPool.java:56) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionPool.getInstance(ConnectionPool.java:33) [classes/:?]
+	at by.training.vashkevichyura.dao.Impl.UserDAOImpl.add(UserDAOImpl.java:37) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionImpr.main(ConnectionImpr.java:36) [classes/:?]
+2020-01-29 12:55:04.759 [main] FATAL by.training.vashkevichyura.connection.ProxyConnectionFactory - Driver unable to read from properties 
+java.io.FileNotFoundException: jdbc.properties (Не удается найти указанный файл)
+	at java.io.FileInputStream.open0(Native Method) ~[?:1.8.0_151]
+	at java.io.FileInputStream.open(FileInputStream.java:195) ~[?:1.8.0_151]
+	at java.io.FileInputStream.<init>(FileInputStream.java:138) ~[?:1.8.0_151]
+	at java.io.FileInputStream.<init>(FileInputStream.java:93) ~[?:1.8.0_151]
+	at by.training.vashkevichyura.connection.ProxyConnectionFactory.<init>(ProxyConnectionFactory.java:31) [classes/:?]
+	at by.training.vashkevichyura.connection.ProxyConnectionFactory.getInstance(ProxyConnectionFactory.java:23) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionPool.<init>(ConnectionPool.java:56) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionPool.getInstance(ConnectionPool.java:33) [classes/:?]
+	at by.training.vashkevichyura.dao.Impl.UserDAOImpl.add(UserDAOImpl.java:37) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionImpr.main(ConnectionImpr.java:36) [classes/:?]
+2020-01-29 12:55:36.049 [main] FATAL by.training.vashkevichyura.connection.ProxyConnectionFactory - Driver unable to read from properties 
+java.io.FileNotFoundException: resources\jdbc.properties (Системе не удается найти указанный путь)
+	at java.io.FileInputStream.open0(Native Method) ~[?:1.8.0_151]
+	at java.io.FileInputStream.open(FileInputStream.java:195) ~[?:1.8.0_151]
+	at java.io.FileInputStream.<init>(FileInputStream.java:138) ~[?:1.8.0_151]
+	at java.io.FileInputStream.<init>(FileInputStream.java:93) ~[?:1.8.0_151]
+	at by.training.vashkevichyura.connection.ProxyConnectionFactory.<init>(ProxyConnectionFactory.java:31) [classes/:?]
+	at by.training.vashkevichyura.connection.ProxyConnectionFactory.getInstance(ProxyConnectionFactory.java:23) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionPool.<init>(ConnectionPool.java:56) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionPool.getInstance(ConnectionPool.java:33) [classes/:?]
+	at by.training.vashkevichyura.dao.Impl.UserDAOImpl.add(UserDAOImpl.java:37) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionImpr.main(ConnectionImpr.java:36) [classes/:?]
+2020-01-29 12:56:11.281 [main] FATAL by.training.vashkevichyura.connection.ProxyConnectionFactory - Driver unable to read from properties 
+java.io.FileNotFoundException: resources\jdbc.properties (Системе не удается найти указанный путь)
+	at java.io.FileInputStream.open0(Native Method) ~[?:1.8.0_151]
+	at java.io.FileInputStream.open(FileInputStream.java:195) ~[?:1.8.0_151]
+	at java.io.FileInputStream.<init>(FileInputStream.java:138) ~[?:1.8.0_151]
+	at java.io.FileInputStream.<init>(FileInputStream.java:93) ~[?:1.8.0_151]
+	at by.training.vashkevichyura.connection.ProxyConnectionFactory.<init>(ProxyConnectionFactory.java:31) [classes/:?]
+	at by.training.vashkevichyura.connection.ProxyConnectionFactory.getInstance(ProxyConnectionFactory.java:23) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionPool.<init>(ConnectionPool.java:56) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionPool.getInstance(ConnectionPool.java:33) [classes/:?]
+	at by.training.vashkevichyura.dao.Impl.UserDAOImpl.add(UserDAOImpl.java:37) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionImpr.main(ConnectionImpr.java:36) [classes/:?]
+2020-01-29 12:58:41.145 [main] FATAL by.training.vashkevichyura.connection.ProxyConnectionFactory - Driver unable to read from properties 
+java.io.FileNotFoundException: jdbc.properties (Не удается найти указанный файл)
+	at java.io.FileInputStream.open0(Native Method) ~[?:1.8.0_151]
+	at java.io.FileInputStream.open(FileInputStream.java:195) ~[?:1.8.0_151]
+	at java.io.FileInputStream.<init>(FileInputStream.java:138) ~[?:1.8.0_151]
+	at java.io.FileInputStream.<init>(FileInputStream.java:93) ~[?:1.8.0_151]
+	at by.training.vashkevichyura.connection.ProxyConnectionFactory.<init>(ProxyConnectionFactory.java:31) [classes/:?]
+	at by.training.vashkevichyura.connection.ProxyConnectionFactory.getInstance(ProxyConnectionFactory.java:23) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionPool.<init>(ConnectionPool.java:56) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionPool.getInstance(ConnectionPool.java:33) [classes/:?]
+	at by.training.vashkevichyura.dao.Impl.UserDAOImpl.add(UserDAOImpl.java:37) [classes/:?]
+	at by.training.vashkevichyura.connection.ConnectionImpr.main(ConnectionImpr.java:36) [classes/:?]
+2020-01-29 13:06:50.643 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 1 vashkevich
+2020-01-29 13:06:50.658 [main] INFO  by.training.vashkevichyura.connection.ConnectionImpr - 2 petrov

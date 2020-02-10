@@ -1,4 +1,4 @@
-package by.training.vashkevichyura.test.by;
+package by.training.vashkevichyura.test;
 
 import by.training.vashkevichyura.dao.BikeTypeDAO;
 import by.training.vashkevichyura.dao.DAOFactory;
@@ -26,7 +26,7 @@ public class BikeTypeDAOImplTest {
 
     @Test
     public void testGetAll() throws DAOException {
-        bikeTypeList = daoTypeDAO.getAllBikeType();
+        bikeTypeList = daoTypeDAO.getAll();
 
         Assert.assertNotNull(bikeTypeList);
         Assert.assertTrue(bikeTypeList.size() > 0);

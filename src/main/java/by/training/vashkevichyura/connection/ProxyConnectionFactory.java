@@ -1,21 +1,20 @@
 package by.training.vashkevichyura.connection;
 
+import by.training.vashkevichyura.manager.JDBCManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Properties;
 
 class ProxyConnectionFactory {
     private static final Logger LOGGER = LogManager.getLogger(ProxyConnectionFactory.class);
 
     private static ProxyConnectionFactory instance;
-
-     private String URL;
-     private Properties prop = new Properties();
+    private JDBCManager jdbcManager = JDBCManager.getInstance();
+    private String URL = jdbcManager.getProperty("url");
+    private String username = jdbcManager.getProperty("username");
+    private String password = jdbcManager.getProperty("password");
 
     static ProxyConnectionFactory getInstance() {
         if (instance == null) {
@@ -24,15 +23,9 @@ class ProxyConnectionFactory {
         return instance;
     }
     private ProxyConnectionFactory() {
-        try (FileInputStream inputStream = new FileInputStream("src\\main\\resources\\jdbc.properties")) {
-            prop.load(inputStream);
-            URL = prop.getProperty("url");
-            } catch (IOException e) {
-            LOGGER.fatal("Driver unable to read from properties ",e);
-               throw new RuntimeException(e);
-        }
         try {
-            DriverManager.registerDriver((java.sql.Driver) Class.forName(prop.getProperty("jdbc.driver")).newInstance());
+            String driver = jdbcManager.getProperty("driver");
+            DriverManager.registerDriver((java.sql.Driver) Class.forName(driver).newInstance());
         } catch (SQLException e) {
             LOGGER.fatal("Driver unable to register ", e);
             throw new RuntimeException(e);
@@ -40,13 +33,11 @@ class ProxyConnectionFactory {
             e.printStackTrace();
         }
     }
-
     ProxyConnection createProxyConnection() {
         try {
-            return new ProxyConnection(DriverManager.getConnection(prop.getProperty("jdbc.url"),
-                    prop.getProperty("jdbc.username"), prop.getProperty("jdbc.password")));
+            return new ProxyConnection(DriverManager.getConnection(URL, username, password));
         } catch (SQLException e) {
-            LOGGER.fatal( "Connection to database: " + URL + " was not established", e);
+            LOGGER.fatal("Connection to database: " + URL + " was not established", e);
             throw new RuntimeException("Connection to database: " + URL + " was not established", e);
         }
     }

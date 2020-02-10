@@ -1137,7 +1137,7 @@
     </table>
     <column id="288" parent="282" name="id">
       <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
+      <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
@@ -1163,7 +1163,7 @@
     </key>
     <column id="293" parent="283" name="id">
       <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
+      <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
@@ -1182,13 +1182,13 @@
     </column>
     <column id="296" parent="283" name="bike_type_id">
       <Position>4</Position>
-      <DataType>int(11)|0s</DataType>
+      <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="297" parent="283" name="rental_point_id">
       <Position>5</Position>
-      <DataType>int(11)|0s</DataType>
+      <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
@@ -1199,10 +1199,10 @@
       <DefaultExpression>&apos;free&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="299" parent="283" name="bikes_bike-type__fk">
+    <index id="299" parent="283" name="bikes_bike_types__fk">
       <ColNames>bike_type_id</ColNames>
     </index>
-    <index id="300" parent="283" name="bikes_rental-points__fk">
+    <index id="300" parent="283" name="bikes_rental_points__fk">
       <ColNames>rental_point_id</ColNames>
     </index>
     <key id="301" parent="283" name="PRIMARY">
@@ -1210,13 +1210,13 @@
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="302" parent="283" name="bikes_bike-type__fk">
+    <foreign-key id="302" parent="283" name="bikes_bike_types__fk">
       <ColNames>bike_type_id</ColNames>
       <RefSchemaName>bike-rental</RefSchemaName>
       <RefTableName>bike_types</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="303" parent="283" name="bikes_rental-points__fk">
+    <foreign-key id="303" parent="283" name="bikes_rental_points__fk">
       <ColNames>rental_point_id</ColNames>
       <RefSchemaName>bike-rental</RefSchemaName>
       <RefTableName>rental_points</RefTableName>
@@ -1224,7 +1224,7 @@
     </foreign-key>
     <column id="304" parent="284" name="id">
       <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
+      <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
@@ -1242,13 +1242,13 @@
     </column>
     <column id="307" parent="284" name="user_id">
       <Position>4</Position>
-      <DataType>int(11)|0s</DataType>
+      <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="308" parent="284" name="bike_id">
       <Position>5</Position>
-      <DataType>int(11)|0s</DataType>
+      <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
@@ -1297,14 +1297,14 @@
     </foreign-key>
     <column id="318" parent="285" name="id">
       <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
+      <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="319" parent="285" name="bike_type_id">
       <Position>2</Position>
-      <DataType>int(11)|0s</DataType>
+      <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
@@ -1318,7 +1318,7 @@
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="322" parent="285" name="rental-cost_bike-type__fk">
+    <index id="322" parent="285" name="rental_cost_bike_types__fk">
       <ColNames>bike_type_id</ColNames>
     </index>
     <key id="323" parent="285" name="PRIMARY">
@@ -1330,7 +1330,7 @@
       <ColNames>id</ColNames>
       <UnderlyingIndexName>rental-cost_id_uindex</UnderlyingIndexName>
     </key>
-    <foreign-key id="325" parent="285" name="rental-cost_bike-type__fk">
+    <foreign-key id="325" parent="285" name="rental_cost_bike_types__fk">
       <ColNames>bike_type_id</ColNames>
       <RefSchemaName>bike-rental</RefSchemaName>
       <RefTableName>bike_types</RefTableName>
@@ -1338,7 +1338,7 @@
     </foreign-key>
     <column id="326" parent="286" name="id">
       <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
+      <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
@@ -1384,7 +1384,7 @@
     </key>
     <column id="335" parent="287" name="id">
       <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
+      <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
@@ -1413,23 +1413,22 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="340" parent="287" name="role">
+    <column id="340" parent="287" name="salt">
       <Position>6</Position>
-      <DataType>enum(&apos;user&apos;, &apos;admin&apos;, &apos;guest&apos;)|0e</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="341" parent="287" name="tel">
-      <Position>7</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="342" parent="287" name="state">
-      <Position>8</Position>
-      <DataType>enum(&apos;active&apos;, &apos;blocked&apos;)|0e</DataType>
+    <column id="341" parent="287" name="role">
+      <Position>7</Position>
+      <DataType>enum(&apos;user&apos;, &apos;admin&apos;)|0e</DataType>
       <NotNull>1</NotNull>
-      <DefaultExpression>&apos;active&apos;</DefaultExpression>
+      <DefaultExpression>&apos;user&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="342" parent="287" name="tel">
+      <Position>8</Position>
+      <DataType>varchar(45)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="343" parent="287" name="balance">
@@ -1437,16 +1436,29 @@
       <DataType>double|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="344" parent="287" name="idUsers_UNIQUE">
+    <column id="344" parent="287" name="state">
+      <Position>10</Position>
+      <DataType>enum(&apos;active&apos;, &apos;blocked&apos;)|0e</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;active&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="345" parent="287" name="email">
+      <Position>11</Position>
+      <DataType>varchar(45)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="346" parent="287" name="idUsers_UNIQUE">
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="345" parent="287" name="PRIMARY">
+    <key id="347" parent="287" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="346" parent="287" name="idUsers_UNIQUE">
+    <key id="348" parent="287" name="idUsers_UNIQUE">
       <ColNames>id</ColNames>
       <UnderlyingIndexName>idUsers_UNIQUE</UnderlyingIndexName>
     </key>

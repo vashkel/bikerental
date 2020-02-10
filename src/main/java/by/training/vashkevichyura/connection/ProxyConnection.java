@@ -27,12 +27,12 @@ public class ProxyConnection implements Connection {
 
     private Connection connection;
 
-    ProxyConnection (Connection connection){
-        this.connection=connection;
+    ProxyConnection(Connection connection) {
+        this.connection = connection;
     }
 
 
-     void realClose() throws SQLException {
+    void realClose() throws SQLException {
         if (connection != null) {
             connection.close();
         }
@@ -43,6 +43,7 @@ public class ProxyConnection implements Connection {
         ConnectionPool.getInstance().releaseConnection(this);
 
     }
+
     @Override
     public Statement createStatement() throws SQLException {
         return connection.createStatement();

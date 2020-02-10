@@ -14,7 +14,6 @@ public class ConnectionPool {
     private static Logger LOGGER = LogManager.getLogger(ConnectionPool.class);
     private final static ReentrantLock instanceLock = new ReentrantLock(true);
     private static ConnectionPool instance;
-
     private Semaphore semaphore;
     private ArrayDeque<ProxyConnection> available;
     private ArrayDeque<ProxyConnection> taken;
@@ -58,12 +57,12 @@ public class ConnectionPool {
             available.addLast(factory.createProxyConnection());
         }
     }
+
     /**
      * Method that give out connection
      *
      * @return connection
      * @throw ConnectionPoolException
-     *
      */
     public ProxyConnection getConnection() throws ConnectionPoolException {
         ProxyConnection connection;
@@ -79,9 +78,8 @@ public class ConnectionPool {
     }
 
     /**
-     *  Method that give back connection
+     * Method that gives back connection
      *
-     * @param connection
      */
     public void releaseConnection(ProxyConnection connection) {
         taken.remove(connection);
@@ -107,7 +105,7 @@ public class ConnectionPool {
                 DriverManager.deregisterDriver(drivers.nextElement());
             }
         } catch (SQLException e) {
-            LOGGER.warn("Exception while deregistering database connection drivers", e);
+            LOGGER.warn("Exception while deregister database connection drivers", e);
         }
     }
 

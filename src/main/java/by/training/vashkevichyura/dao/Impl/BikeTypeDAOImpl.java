@@ -21,14 +21,15 @@ public class BikeTypeDAOImpl implements BikeTypeDAO {
 
     private final static Logger LOGGER = LogManager.getLogger(BikeTypeDAOImpl.class);
 
-    private final static String ADD_BIKE_TYPE = "INSERT INTO  bike_types(type) value (?)";
-    private final static int BIKE_TYPE = 1;
+    private final static String SQL_ADD_BIKE_TYPE = "INSERT INTO  bike_types(type) value (?)";
 
-    private final static String FIND_BY_ID = "SELECT * FROM bike_types WHERE id = ?";
+    private final static String SQL_GET_BY_ID = "SELECT id,type FROM bike_types WHERE id = ?";
 
-    private final static  String GET_ALL = "SELECT * FROM bike_types";
+    private final static String SQL_GET_ALL = "SELECT * FROM bike_types";
 
-    private final static String UPDATE_BIKE_TYPE = "";
+    private final static String SQL_UPDATE_BIKE_TYPE = "UPDATE `bike-rental`.bike_types SET id=?,type=? WHERE id=?";
+
+    private final static String SQL_DELETE_BIKE_TYPE = "DELETE * FROM `bike-rental`.bike_types WHERE id=?";
 
     @Override
     public void add(BikeType bikeType) throws DAOException {
@@ -37,49 +38,55 @@ public class BikeTypeDAOImpl implements BikeTypeDAO {
 
         try {
             connection = ConnectionPool.getInstance().getConnection();
-            statement = connection.prepareStatement(ADD_BIKE_TYPE);
-            statement.setString(BIKE_TYPE, bikeType.getType().name());
+            statement = connection.prepareStatement(SQL_ADD_BIKE_TYPE);
+            statement.setString(1, bikeType.getType().name());
             statement.executeUpdate();
         } catch (ConnectionPoolException | SQLException e) {
             LOGGER.error("Add BikeType to DB error", e);
-            throw  new DAOException("Add BikeType to DB error", e);
+            throw new DAOException("Add BikeType to DB error", e);
         } finally {
-            close(statement,connection);
-            }
+            close(statement, connection);
         }
+    }
 
     @Override
     public BikeType getById(long id) throws DAOException {
-       BikeType bikeType = new BikeType();
+        BikeType bikeType = new BikeType();
         ProxyConnection connection = null;
         PreparedStatement statement = null;
+        ResultSet resultSet = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
-            statement = connection.prepareStatement(FIND_BY_ID);
+            statement = connection.prepareStatement(SQL_GET_BY_ID);
             statement.setLong(1, id);
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()){
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
                 bikeType.setId(resultSet.getInt("id"));
-               bikeType.setType(BikeTypeEnum.valueOf(resultSet.getString("type").toUpperCase()));
+                bikeType.setType(BikeTypeEnum.valueOf(resultSet.getString("type").toUpperCase()));
             }
         } catch (SQLException | ConnectionPoolException e) {
-            LOGGER.error("getById BikeType from DB",e);
-        throw new DAOException("getById BikeType from DB",e);
-        }finally {
-            close(statement,connection);
+            LOGGER.error("getById BikeType from DB", e);
+            throw new DAOException("getById BikeType from DB", e);
+        } finally {
+            try {
+                close(statement, connection, resultSet);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return bikeType;
     }
 
     @Override
-    public List<BikeType> getAllBikeType() throws DAOException {
+    public List<BikeType> getAll() throws DAOException {
         ArrayList<BikeType> bikeTypes = new ArrayList<>();
         ProxyConnection connection = null;
         Statement statement = null;
+        ResultSet resultSet = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
             statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(GET_ALL);
+            resultSet = statement.executeQuery(SQL_GET_ALL);
             while (resultSet.next()) {
                 BikeType bikeType = new BikeType();
                 bikeType.setId(resultSet.getInt("id"));
@@ -87,49 +94,52 @@ public class BikeTypeDAOImpl implements BikeTypeDAO {
                 bikeTypes.add(bikeType);
             }
         } catch (ConnectionPoolException | SQLException e) {
-            LOGGER.error("getAllRentalPoints bikes type error ", e);
-            throw new DAOException("getAllRentalPoints bikes type error ", e);
+            LOGGER.error("getAll  bikeTypes type error ", e);
+            throw new DAOException("getAll bikeTypes type error ", e);
         } finally {
-                close(statement, connection);
-        } return bikeTypes;
-
+            try {
+                close(statement, connection, resultSet);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return bikeTypes;
     }
 
     @Override
     public void update(BikeType bikeType) throws DAOException {
         ProxyConnection connection = null;
         PreparedStatement statement = null;
-
         try {
-            connection=ConnectionPool.getInstance().getConnection();
-            statement = connection.prepareStatement("UPDATE `bike-rental`.bike_types SET id=?,type=? WHERE id=?"  );
-            statement.setLong(1,bikeType.getId());
-            statement.setString(2,bikeType.getType().name());
-            statement.setLong(3,bikeType.getId());
+            connection = ConnectionPool.getInstance().getConnection();
+            statement = connection.prepareStatement(SQL_UPDATE_BIKE_TYPE);
+            statement.setLong(1, bikeType.getId());
+            statement.setString(2, bikeType.getType().name());
+            statement.setLong(3, bikeType.getId());
             statement.executeUpdate();
         } catch (SQLException | ConnectionPoolException e) {
-            LOGGER.error("updateRentalPoint bikeType error" ,e);
-             throw new DAOException("updateRentalPoint bikeType error" ,e);
-        }finally {
-            close(statement,connection);
+            LOGGER.error("update bikeType error", e);
+            throw new DAOException("update bikeType error", e);
+        } finally {
+            close(statement, connection);
         }
     }
 
     @Override
-    public void delete(BikeType bikeType) throws DAOException {
+    public void delete(BikeType entity) throws DAOException {
         ProxyConnection connection = null;
         PreparedStatement statement = null;
 
         try {
-            connection= ConnectionPool.getInstance().getConnection();
-           statement= connection.prepareStatement("DELETE * FROM `bike-rental`.bike_types WHERE id=?");
-            statement.setLong(1,bikeType.getId());
+            connection = ConnectionPool.getInstance().getConnection();
+            statement = connection.prepareStatement(SQL_DELETE_BIKE_TYPE);
+            statement.setLong(1, entity.getId());
             statement.execute();
         } catch (ConnectionPoolException | SQLException e) {
-            LOGGER.error("deleteRentalPoint BikeType error",e);
-            throw new DAOException("deleteRentalPoint BikeType error",e);
-        }finally {
-            close(statement,connection);
+            LOGGER.error("delete BikeType error", e);
+            throw new DAOException("delete BikeType error", e);
+        } finally {
+            close(statement, connection);
         }
     }
 

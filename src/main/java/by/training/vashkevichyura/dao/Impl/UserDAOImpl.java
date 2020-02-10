@@ -18,6 +18,19 @@ import java.util.List;
 
 public class UserDAOImpl implements UserDAO {
 
+    private final static String SQL_ADD_USER = "INSERT INTO users( name, surname, login, password, salt, tel, " +
+            " balance,email) VALUES (?,?,?,?,?,?,?,?)";
+    private final static String SQL_GET_USER_BY_ID = "SELECT * FROM users WHERE id=?";
+    private final static String SQL_GET_ALL_USERS = "SELECT * FROM users";
+    private final static String SQL_UPDATE_USER = "UPDATE users SET name=?,surname=?,login=?,password=?," +
+            "salt =?,tel =?,balance =?,email =? WHERE id=?";
+    private final static String SQL_DELETE_USER = "DELETE FROM users WHERE id=?";
+    private final static String SQL_FIND_USER_BY_LOGIN = "SELECT * FROM users WHERE login = ?";
+    private final static String SQL_FIND_ID_BY_LOGIN = "SELECT id FROM users where login = ?";
+    private final static String SQL_REGISTER_USER = "INSERT INTO users( name, surname, login, password, salt,email) " +
+            "VALUES (?,?,?,?,?,?)";
+
+
     @Override
     public void add(User entity) throws DAOException {
         ProxyConnection connection = null;
@@ -25,20 +38,21 @@ public class UserDAOImpl implements UserDAO {
 
         try {
             connection = ConnectionPool.getInstance().getConnection();
-            statement = connection.prepareStatement("INSERT INTO users( name, surname, login, password, role, tel, " +
-                    "state, balance) VALUES (?,?,?,?,?,?,?,?)");
+            statement = connection.prepareStatement(SQL_ADD_USER);
             statement.setString(1,entity.getName());
             statement.setString(2,entity.getSurname());
             statement.setString(3,entity.getLogin());
             statement.setString(4,entity.getPassword());
-            statement.setString(5,entity.getRole().name().toUpperCase());
+            statement.setString(5,entity.getSalt());
             statement.setString(6,entity.getTel());
-            statement.setString(7,entity.getState().name());
-            statement.setDouble(8,entity.getBalance());
+            statement.setDouble(7,entity.getBalance());
+            statement.setString(8,entity.getEmail());
             statement.executeUpdate();
-        } catch (ConnectionPoolException | SQLException e) {
+        } catch (ConnectionPoolException e) {
             e.printStackTrace();
-        }finally {
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
             close(statement,connection);
         }
     }
@@ -48,79 +62,68 @@ public class UserDAOImpl implements UserDAO {
         User user = new User();
         ProxyConnection connection = null;
         PreparedStatement statement = null;
-        ResultSet resultSet;
+        ResultSet resultSet = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
-            statement = connection.prepareStatement("SELECT * FROM users WHERE id=?");
+            statement = connection.prepareStatement(SQL_GET_USER_BY_ID);
             statement.setLong(1,id);
            resultSet = statement.executeQuery();
            while (resultSet.next()) {
-               user.setId(resultSet.getInt("id"));
-               user.setName(resultSet.getString("name"));
-               user.setSurname(resultSet.getString("surname"));
-               user.setLogin(resultSet.getString("login"));
-               user.setPassword(resultSet.getString("password"));
-               user.setRole(UserRoleEnum.valueOf(resultSet.getString("role").toUpperCase()));
-               user.setTel(resultSet.getString("tel"));
-               user.setState(UserStateEnum.valueOf(resultSet.getString("state").toUpperCase()));
-               user.setBalance(resultSet.getDouble("balance"));
+               user = parseUser(resultSet);
            }
         } catch (ConnectionPoolException | SQLException e) {
             e.printStackTrace();
         }finally {
-            close(statement,connection);
+            try {
+                close(statement,connection,resultSet );
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return user;
     }
 
     @Override
-    public List<User> getAllUsers() throws DAOException {
+    public List<User> getAll() throws DAOException {
         ArrayList<User> users = new ArrayList<>();
         ProxyConnection connection = null;
         Statement statement = null;
-        ResultSet resultSet;
+        ResultSet resultSet = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
             statement = connection.createStatement();
-            resultSet = statement.executeQuery("SELECT * FROM users");
+            resultSet = statement.executeQuery(SQL_GET_ALL_USERS);
             while (resultSet.next()){
-                User user = new User();
-                user.setId(resultSet.getInt("id"));
-                user.setName(resultSet.getString("name"));
-                user.setSurname(resultSet.getString("surname"));
-                user.setLogin(resultSet.getString("login"));
-                user.setPassword(resultSet.getString("password"));
-                user.setRole(UserRoleEnum.valueOf(resultSet.getString("role").toUpperCase()));
-                user.setTel(resultSet.getString("tel"));
-                user.setState(UserStateEnum.valueOf(resultSet.getString("state").toUpperCase()));
-                user.setBalance(resultSet.getDouble("balance"));
+               User user = parseUser(resultSet);
                 users.add(user);
             }
         } catch (ConnectionPoolException | SQLException e) {
             e.printStackTrace();
         }finally {
-            close(statement,connection);
+            try {
+                close(statement,connection,resultSet);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return users;
     }
 
     @Override
-    public void updateUser(User user) throws DAOException {
+    public void update(User user) throws DAOException {
         ProxyConnection connection = null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
-            statement = connection.prepareStatement("UPDATE users SET name=?,surname=?,login=?,password=?," +
-                    "role=?,tel=?,state=?,balance=? WHERE id=?");
+            statement = connection.prepareStatement(SQL_UPDATE_USER);
             statement.setString(1,user.getName());
             statement.setString(2,user.getSurname());
             statement.setString(3,user.getLogin());
             statement.setString(4,user.getPassword());
-            statement.setString(5,user.getRole().name());
+            statement.setString(5,user.getSalt());
             statement.setString(6,user.getTel());
-            statement.setString(7,user.getState().name());
-            statement.setDouble(8,user.getBalance());
-
+            statement.setDouble(7,user.getBalance());
+            statement.setString(8,user.getEmail());
             statement.setLong(9,user.getId());
             statement.execute();
         } catch (ConnectionPoolException | SQLException e) {
@@ -128,19 +131,16 @@ public class UserDAOImpl implements UserDAO {
         }finally {
             close(statement,connection);
         }
-
-
     }
 
     @Override
-    public void deleteUser(User user) throws DAOException {
+    public void delete(User entity) throws DAOException {
         ProxyConnection connection = null;
         PreparedStatement statement = null;
-
         try {
             connection = ConnectionPool.getInstance().getConnection();
-            statement = connection.prepareStatement("DELETE FROM users WHERE id=?");
-            statement.setLong(1,user.getId());
+            statement = connection.prepareStatement(SQL_DELETE_USER);
+            statement.setLong(1, entity.getId());
             statement.executeUpdate();
         } catch (ConnectionPoolException | SQLException e) {
             e.printStackTrace();
@@ -148,4 +148,130 @@ public class UserDAOImpl implements UserDAO {
             close(statement,connection);
         }
     }
+
+    @Override
+    public User findByLogin(String login) throws DAOException {
+        ProxyConnection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        User user = null;
+        try {
+            connection = ConnectionPool.getInstance().getConnection();
+            statement = connection.prepareStatement(SQL_FIND_USER_BY_LOGIN);
+            statement.setString(1,login);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                user = parseUser(resultSet);
+            }
+        } catch (ConnectionPoolException | SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                close(statement,connection,resultSet);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return user;
+    }
+
+    @Override
+    public User findByID(String id) throws DAOException {
+        ProxyConnection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        User user = null;
+        try {
+            connection = ConnectionPool.getInstance().getConnection();
+            statement = connection.prepareStatement(SQL_GET_USER_BY_ID);
+            statement.setString(1, id);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                user = parseUser(resultSet);
+            }
+        } catch (ConnectionPoolException | SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                close(statement,connection,resultSet);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return user;
+    }
+
+    @Override
+    public long findIdByLogin(String login) throws DAOException {
+        ProxyConnection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        long id = -1L;
+            try {
+                connection = ConnectionPool.getInstance().getConnection();
+                statement = connection.prepareStatement(SQL_FIND_ID_BY_LOGIN);
+                statement.setString(1,login);
+                resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    id = resultSet.getLong(1);
+                    System.out.println("id = "+  id);
+                }
+            } catch (ConnectionPoolException e) {
+                e.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }finally {
+                try {
+                    close(statement,connection,resultSet);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        return id;
+    }
+
+    @Override
+    public void register(User user) throws DAOException {
+        ProxyConnection connection = null;
+        PreparedStatement statement = null;
+        try {
+            connection = ConnectionPool.getInstance().getConnection();
+            statement = connection.prepareStatement(SQL_REGISTER_USER);
+            statement.setString(1,user.getName());
+            statement.setString(2,user.getSurname());
+            statement.setString(3,user.getLogin());
+            statement.setString(4,user.getPassword());
+            statement.setString(5,user.getSalt());
+            statement.setString(6,user.getEmail());
+            statement.executeUpdate();
+        } catch (ConnectionPoolException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(statement,connection);
+        }
+    }
+
+    private User parseUser(ResultSet resultSet) {
+        User user = new User();
+        try {
+            user.setId(resultSet.getInt("id"));
+            user.setName(resultSet.getString("name"));
+            user.setSurname(resultSet.getString("surname"));
+            user.setLogin(resultSet.getString("login"));
+            user.setPassword(resultSet.getString("password"));
+            user.setSalt(resultSet.getString("salt"));
+            user.setRole(UserRoleEnum.valueOf(resultSet.getString("role").toUpperCase()));
+            user.setTel(resultSet.getString("tel"));
+            user.setState(UserStateEnum.valueOf(resultSet.getString("state").toUpperCase()));
+            user.setBalance(resultSet.getDouble("balance"));
+            user.setEmail(resultSet.getString("email"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+
 }

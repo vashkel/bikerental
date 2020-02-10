@@ -1,4 +1,4 @@
-package by.training.vashkevichyura.test.by;
+package by.training.vashkevichyura.test;
 
 import by.training.vashkevichyura.dao.DAOFactory;
 import by.training.vashkevichyura.dao.RentalPointDAO;
@@ -23,7 +23,7 @@ public class RentalPointDAOImplTest {
 
     @Test
     public void testGetAllRentalPoints() throws DAOException {
-        rentalPoints = rentalPointDAO.getAllRentalPoints();
+        rentalPoints = rentalPointDAO.getAll();
 
         Assert.assertNotNull(rentalPoints);
         Assert.assertTrue(rentalPoints.size() > 0);

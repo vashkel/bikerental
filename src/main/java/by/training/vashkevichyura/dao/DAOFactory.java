@@ -8,22 +8,22 @@ public class DAOFactory {
     public static DAOFactory getInstance(){
         return instance;
     }
-   private final BikeDAO bikeDAO = new BikeDAOImpl();
-   private final BikeTypeDAO bikeTypeDAO = new BikeTypeDAOImpl();
-   private final OrderDAO orderDAO = new OrderDAOImpl();
-    private final RentalCostDAO rentalCostDAO = new RentalCostDAOImpl();
-    private final RentalPointDAO rentalPointDAO = new RentalPointDAOImpl();
-    private final UserDAO userDAO = new UserDAOImpl();
+    private static final BikeDAOImpl bikeDAO = new BikeDAOImpl();
+    private static final BikeTypeDAOImpl bikeTypeDAO = new BikeTypeDAOImpl();
+    private static final OrderDAOImpl orderDAO = new OrderDAOImpl();
+    private static final RentalCostDAOImpl rentalCostDAO = new RentalCostDAOImpl();
+    private static final RentalPointDAOImpl rentalPointDAO = new RentalPointDAOImpl();
+    private static final UserDAOImpl userDAO = new UserDAOImpl();
 
-    public BikeDAO getBikeDAO() { return bikeDAO; }
+    public BikeDAOImpl getBikeDAO() { return bikeDAO; }
 
-    public OrderDAO getOrderDAO() { return orderDAO; }
+    public OrderDAOImpl getOrderDAO() { return orderDAO; }
 
-    public BikeTypeDAO getBikeTypeDAO() { return bikeTypeDAO; }
+    public BikeTypeDAOImpl getBikeTypeDAO() { return bikeTypeDAO; }
 
-    public RentalCostDAO getRentalCostDAO() { return rentalCostDAO; }
+    public RentalCostDAOImpl getRentalCostDAO() { return rentalCostDAO; }
 
-    public RentalPointDAO getRentalPointDAO() { return rentalPointDAO; }
+    public RentalPointDAOImpl getRentalPointDAO() { return rentalPointDAO; }
 
-    public UserDAO getUserDAO(){return userDAO;}
+    public UserDAOImpl getUserDAO(){return userDAO;}
 }

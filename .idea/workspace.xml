@@ -201,8 +201,8 @@
       <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1003">
-              <caret line="59" column="61" selection-start-line="59" selection-start-column="61" selection-end-line="59" selection-end-column="61" />
+            <state relative-caret-position="17">
+              <caret line="1" selection-start-line="1" selection-end-line="1" />
             </state>
           </provider>
         </entry>
@@ -227,11 +227,11 @@
     <findStrings>
       <find>roleL</find>
       <find>bikePro</find>
-      <find>Error instantiating servlet class</find>
+      <find />
       <find>or</find>
       <find>selectBikeErrorLabel</find>
       <find>bikeCatalogWithChoise</find>
-      <find>command name -</find>
+      <find />
       <find>loginM</find>
       <find>isLoginElement</find>
       <find>RequestParameterHandler</find>
@@ -348,11 +348,10 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-1" />
-    <option name="y" value="3" />
-    <option name="width" value="811" />
-    <option name="height" value="850" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="4" />
+    <option name="width" value="803" />
+    <option name="height" value="858" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -781,7 +780,7 @@
       <workItem from="1580311444532" duration="220591000" />
       <workItem from="1581153852185" duration="4892000" />
       <workItem from="1581172290376" duration="10683000" />
-      <workItem from="1581239565528" duration="83070000" />
+      <workItem from="1581239565528" duration="83440000" />
     </task>
     <task id="LOCAL-00001" summary="/">
       <created>1581321063862</created>
@@ -854,7 +853,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="887424000" />
+    <option name="totallyTimeSpent" value="887794000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1018,7 +1017,7 @@
           <option name="timeStamp" value="121" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jspf/userPersonalData.jspf</url>
+          <url />
           <properties />
           <option name="timeStamp" value="122" />
         </line-breakpoint>
@@ -1425,8 +1424,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1003">
-          <caret line="59" column="61" selection-start-line="59" selection-start-column="61" selection-end-line="59" selection-end-column="61" />
+        <state relative-caret-position="17">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
     </entry>
@@ -1510,7 +1509,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>Java EE 6-Java EE 6</last-edited>
+          <last-edited />
           <splitter-proportions>
             <option name="proportions">
               <list>

@@ -35,13 +35,15 @@ public class BikeTypeDAOImpl implements BikeTypeDAO {
     public void add(BikeType bikeType) throws DAOException {
         ProxyConnection connection = null;
         PreparedStatement statement = null;
-
         try {
             connection = ConnectionPool.getInstance().getConnection();
             statement = connection.prepareStatement(SQL_ADD_BIKE_TYPE);
             statement.setString(1, bikeType.getType().name());
             statement.executeUpdate();
-        } catch (ConnectionPoolException | SQLException e) {
+        } catch (ConnectionPoolException e) {
+            LOGGER.error("Exception occurred while creating connection, " , e);
+            throw new DAOException("Exception occurred while creating connection, " , e);
+        } catch (SQLException e) {
             LOGGER.error("Add BikeType to DB error", e);
             throw new DAOException("Add BikeType to DB error", e);
         } finally {
@@ -64,9 +66,12 @@ public class BikeTypeDAOImpl implements BikeTypeDAO {
                 bikeType.setId(resultSet.getInt("id"));
                 bikeType.setType(BikeTypeEnum.valueOf(resultSet.getString("type").toUpperCase()));
             }
-        } catch (SQLException | ConnectionPoolException e) {
+        } catch (SQLException e) {
             LOGGER.error("getById BikeType from DB", e);
             throw new DAOException("getById BikeType from DB", e);
+        } catch (ConnectionPoolException e) {
+            LOGGER.error("Exception occurred while creating connection, " , e);
+            throw new DAOException("Exception occurred while creating connection, " , e);
         } finally {
             try {
                 close(statement, connection, resultSet);
@@ -93,9 +98,12 @@ public class BikeTypeDAOImpl implements BikeTypeDAO {
                 bikeType.setType(BikeTypeEnum.valueOf(resultSet.getString("type").toUpperCase()));
                 bikeTypes.add(bikeType);
             }
-        } catch (ConnectionPoolException | SQLException e) {
+        } catch (SQLException e) {
             LOGGER.error("getAll  bikeTypes type error ", e);
             throw new DAOException("getAll bikeTypes type error ", e);
+        } catch (ConnectionPoolException e) {
+            LOGGER.error("Exception occurred while creating connection, " , e);
+            throw new DAOException("Exception occurred while creating connection, " , e);
         } finally {
             try {
                 close(statement, connection, resultSet);
@@ -117,9 +125,12 @@ public class BikeTypeDAOImpl implements BikeTypeDAO {
             statement.setString(2, bikeType.getType().name());
             statement.setLong(3, bikeType.getId());
             statement.executeUpdate();
-        } catch (SQLException | ConnectionPoolException e) {
+        } catch (SQLException e) {
             LOGGER.error("update bikeType error", e);
             throw new DAOException("update bikeType error", e);
+        } catch (ConnectionPoolException e) {
+            LOGGER.error("Exception occurred while creating connection, " , e);
+            throw new DAOException("Exception occurred while creating connection, " , e);
         } finally {
             close(statement, connection);
         }
@@ -129,15 +140,17 @@ public class BikeTypeDAOImpl implements BikeTypeDAO {
     public void delete(BikeType entity) throws DAOException {
         ProxyConnection connection = null;
         PreparedStatement statement = null;
-
         try {
             connection = ConnectionPool.getInstance().getConnection();
             statement = connection.prepareStatement(SQL_DELETE_BIKE_TYPE);
             statement.setLong(1, entity.getId());
             statement.execute();
-        } catch (ConnectionPoolException | SQLException e) {
+        } catch (SQLException e) {
             LOGGER.error("delete BikeType error", e);
             throw new DAOException("delete BikeType error", e);
+        } catch (ConnectionPoolException e) {
+            LOGGER.error("Exception occurred while creating connection, " , e);
+            throw new DAOException("Exception occurred while creating connection, " , e);
         } finally {
             close(statement, connection);
         }

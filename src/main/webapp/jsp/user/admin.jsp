@@ -8,7 +8,6 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	
 	<style>
 		<%@include file="/resources/css/bootstrap.min.css"%>
 		<%@include file="/resources/css/header.css"%>
@@ -16,23 +15,17 @@
 	
 	<%@ include file="../../WEB-INF/jspf/localizationVar.jspf" %>
 	
-	<title><fmt:message key="title"/> </title>
+	<title><fmt:message key="title"/></title>
 	
 </head>
 <body>
-
-	<h1 class="text-white"><fmt:message key="title"/></h1>
 	<nav>	
 		<ul>
-			<li
-					class="logo"><fmt:message key="title"/>
-			</li>
-
+			<li class="logo"><fmt:message key="title"/></li>
 			<li><a href="BikeRentalServlet?command=get_all_user"><fmt:message key="usersLabel"/></a></li>
 			<li><a href="BikeRentalServlet?command=bikeCatalog"><fmt:message key="bikeCatalogLabel"/></a></li>
 			<li><a href="BikeRentalServlet?command=rental_points_page"><fmt:message key="rentalPointsLabel"/></a></li>
-			<li><a href="BikeRentalServlet?command=go_to_order_report_page"><fmt:message key="ordersLabel"/></a></li>
-
+			<li><a href="BikeRentalServlet?command=all_orders_page"><fmt:message key="ordersLabel"/></a></li>
 			<li style="float: right; margin-right: 50px"><a href="#"><c:out value="${user.name}"></c:out></a>
 				<ul>
 					<li><a href="#" onclick="showProfile()"><fmt:message key="profileLabel"/></a></li>
@@ -40,16 +33,12 @@
 					<li><a href="BikeRentalServlet?command=logout"><fmt:message key="logoutLabel"/></a></li>
 				</ul>
 			</li>
-			<li
-					style="float: right; color: white; padding: 18px 0px 15px 10px;"><fmt:message key="adminLabel"/>
-			</li>
-			
+			<li style="float: right; color: white; padding: 18px 0px 15px 10px;"><fmt:message key="adminLabel"/></li>
 		</ul>
 	</nav>
 		<div id="calend" style="margin-top: 20px">
 			<%@ include file="../../WEB-INF/jspf/editUser.jspf" %>
 		</div>
-		
 		<div id="body" style="margin: 20px">
 			<c:if test="${usersList!=null}">
 				<div style="text-align:center; margin-bottom:10px; font-size: 28px">
@@ -96,7 +85,6 @@
 				</div>
 			</c:if>
 		</div>
-	
 	<%@ include file="../../WEB-INF/jspf/message.jspf" %>
 	<jsp:include page="/jsp/static/footer.jsp"/>
 </body>

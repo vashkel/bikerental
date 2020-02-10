@@ -19,6 +19,7 @@ import java.util.List;
 public class RentalPointDAOImpl implements RentalPointDAO {
     private static final Logger LOGGER = LogManager.getLogger(RentalPointDAOImpl.class);
 
+
     private static final String SQL_ADD_RENTAL_POINT = "INSERT INTO `bike-rental`.rental_points(name, adress, tel)" +
             " VALUES (?,?,?)";
     private static final String SQL_GET_RENTAL_POINT_BY_ID = "SELECT * FROM rental_points WHERE id=?";
@@ -45,7 +46,8 @@ public class RentalPointDAOImpl implements RentalPointDAO {
             LOGGER.error("add RentalPoint error", e);
             throw new DAOException("add RentalPoint error", e);
         } catch (ConnectionPoolException e) {
-            e.printStackTrace();
+            LOGGER.error("Exception occurred while creating connection, " , e);
+            throw new DAOException("Exception occurred while creating connection, " , e);
         } finally {
             close(statement, connection);
         }
@@ -68,8 +70,11 @@ public class RentalPointDAOImpl implements RentalPointDAO {
                 rentalPoint.setAdress(resultSet.getString("adress"));
                 rentalPoint.setTel(resultSet.getString("tel"));
             }
-        } catch (ConnectionPoolException | SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            throw new DAOException("An exception occurred in the layer DAO while getting rental point by ID from the DB", e);
+        } catch (ConnectionPoolException e) {
+            LOGGER.error("Exception occurred while creating connection, " , e);
+            throw new DAOException("Exception occurred while creating connection, " , e);
         } finally {
             try {
                 close(statement, connection, resultSet);
@@ -98,8 +103,11 @@ public class RentalPointDAOImpl implements RentalPointDAO {
                 rentalPoint.setTel(resultSet.getString("tel"));
                 rentalPoints.add(rentalPoint);
             }
-        } catch (ConnectionPoolException | SQLException e) {
-            e.printStackTrace();
+        } catch (ConnectionPoolException e) {
+            LOGGER.error("Exception occurred while creating connection, " , e);
+            throw new DAOException("Exception occurred while creating connection, " , e);
+        } catch (SQLException e) {
+            throw new DAOException("An exception occurred in the layer DAO while getting all rental points from the DB", e);
         } finally {
             try {
                 close(statement, connection, resultSet);
@@ -123,8 +131,11 @@ public class RentalPointDAOImpl implements RentalPointDAO {
             statement.setString(3, rentalPoint.getTel());
             statement.setLong(4, rentalPoint.getId());
             statement.executeUpdate();
-        } catch (ConnectionPoolException | SQLException e) {
-            e.printStackTrace();
+        } catch (ConnectionPoolException e) {
+            LOGGER.error("Exception occurred while creating connection, " , e);
+            throw new DAOException("Exception occurred while creating connection, " , e);
+        } catch (SQLException e) {
+            throw new DAOException("An exception occurred in the layer DAO while update rental point ", e);
         } finally {
             close(statement, connection);
         }
@@ -140,8 +151,12 @@ public class RentalPointDAOImpl implements RentalPointDAO {
             statement = connection.prepareStatement(SQL_DELETE_RENTAL_POINT);
             statement.setLong(1, entity.getId());
             statement.executeUpdate();
-        } catch (ConnectionPoolException | SQLException e) {
-            e.printStackTrace();
+        } catch (ConnectionPoolException e) {
+            LOGGER.error("Exception occurred while creating connection, " , e);
+            throw new DAOException("Exception occurred while creating connection, " , e);
+        } catch (SQLException e) {
+            throw new DAOException("An exception occurred in the layer DAO while delete rental point from the DB", e);
+
         } finally {
             close(statement, connection);
         }

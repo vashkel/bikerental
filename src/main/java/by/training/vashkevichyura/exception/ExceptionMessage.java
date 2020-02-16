@@ -2,8 +2,6 @@ package by.training.vashkevichyura.exception;
 
 public enum ExceptionMessage {
 
-
-
     LOGIN_PASSWORD("loginOrPasswordWrong"),
 
     VALIDATION_ERROR("validationError");

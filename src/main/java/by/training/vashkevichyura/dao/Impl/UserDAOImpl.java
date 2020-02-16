@@ -33,6 +33,7 @@ public class UserDAOImpl implements UserDAO {
     private final static String SQL_FIND_ID_BY_LOGIN = "SELECT id FROM users where login = ?";
     private final static String SQL_REGISTER_USER = "INSERT INTO users( name, surname, login, password, salt,email) " +
             "VALUES (?,?,?,?,?,?)";
+    private final static String SQL_DELETE_USER_BY_ID = "DELETE FROM users WHERE id = ?";
 
 
     @Override
@@ -237,7 +238,6 @@ public class UserDAOImpl implements UserDAO {
                 resultSet = statement.executeQuery();
                 while (resultSet.next()) {
                     id = resultSet.getLong(1);
-                    System.out.println("id = "+  id);
                 }
             } catch (ConnectionPoolException e) {
                 LOGGER.error("Exception occurred while creating connection, " , e);
@@ -272,11 +272,55 @@ public class UserDAOImpl implements UserDAO {
             LOGGER.error("Exception occurred while creating connection, " , e);
             throw new DAOException("Exception occurred while creating connection, " , e);
         } catch (SQLException e) {
+            LOGGER.error("An exception occurred in the layer DAO while registration user to the DB", e);
             throw new DAOException("An exception occurred in the layer DAO while registration user to the DB", e);
-
         } finally {
             close(statement,connection);
         }
+    }
+
+    @Override
+    public void deleteUserById(long id) throws DAOException {
+        ProxyConnection connection = null;
+        PreparedStatement statement = null;
+        try {
+            connection = ConnectionPool.getInstance().getConnection();
+            statement = connection.prepareStatement(SQL_DELETE_USER_BY_ID);
+            statement.setLong(1,id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            LOGGER.error("An exception occurred in the layer DAO while delete user from the DB", e);
+            throw new DAOException("An exception occurred in the layer DAO while delete user from the DB", e);
+        } catch (ConnectionPoolException e) {
+            LOGGER.error("Exception occurred while creating connection, " , e);
+            throw new DAOException("Exception occurred while creating connection, " , e);
+        }finally {
+            close(statement,connection);
+        }
+    }
+
+    @Override
+    public User changeStateById(long userId, String state) throws DAOException {
+        ProxyConnection connection = null;
+        PreparedStatement statement = null;
+        User user;
+        try {
+            connection = ConnectionPool.getInstance().getConnection();
+            statement = connection.prepareStatement("UPDATE users SET state=? WHERE id=?");
+            statement.setString(1,state);
+            statement.setLong(2,userId);
+            statement.executeUpdate();
+            user = getById(userId);
+        } catch (ConnectionPoolException e) {
+            LOGGER.error("Exception occurred while creating connection, " , e);
+            throw new DAOException("Exception occurred while creating connection, " , e);
+        } catch (SQLException e) {
+            LOGGER.error("An exception occurred in the layer DAO while changing user user state to the DB", e);
+            throw new DAOException("An exception occurred in the layer DAO while changing user  state the DB", e);
+        }finally {
+            close(statement,connection);
+        }
+        return user;
     }
 
     private User parseUser(ResultSet resultSet) {

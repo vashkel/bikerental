@@ -2,11 +2,14 @@ package by.training.vashkevichyura.service.impl;
 
 import by.training.vashkevichyura.dao.DAOFactory;
 import by.training.vashkevichyura.dao.OrderDAO;
+import by.training.vashkevichyura.entity.Bike;
 import by.training.vashkevichyura.entity.Order;
+import by.training.vashkevichyura.entity.OrderStatusEnum;
 import by.training.vashkevichyura.entity.User;
 import by.training.vashkevichyura.exception.DAOException;
 import by.training.vashkevichyura.exception.ServiceException;
 import by.training.vashkevichyura.service.OrderService;
+import by.training.vashkevichyura.util.DataFormatter;
 import by.training.vashkevichyura.util.PageInfo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -35,8 +38,27 @@ public class OrderServiceImpl implements OrderService {
         try {
             orders = orderDAO.getAllByLimit(pageInfo);
         } catch (DAOException e) {
-            throw new ServiceException("An exception was thrown when searching for orders ; ", e.getMessage());
+            LOGGER.error("An exception was thrown while getting all orders : ", e);
+            throw new ServiceException("An exception was thrown while getting all orders : ", e.getMessage());
         }
         return orders;
+    }
+
+    @Override
+    public Order createOrder(Bike bike, User user, double totalPrice) throws ServiceException {
+
+        Order order = new Order();
+        order.setStartDate(DataFormatter.getCurrentDateTimeToDB());
+        order.setUser(user);
+        order.setBike(bike);
+        order.setStatus(OrderStatusEnum.ACTIVE);
+        order.setSum(totalPrice);
+        try {
+            orderDAO.createOrder(order);
+        } catch (DAOException e) {
+            LOGGER.error("An exception was thrown when searching for orders ; ", e);
+            throw new ServiceException("An exception was thrown when searching for orders ; ", e.getMessage());
+        }
+        return order;
     }
 }

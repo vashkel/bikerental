@@ -1,6 +1,6 @@
 package by.training.vashkevichyura.entity;
 
-public class BikeType extends Entity{
+public class BikeType extends Entity {
     private static final long serialVersionUID = -1784150257366390793L;
 
     private BikeTypeEnum type;
@@ -22,9 +22,10 @@ public class BikeType extends Entity{
         return type == bikeType.type;
     }
 
+
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return type.hashCode();
     }
 
     @Override

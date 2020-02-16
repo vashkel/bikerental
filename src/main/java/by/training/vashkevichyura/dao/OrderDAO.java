@@ -12,4 +12,6 @@ public interface OrderDAO extends AbstractDAO<Order> {
 
 
     List <Order> getAllByLimit(PageInfo pageInfo) throws DAOException;
+
+    Order createOrder(Order order) throws DAOException;
 }

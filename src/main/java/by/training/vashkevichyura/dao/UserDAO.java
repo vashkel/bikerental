@@ -3,8 +3,6 @@ package by.training.vashkevichyura.dao;
 import by.training.vashkevichyura.entity.User;
 import by.training.vashkevichyura.exception.DAOException;
 
-import java.sql.SQLException;
-
 public interface UserDAO extends AbstractDAO<User> {
 
     /**
@@ -14,7 +12,7 @@ public interface UserDAO extends AbstractDAO<User> {
      * @return {@code User} found user or {@code null}
      * @throws DAOException exception thrown in case error occurs
      */
-    User findByLogin(String login) throws SQLException, DAOException;
+    User findByLogin(String login) throws DAOException;
 
 
     /**
@@ -42,7 +40,19 @@ public interface UserDAO extends AbstractDAO<User> {
      */
     void register(User user) throws DAOException;
 
+    /**
+     * Delete User from DB.
+     *
+     * @param id - id of User that should delete.
+     * @throws DAOException if occurred SQL exception.
+     */
+    void deleteUserById(long id) throws DAOException;
 
-
-
+    /**
+     * Change user status  to DB.
+     *
+     * @param userId - id of User that should delete.
+     * @throws DAOException if occurred SQL exception.
+     */
+    User changeStateById(long userId, String state) throws DAOException ;
 }

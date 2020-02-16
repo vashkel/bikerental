@@ -14,4 +14,7 @@ public interface ActionCommand {
      */
     String execute(HttpServletRequest request);
 
+    default boolean requiresRedirect() {
+        return false;
+    }
 }

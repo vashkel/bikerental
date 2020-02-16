@@ -11,9 +11,10 @@
 	<style>
 		<%@include file="/resources/css/bootstrap.min.css"%>
 		<%@include file="/resources/css/header.css"%>
+		<%@ include file="/resources/css/button.css" %>
 	</style>
 	
-	<%@ include file="../../WEB-INF/jspf/localizationVar.jspf" %>
+	<%@ include file="/WEB-INF/jspf/localizationVar.jspf" %>
 	
 	<title><fmt:message key="title"/></title>
 	
@@ -26,7 +27,7 @@
 			<li><a href="BikeRentalServlet?command=bikeCatalog"><fmt:message key="bikeCatalogLabel"/></a></li>
 			<li><a href="BikeRentalServlet?command=rental_points_page"><fmt:message key="rentalPointsLabel"/></a></li>
 			<li><a href="BikeRentalServlet?command=all_orders_page"><fmt:message key="ordersLabel"/></a></li>
-			<li style="float: right; margin-right: 50px"><a href="#"><c:out value="${user.name}"></c:out></a>
+			<li style="float: right; margin-right: 50px"><a href="#"><c:out value="${user.name}"/></a>
 				<ul>
 					<li><a href="#" onclick="showProfile()"><fmt:message key="profileLabel"/></a></li>
 					<li><a href="#" onclick="showPassword()"><fmt:message key="passwChangeLabel"/></a></li>
@@ -52,18 +53,20 @@
 								<thead>
 									<tr>
 										<th><fmt:message key="loginLabel"/></th>
+										<th><fmt:message key="loginLabel"/></th>
 										<th><fmt:message key="nameLabel"/></th>
 										<th><fmt:message key="surnameLabel"/></th>
 										<th><fmt:message key="emailLabel"/></th>
 										<th><fmt:message key="phoneLabel"/></th>
 										<th><fmt:message key="roleLabel"/></th>
 										<th><fmt:message key="stateLabel"/></th>
-										<th><fmt:message key="openOrderLabel"/></th>
+										<th><fmt:message key="changes"/></th>
 									</tr>
 								</thead>
 								<c:forEach items="${usersList}" var="item">
 									<tbody>
 										<tr>
+											<td><c:out value="${item.id}"/></td>
 											<td><c:out value="${item.login}"/></td>
 											<td><c:out value="${item.name}"/></td>
 											<td><c:out value="${item.surname}"/></td>
@@ -72,11 +75,40 @@
 											<td><c:out value="${item.role}"/></td>
 											<td><c:out value="${item.state}"/></td>
 											<td>
-												<c:if test="${item.id!=0}">
-													<c:out value="${item.id}"/>
+												<a href="BikeRentalServlet?command=delete_user&userId=${item.id}">
+													<fmt:message key="deleteLabel"/>
+											    </a> <br>
+												<c:if test="${item.state eq 'ACTIVE'}">
+												<a  href = "<c:url value="BikeRentalServlet?command=change_state_user&userId=${item.id}&state=blocked"></c:url>">
+													<fmt:message key="changeStateLabel"/>
+												</a>
 												</c:if>
-											</td>													
-										</tr>									
+
+												<c:if test="${item.state eq 'BLOCKED'}">
+												<a href = "<c:url value="BikeRentalServlet?command=change_state_user&userId=${item.id}&state=active"> </c:url>">
+													<fmt:message key="changeStateLabel"/>
+												</a>
+											     </c:if>
+											</td>
+										</tr>
+										<%--<div class="dropdown"  >--%>
+													<%--<button onclick="myFunction(this.id)" class="dropbtn" >--%>
+														<%--<fmt:message key="change"/>--%>
+													<%--</button>--%>
+													<%--<div id="myDropdown" class="dropdown-content" >--%>
+														<%--<a href="BikeRentalServlet?command=delete_user&userId=${item.id}">--%>
+															<%--<fmt:message key="deleteLabel"/></a>--%>
+															<%--<c:if test="${item.state eq 'BLOCKED'}">--%>
+															<%--<a href="BikeRentalServlet?command=change_status_user&userId=${item.id}&state=active">--%>
+																<%--<fmt:message key="changeStateLabel"/></a>--%>
+															<%--</c:if>--%>
+														<%--<c:if test="${item.state eq 'ACTIVE'}">--%>
+															<%--<a href="BikeRentalServlet?command=change_status_user&userId=${item.id}&state=blocked">--%>
+																<%--<fmt:message key="changeStateLabel"/></a>--%>
+														<%--</c:if>--%>
+													<%--</div>--%>
+												<%--</div>--%>
+
 									</tbody>
 								</c:forEach>		
 							</table>
@@ -85,7 +117,10 @@
 				</div>
 			</c:if>
 		</div>
-	<%@ include file="../../WEB-INF/jspf/message.jspf" %>
+	<%@ include file="/WEB-INF/jspf/message.jspf" %>
+	<%--<script type="text/javascript">--%>
+        <%--<%@ include file="/resources/js1/button.js" %>--%>
+	<%--</script>--%>
 	<jsp:include page="/jsp/static/footer.jsp"/>
 </body>
 </html>

@@ -40,21 +40,37 @@ public class Bike extends Entity {
         this.rentalPoint = rentalPoint;
     }
 
-    public BikeStatusEnum getBikeStatus() { return bikeStatus; }
+    public BikeStatusEnum getBikeStatus() {
+        return bikeStatus;
+    }
 
-    public void setBikeStatus(BikeStatusEnum bikeStatus) { this.bikeStatus = bikeStatus; }
+    public void setBikeStatus(BikeStatusEnum bikeStatus) {
+        this.bikeStatus = bikeStatus;
+    }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Bike bike = (Bike) o;
 
-        if (!brand.equals(bike.brand)) return false;
-        if (!model.equals(bike.model)) return false;
-        if (!bikeType.equals(bike.bikeType)) return false;
-        if (!rentalPoint.equals(bike.rentalPoint)) return false;
+        if (!brand.equals(bike.brand)) {
+            return false;
+        }
+        if (!model.equals(bike.model)) {
+            return false;
+        }
+        if (!bikeType.equals(bike.bikeType)) {
+            return false;
+        }
+        if (!rentalPoint.equals(bike.rentalPoint)) {
+            return false;
+        }
         return bikeStatus == bike.bikeStatus;
     }
 

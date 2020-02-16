@@ -34,11 +34,15 @@ public enum PageMessage {
     /**
      * User was added, has a message - userAdded.
      */
-    USER_ADDED("userAdded");
+    USER_ADDED("userAdded"),
+
+    USER_DELETED("userDeleted"),
+
+    USER_STATE_CHANGED("userStateChanged");
 
     private String message;
 
-    private PageMessage(String message) {
+    PageMessage(String message) {
         this.message = message;
     }
 

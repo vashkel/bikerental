@@ -25,7 +25,7 @@ public class BikeTypeDAOImpl implements BikeTypeDAO {
 
     private final static String SQL_GET_BY_ID = "SELECT id,type FROM bike_types WHERE id = ?";
 
-    private final static String SQL_GET_ALL = "SELECT * FROM bike_types";
+    private final static String SQL_GET_ALL = "SELECT id,type FROM bike_types";
 
     private final static String SQL_UPDATE_BIKE_TYPE = "UPDATE `bike-rental`.bike_types SET id=?,type=? WHERE id=?";
 

@@ -30,7 +30,7 @@ public class PageRedirectSecurityFilter implements Filter {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
         System.out.println(httpRequest.getContextPath() + indexPath);
-        httpResponse.sendRedirect( indexPath);
+        httpResponse.sendRedirect(indexPath);
         chain.doFilter(request, response);
     }
 

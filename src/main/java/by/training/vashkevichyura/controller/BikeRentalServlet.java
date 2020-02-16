@@ -41,6 +41,7 @@ public class BikeRentalServlet extends HttpServlet {
 
     private void process(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         String commandName = request.getParameter("command");
         System.out.println("command name - " + commandName);
         String page;
@@ -49,7 +50,11 @@ public class BikeRentalServlet extends HttpServlet {
         System.out.println("Action command" + page);
         if (page != null) {
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
-            dispatcher.forward(request, response);
+            if (command.requiresRedirect()) {
+                response.sendRedirect(page);
+            } else {
+                dispatcher.forward(request, response);
+            }
         } else {
             page = PageConstant.ERROR_PAGE;
             response.sendRedirect(page);

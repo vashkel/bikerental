@@ -4,9 +4,12 @@ import by.training.vashkevichyura.exception.ConnectionPoolException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.*;
-import java.util.ArrayDeque;
+import java.sql.Driver;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Enumeration;
+import java.util.concurrent.BlockingDeque;
+import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -14,9 +17,9 @@ public class ConnectionPool {
     private static Logger LOGGER = LogManager.getLogger(ConnectionPool.class);
     private final static ReentrantLock instanceLock = new ReentrantLock(true);
     private static ConnectionPool instance;
-    private Semaphore semaphore;
-    private ArrayDeque<ProxyConnection> available;
-    private ArrayDeque<ProxyConnection> taken;
+    private Semaphore semaphoreControlSize;
+    private BlockingDeque<ProxyConnection> available;
+    private BlockingDeque<ProxyConnection> taken;
     private final static int POOL_SIZE = 20;
 
     /**
@@ -39,7 +42,7 @@ public class ConnectionPool {
     }
 
     /**
-     * Constructor initializes semaphore, available and taken collections of Connection.
+     * Constructor initializes semaphoreControlSize, available and taken collections of Connection.
      * Create set value connections via ProxyConnectionFactory.
      */
 
@@ -48,9 +51,9 @@ public class ConnectionPool {
             LOGGER.fatal("Trying to create second instance of singleton class ConnectionPool");
             throw new RuntimeException("Instance of ConnectionPool already exists");
         }
-        semaphore = new Semaphore(POOL_SIZE, true);
-        available = new ArrayDeque<>(POOL_SIZE);
-        taken = new ArrayDeque<>(POOL_SIZE);
+        semaphoreControlSize = new Semaphore(POOL_SIZE, true);
+        available = new LinkedBlockingDeque<>(POOL_SIZE);
+        taken = new LinkedBlockingDeque<>(POOL_SIZE);
 
         ProxyConnectionFactory factory = ProxyConnectionFactory.getInstance();
         for (int i = 0; i < POOL_SIZE; i++) {
@@ -67,11 +70,11 @@ public class ConnectionPool {
     public ProxyConnection getConnection() throws ConnectionPoolException {
         ProxyConnection connection;
         try {
-            semaphore.acquire();
+            semaphoreControlSize.acquire();
             connection = available.removeLast();
             taken.addLast(connection);
         } catch (InterruptedException e) {
-            semaphore.release();
+            semaphoreControlSize.release();
             throw new ConnectionPoolException("Error while acquiring connection", e);
         }
         return connection;
@@ -81,14 +84,14 @@ public class ConnectionPool {
      * Method that gives back connection
      *
      */
-    public void releaseConnection(ProxyConnection connection) {
+    void releaseConnection(ProxyConnection connection) {
         taken.remove(connection);
         available.addLast(connection);
-        semaphore.release();
+        semaphoreControlSize.release();
     }
 
     public void destroyPool() {
-        semaphore.acquireUninterruptibly(semaphore.availablePermits());
+        semaphoreControlSize.acquireUninterruptibly(semaphoreControlSize.availablePermits());
         try {
             for (ProxyConnection connection : available) {
                 connection.realClose();

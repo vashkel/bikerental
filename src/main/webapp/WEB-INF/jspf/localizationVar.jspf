@@ -5,8 +5,6 @@
 <!--  ------------------------------------variable localization------------------------------------------ -->
 <fmt:setLocale value="${sessionScope.local}" />
 <fmt:setBundle basename="local" scope="session" var="loc"  />
-<c:set var="lang" value="${not empty param.lang ? param.lang : not empty lang ? lang : pageContext.request.locale}"
-       scope="session"/>
 <fmt:message bundle="${loc}" key="addBikeTypeLabel" var="addBikeTypeLabel"></fmt:message>
 <fmt:message bundle="${loc}" key="addBrandLabel" var="addBrandLabel"></fmt:message>
 <fmt:message bundle="${loc}" key="addBikeLabel" var="addBikeLabel"></fmt:message>
@@ -96,7 +94,7 @@
 <fmt:message bundle="${loc}" key="loginFieldLabel" var="loginFieldLabel"></fmt:message>
 <fmt:message bundle="${loc}" key="loginPlaceholder" var="loginPlaceholder"></fmt:message>
 <fmt:message bundle="${loc}" key="loginWarn" var="loginWarn"></fmt:message>
-<fmt:message bundle="${loc}" key="loginOrPasswWrong" var="loginOrPasswWrong"></fmt:message>
+<fmt:message bundle="${loc}" key="loginOrPasswordWrong" var="loginOrPasswordWrong"></fmt:message>
 
 <fmt:message bundle="${loc}" key="modelLabel" var="modelLabel"></fmt:message>
 <fmt:message bundle="${loc}" key="modelPlaceholder" var="modelPlaceholder"></fmt:message>
@@ -161,6 +159,7 @@
 <fmt:message bundle="${loc}" key="userLabel" var="userLabel"></fmt:message>
 <fmt:message bundle="${loc}" key="usersLabel" var="usersLabel"></fmt:message>
 <fmt:message bundle="${loc}" key="userDublicateError" var="userDublicateError"></fmt:message>
+<fmt:message bundle="${loc}" key="userStateChanged" var="userStateChanged"></fmt:message>
 
 <fmt:message bundle="${loc}" key="validationError" var="validationError"></fmt:message>
 <fmt:message bundle="${loc}" key="valueZeroWarn" var="valueZeroWarn"></fmt:message>

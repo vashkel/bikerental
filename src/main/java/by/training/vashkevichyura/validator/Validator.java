@@ -21,19 +21,19 @@ public class Validator {
         return matcher.matches();
     }
 
-    public static boolean passwordValidate(String password) {
+    public static boolean validatePassword(String password) {
         Pattern pattern = Pattern.compile(PASSWORD_REGEX);
         Matcher matcher = pattern.matcher(password);
         return matcher.matches();
     }
 
-    public static boolean nameValidate(String name) {
+    public static boolean validateName(String name) {
         Pattern pattern = Pattern.compile(NAME_REGEX);
         Matcher matcher = pattern.matcher(name);
         return  matcher.matches();
     }
 
-    public static boolean emailValidate(String email) {
+    public static boolean validateEmail(String email) {
         Pattern pattern = Pattern.compile(EMAIL_REGEX);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();

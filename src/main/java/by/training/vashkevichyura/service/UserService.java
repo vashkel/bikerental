@@ -13,4 +13,8 @@ public interface UserService {
     boolean register(Map<String, String> requestParameters, String password) throws ServiceException;
 
     List<User> getAllUsers() throws ServiceException;
+
+    void deleteUserById(long id) throws ServiceException;
+
+    void changeStateById(long userId, String state) throws ServiceException;
 }

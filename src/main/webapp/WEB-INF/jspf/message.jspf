@@ -4,12 +4,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <c:if test="${error ne null}">
-	<input type="hidden" id="errorMessage" value= '<fmt:message key="loginOrPasswWrong"/> ' />
+	<input type="hidden" id="errorMessage" value= '<fmt:message key="loginOrPasswordWrong"/> ' />
 	<c:remove var="error" scope="session" />
 </c:if>
 
 <c:if test="${message ne null}">
-	<input type="hidden" id="message" value= '<fmt:message bundle="${local}" key="${message}"/>' />
+	<input type="hidden" id="message" value= '<fmt:message bundle="${loc}" key="${message}"/>' />
 	<c:remove var="message" scope="session" />
 </c:if>
 

@@ -1,7 +1,7 @@
 package by.training.vashkevichyura.service.impl;
 
 import by.training.vashkevichyura.dao.DAOFactory;
-import by.training.vashkevichyura.dao.Impl.UserDAOImpl;
+import by.training.vashkevichyura.dao.UserDAO;
 import by.training.vashkevichyura.entity.User;
 import by.training.vashkevichyura.exception.DAOException;
 import by.training.vashkevichyura.exception.ExceptionMessage;
@@ -21,7 +21,7 @@ import java.util.Map;
 public class UserServiceImpl implements UserService {
 
     private static final Logger LOGGER = LogManager.getLogger(UserServiceImpl.class);
-    private UserDAOImpl userDAO = DAOFactory.getInstance().getUserDAO();
+    private UserDAO userDAO = DAOFactory.getInstance().getUserDAO();
 
     @Override
     public User login(String login, String password) throws ServiceException {
@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
             LOGGER.debug("login validation error " + login);
             throw new ServiceException(ExceptionMessage.VALIDATION_ERROR.toString());
         }
-        if (!Validator.passwordValidate(password)) {
+        if (!Validator.validatePassword(password)) {
             LOGGER.debug("password validation error");
             throw new ServiceException(ExceptionMessage.VALIDATION_ERROR.toString());
         }
@@ -42,7 +42,10 @@ public class UserServiceImpl implements UserService {
                     return user;
                 }
             }
-        } catch (DAOException | NoSuchAlgorithmException e) {
+        } catch (DAOException e) {
+            LOGGER.error(" error while login user " + e);
+            throw new ServiceException(" error while login user " + e.getMessage());
+        } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
         return null;
@@ -67,7 +70,7 @@ public class UserServiceImpl implements UserService {
         if (id != -1L) {
             return false;
         }
-        if (!Validator.passwordValidate(password)) {
+        if (!Validator.validatePassword(password)) {
             LOGGER.error("password validation error, password = " + password);
             throw new ServiceException(ExceptionMessage.VALIDATION_ERROR.toString());
         }
@@ -79,21 +82,21 @@ public class UserServiceImpl implements UserService {
             e.printStackTrace();
         }
         String name = requestParameters.get(RequestParameter.NAME.parameter());
-        if (!Validator.nameValidate(name)) {
+        if (!Validator.validateName(name)) {
             LOGGER.error("name validation error, name = " + name);
             throw new ServiceException(ExceptionMessage.VALIDATION_ERROR.toString());
         }
         user.setName(name);
 
         String surname = requestParameters.get(RequestParameter.SURNAME.parameter());
-        if (!Validator.nameValidate(surname)) {
+        if (!Validator.validateName(surname)) {
             LOGGER.error("surname validation error, surname = " + surname);
             throw new ServiceException(ExceptionMessage.VALIDATION_ERROR.toString());
         }
         user.setSurname(surname);
 
         String email = requestParameters.get(RequestParameter.EMAIL.parameter());
-        if (!Validator.emailValidate(email)) {
+        if (!Validator.validateEmail(email)) {
             LOGGER.error("email validation error, email = " + email);
             throw new ServiceException(ExceptionMessage.VALIDATION_ERROR.toString());
         }
@@ -102,6 +105,7 @@ public class UserServiceImpl implements UserService {
         try {
             userDAO.register(user);
         } catch (DAOException e) {
+            LOGGER.error("Exception to DB while add user", e);
             throw new ServiceException("Exception to DB while add user", e);
         }
         return true;
@@ -113,9 +117,30 @@ public class UserServiceImpl implements UserService {
         try {
             users = userDAO.getAll();
         } catch (DAOException e) {
-            throw new ServiceException("get all users error" ,e);
+            LOGGER.error("get all users error" ,e);
+            throw new ServiceException("get all users error" ,e.getMessage());
         }
         return users;
+    }
+
+    @Override
+    public void deleteUserById(long id) throws ServiceException {
+        try {
+         userDAO.deleteUserById(id);
+        } catch (DAOException e) {
+           LOGGER.error("delete user error : " + e);
+           throw new ServiceException("delete user error : " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void changeStateById(long userId, String state) throws ServiceException {
+        try {
+            userDAO.changeStateById(userId,state);
+        } catch (DAOException e) {
+            LOGGER.error("change status of user error : " + e);
+            throw new ServiceException("change status of user error : " + e.getMessage());
+        }
     }
 
 }

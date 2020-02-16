@@ -15,4 +15,6 @@ public interface BikeService {
 
     void addBike(Bike bike) throws ServiceException;
 
+
+    Bike getBikeByTypeAndRentalPointId(long bikeTypeId, long rentalPointId) throws ServiceException;
 }

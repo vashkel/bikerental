@@ -116,9 +116,9 @@
 
 			<form action="BikeRentalServlet" method="post" id="userDataForm" onsubmit="checkUserData(); return false">
 
-				<%@ include file="/WEB-INF/jspf/userPersonalData.jspf" %>
+				<%@ include file="../../WEB-INF/jspf/userPersonalData.jspf" %>
 
-				<%@ include file="/WEB-INF/jspf/password.jspf" %>
+				<%@ include file="../../WEB-INF/jspf/password.jspf" %>
 
 				<div class="row">
 					<div class="col-md-4"></div>
@@ -134,7 +134,7 @@
 	</div>
 </div>
 
-<%@ include file="/WEB-INF/jspf/message.jspf" %>
+<%@ include file="../../WEB-INF/jspf/message.jspf" %>
 
 <script type="text/javascript">
     var isLogin = initLogin();

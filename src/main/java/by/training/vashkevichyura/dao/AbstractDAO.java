@@ -106,11 +106,26 @@ public interface AbstractDAO<T extends Entity> {
      * @throws DAOException - exception
      */
     default void close(Statement statement, ProxyConnection connection) throws DAOException {
+        DAOException closeStatementException = null;
+        DAOException closeConnectionException = null;
         try {
             close(statement);
-        } finally {
-            close(connection);
+        } catch (DAOException e) {
+            closeStatementException = e;
         }
+        try {
+            close(connection);
+        } catch (DAOException e) {
+            closeConnectionException = e;
+        }
+        if (closeStatementException != null || closeConnectionException != null) {
+            throw new DAOException("Could not close statement or/and connection");
+        }
+//        try {
+//            close(statement);
+//        } finally {
+//            close(connection);
+//        }
     }
 
     /**
@@ -122,12 +137,14 @@ public interface AbstractDAO<T extends Entity> {
      * @throws DAOException - exception
      */
     default void close(Statement statement, ProxyConnection connection, ResultSet resultSet) throws DAOException, SQLException {
-        try {
-            resultSet.close();
-            close(statement);
-        } finally {
-            close(connection);
-        }
+        close(statement, connection);
+
+//        try {
+//            resultSet.close();
+//            close(statement);
+//        } finally {
+//            close(connection);
+//        }
     }
 }
 

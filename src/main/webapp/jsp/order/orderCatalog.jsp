@@ -47,7 +47,7 @@
                             <tr>
                                 <td><c:out value="${item.id}"/></td>
                                 <td><c:out value="${item.startDate}"/></td>
-                                <td><c:out value="${item.end_Date}"/></td>
+                                <td><c:out value="${item.endDate}"/></td>
                                 <td><c:out value="${item.user.name}"/></td>
                                 <td><c:out value="${item.bike.bikeType.type}"/></td>
                                 <td><c:out value="${item.sum}"/></td>

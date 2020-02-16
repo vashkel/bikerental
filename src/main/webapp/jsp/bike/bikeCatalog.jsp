@@ -24,7 +24,8 @@
     <c:set var="menuLabel" value="${bikeCatalogLabel}" scope="page"/>
     <%@ include file="../../WEB-INF/jspf/smallMenu.jspf" %>
             <!---------------------------------------------BikeList--------------------->
-            <div id="body" style="margin: 20px">
+
+            <div id="body" style="margin: 20px" >
                 <c:if test="${bikeList!=null}">
                     <div style="text-align:center; margin-bottom:10px; font-size: 28px">
                         <fmt:message key="bikesLabel"/>
@@ -56,6 +57,17 @@
                                                 <c:out value="${item.rentalPoint.adress}"/>
                                             </td>
                                             <td><c:out value="${item.bikeStatus}"/></td>
+                                            <td>
+                                                <div class="dropdown">
+                                                <button onclick="myFunction()" class="dropbtn"><fmt:message key="change"/></button>
+                                                <div id="myDropdown" class="dropdown-content">
+                                                    <a href="BikeRentalServlet?command=delete_bike&bikeId=${item.id}">
+                                                        <fmt:message key="deleteLabel"/></a>
+                                                    <a href="BikeRentalServlet?command=update_bike&bikeId=${item.id}">
+                                                        <fmt:message key="updateLabel"/></a>
+                                                </div>
+                                            </div>
+                                            </td>
                                         </tr>
                                         </tbody>
                                     </c:forEach>
@@ -67,5 +79,6 @@
             </div>
             <%@ include file="/WEB-INF/jspf/pagination.jspf" %>
     <%@ include file="../../WEB-INF/jspf/message.jspf" %>
+
 </body>
 </html>

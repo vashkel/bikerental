@@ -23,6 +23,7 @@ public class BikeServiceImpl implements BikeService {
         try {
             bikes = bikeDAO.getAllBikeByLimit(pageInfo);
         } catch (DAOException e) {
+            LOGGER.error("get All bikes error " + e);
             throw new ServiceException("get All bikes error ", e);
         }
         return bikes;
@@ -34,7 +35,8 @@ public class BikeServiceImpl implements BikeService {
         try {
             brands = bikeDAO.getAllBrandBike();
         } catch (DAOException e) {
-            throw new ServiceException("get brands of Bike error " + e);
+            LOGGER.error("get all brands of Bike error " + e);
+            throw new ServiceException("get all brands of Bike error " + e.getMessage());
         }
 
         return brands;
@@ -46,7 +48,8 @@ public class BikeServiceImpl implements BikeService {
         try {
             bike = bikeDAO.getById(id);
         } catch (DAOException e) {
-            throw new ServiceException("getBikeById error " + e);
+            LOGGER.error("getBikeById error " + e);
+            throw new ServiceException("getBikeById error " + e.getMessage());
         }
         return bike;
     }
@@ -60,6 +63,21 @@ public class BikeServiceImpl implements BikeService {
             LOGGER.error("Add bike Exception: " + e);
             throw new ServiceException("Exception occurred while adding bike: " + e.getMessage());
         }
+    }
+
+    @Override
+    public Bike getBikeByTypeAndRentalPointId(long bikeTypeId, long rentalPointId) throws ServiceException {
+        Bike bike;
+        try {
+            bike = bikeDAO.getBikeByTypeAndRentalPointId(bikeTypeId, rentalPointId);
+            if(bike != null){
+                bikeDAO.changeBikeStatusBusy(bike);
+            }
+        } catch (DAOException e) {
+            LOGGER.error("getBikeByTypeAndRentalPointId " + e);
+            throw new ServiceException("getBikeById error " + e.getMessage());
+        }
+        return bike;
     }
 
 

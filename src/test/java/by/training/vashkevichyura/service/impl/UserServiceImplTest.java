@@ -14,12 +14,13 @@ import static org.testng.Assert.assertNotNull;
 
 public class UserServiceImplTest {
 
-    private static UserService userService = null;
-    private static User user = null;
-    private static UserRoleEnum role = null;
-    private static String userPassword = null;
+    private  UserService userService = new UserServiceImpl();
+    private  User user = null;
+    private  UserRoleEnum role = null;
+    private  String userPassword = null;
+
     @BeforeClass
-    public static void setUp() throws ServiceException {
+    public  void setUp() throws ServiceException {
         userService = mock(UserServiceImpl.class);
         user = new User();
         user.setId(1);

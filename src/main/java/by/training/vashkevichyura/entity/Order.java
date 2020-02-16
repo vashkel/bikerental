@@ -1,31 +1,29 @@
 package by.training.vashkevichyura.entity;
 
-import java.util.Date;
-
 public class Order extends Entity{
     private static final long serialVersionUID = -4434253064260999533L;
-    private Date startDate;
-    private Date end_Date;
+    private String startDate;
+    private String endDate;
     private double sum;
     private User user;
     private Bike bike;
     private OrderStatusEnum status;
 
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEnd_Date() {
-        return end_Date;
+    public String getEndDate() {
+        return endDate;
     }
 
-    public void setEnd_Date(Date end_Date) {
-        this.end_Date = end_Date;
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
     }
 
     public double getSum() {
@@ -62,16 +60,30 @@ public class Order extends Entity{
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Order order = (Order) o;
 
-        if (Double.compare(order.sum, sum) != 0) return false;
-        if (!startDate.equals(order.startDate)) return false;
-        if (!end_Date.equals(order.end_Date)) return false;
-        if (!user.equals(order.user)) return false;
-        if (!bike.equals(order.bike)) return false;
+        if (Double.compare(order.sum, sum) != 0) {
+            return false;
+        }
+        if (!startDate.equals(order.startDate)) {
+            return false;
+        }
+        if (!endDate.equals(order.endDate)) {
+            return false;
+        }
+        if (!user.equals(order.user)) {
+            return false;
+        }
+        if (!bike.equals(order.bike)) {
+            return false;
+        }
         return status == order.status;
     }
 
@@ -80,7 +92,7 @@ public class Order extends Entity{
         int result;
         long temp;
         result = startDate.hashCode();
-        result = 31 * result + end_Date.hashCode();
+        result = 31 * result + endDate.hashCode();
         temp = Double.doubleToLongBits(sum);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + user.hashCode();
@@ -93,7 +105,7 @@ public class Order extends Entity{
     public String toString() {
         return "Order{" +
                 "startDate=" + startDate +
-                ", end_Date=" + end_Date +
+                ", endDate=" + endDate +
                 ", sum=" + sum +
                 ", user=" + user +
                 ", bike=" + bike +

@@ -1,4 +1,4 @@
-package by.training.vashkevichyura.command.impl.aplication;
+package by.training.vashkevichyura.command.impl.application;
 
 import by.training.vashkevichyura.command.ActionCommand;
 import by.training.vashkevichyura.command.PageConstant;

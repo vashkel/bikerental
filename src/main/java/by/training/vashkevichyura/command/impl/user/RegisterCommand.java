@@ -43,5 +43,10 @@ public class RegisterCommand implements ActionCommand {
         }
         return page;
     }
+
+    @Override
+    public boolean requiresRedirect() {
+        return true;
+    }
 }
 

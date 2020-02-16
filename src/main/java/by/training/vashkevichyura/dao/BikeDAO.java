@@ -22,4 +22,18 @@ public interface BikeDAO extends AbstractDAO<Bike> {
      * @throws DAOException
      */
     List<String> getAllBrandBike() throws DAOException;
+
+    /**
+     * method gets bike by type and rental pointId
+     * @return appropriate bike
+     * @throws DAOException
+     */
+    Bike getBikeByTypeAndRentalPointId(long bikeTypeId, long rentalPointId) throws DAOException;
+
+    /**
+     * method changes status of bike on busy for unavailable getting current bike with another user
+     * @return void
+     * @throws DAOException
+     */
+    void changeBikeStatusBusy(Bike bike) throws DAOException;
 }

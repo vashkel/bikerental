@@ -32,7 +32,6 @@
     <filter-name>ServletSecurityFilter</filter-name>
     <filter-class>by.training.vashkevichyura.controller.filter.ServletSecurityFilter</filter-class>
   </filter>
-
   <filter-mapping>
     <filter-name>ServletSecurityFilter</filter-name>
     <url-pattern>/BikeRentalServlet</url-pattern>
@@ -46,10 +45,9 @@
       <param-value>UTF-8</param-value>
     </init-param>
   </filter>
-
 <filter-mapping>
   <filter-name>EncodingFilter</filter-name>
-  <url-pattern>/*</url-pattern>
+  <url-pattern>/BikeRentalServlet</url-pattern>
 </filter-mapping>
 
   <error-page>

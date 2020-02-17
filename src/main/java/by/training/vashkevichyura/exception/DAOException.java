@@ -15,4 +15,5 @@ public class DAOException extends Throwable {
         super(message, cause);
     }
 
+
 }

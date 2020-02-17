@@ -10,6 +10,7 @@ import by.training.vashkevichyura.command.impl.bike.GetPriceBikeCommand;
 import by.training.vashkevichyura.command.impl.bike.GoToAddBikePageCommand;
 import by.training.vashkevichyura.command.impl.bike.OrderBikeCommand;
 import by.training.vashkevichyura.command.impl.order.AllOrdersPageCommand;
+import by.training.vashkevichyura.command.impl.order.CloseOrderCommand;
 import by.training.vashkevichyura.command.impl.order.FindUserOrdersCommand;
 import by.training.vashkevichyura.command.impl.rentalpoint.RentalPointCatalogCommand;
 import by.training.vashkevichyura.command.impl.user.ChangeStateUserCommand;
@@ -38,6 +39,7 @@ public enum CommandEnum {
     CREATE_ORDER(new CreateOrderCommand()),
     GET_PRICE_BIKE(new GetPriceBikeCommand()),
     ORDER_BIKE(new OrderBikeCommand()),
+    CLOSE_ORDER(new CloseOrderCommand()),
     ALL_ORDERS_PAGE(new AllOrdersPageCommand());
 
     /**

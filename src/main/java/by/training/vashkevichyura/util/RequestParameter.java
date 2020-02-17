@@ -5,7 +5,6 @@ public enum RequestParameter {
 
     BIKE("bike"),
     BIKE_ID("bikeId"),
-    ORDER("order"),
     BIKE_TYPE_LIST("bikeTypesList"),
     BIKE_TYPE_ID("bikeTypeId"),
     BIKE_TYPE("bikeType"),
@@ -17,9 +16,14 @@ public enum RequestParameter {
     ERROR("error"),
     LOGIN_MENU("loginMenu"),
     LOGIN("login"),
+    MESSAGE("message"),
     MODEL("model"),
     NAME("name"),
     NEXT_PAGE("next"),
+    ORDER("order"),
+    ORDER_ID("orderId"),
+    ORDER_LIST("orderList"),
+    ORDER_LIST_ALL_USERS ("orderListAllUsers"),
     PASSWORD("password"),
     PAGE_ACTION("pageAction"),
     PREVIOUS_PAGE("previous"),
@@ -27,9 +31,7 @@ public enum RequestParameter {
     RENTAL_POINT_ID("rentalPointId"),
     SURNAME("surname"),
     USERS_LIST("usersList"),
-    ORDER_LIST("orderList"),
-    TOTAL_PRICE("totalPrice"),
-    ORDER_LIST_ALL_USERS ("orderListAllUsers");
+    TOTAL_PRICE("totalPrice");
 
     private String parameter;
 

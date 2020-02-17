@@ -4,17 +4,10 @@ package by.training.vashkevichyura.dao.Impl;
 import by.training.vashkevichyura.connection.ConnectionPool;
 import by.training.vashkevichyura.connection.ProxyConnection;
 import by.training.vashkevichyura.dao.OrderDAO;
-import by.training.vashkevichyura.entity.Bike;
-import by.training.vashkevichyura.entity.BikeType;
-import by.training.vashkevichyura.entity.BikeTypeEnum;
-import by.training.vashkevichyura.entity.Order;
-import by.training.vashkevichyura.entity.OrderStatusEnum;
-import by.training.vashkevichyura.entity.RentalPoint;
-import by.training.vashkevichyura.entity.User;
-import by.training.vashkevichyura.entity.UserRoleEnum;
-import by.training.vashkevichyura.entity.UserStateEnum;
+import by.training.vashkevichyura.entity.*;
 import by.training.vashkevichyura.exception.ConnectionPoolException;
 import by.training.vashkevichyura.exception.DAOException;
+import by.training.vashkevichyura.util.DataFormatter;
 import by.training.vashkevichyura.util.PageInfo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -75,6 +68,9 @@ public class OrderDAOImpl implements OrderDAO {
             "LEFT JOIN bike_types AS bt ON bk.bike_type_id = bt.id " +
             "LEFT JOIN rental_points AS rp ON bk.rental_point_id = rp.id WHERE o.id > ?" +
             " ORDER BY o.id LIMIT ? ";
+
+     private static final String SQL_CREATE_ORDER = "INSERT INTO orders (start_date, user_id, bike_id, status, sum)" +
+             " VALUES (?,?,?,?,?)";
 
     @Override
     public void add(Order entity) throws DAOException {
@@ -207,6 +203,50 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
+    public boolean closeOrder(Order order) throws DAOException {
+        ProxyConnection connection = null;
+        PreparedStatement statement = null;
+        boolean shouldCommit = false;
+        try {
+            connection = ConnectionPool.getInstance().getConnection();
+            statement = connection.prepareStatement("UPDATE orders SET end_date = ? , status = ? WHERE id = ?");
+            connection.setAutoCommit(false);
+
+            statement.setString(1, DataFormatter.getCurrentDateTimeToDB());
+            statement.setString(2, OrderStatusEnum.FINISHED.name());
+            statement.setLong(3, order.getId());
+            int operation1 = statement.executeUpdate();
+
+            statement = connection.prepareStatement("UPDATE bikes SET status = ? WHERE id = ?");
+            statement.setString(1, BikeStatusEnum.FREE.name());
+            statement.setLong(2, order.getBike().getId());
+            int operation2 = statement.executeUpdate();
+
+            shouldCommit = operation1 == 1 && operation2 == 1;
+            if (shouldCommit) {
+                connection.commit();
+            } else {
+                connection.rollback();
+                LOGGER.error("Transaction wasn't finished because of unexpected results.");
+            }
+            return shouldCommit;
+        } catch (ConnectionPoolException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                connection.setAutoCommit(true);
+                close(statement,connection);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+        return shouldCommit;
+    }
+
+    @Override
     public List<Order> getAllOrdersByUserId(long userId) throws DAOException {
         ProxyConnection connection = null;
         PreparedStatement statement = null;
@@ -270,16 +310,18 @@ public class OrderDAOImpl implements OrderDAO {
     public Order createOrder(Order order) throws DAOException {
         ProxyConnection connection = null;
         PreparedStatement statement = null;
-
         try {
             connection = ConnectionPool.getInstance().getConnection();
-            statement = connection.prepareStatement("INSERT INTO orders (start_date, user_id, bike_id, status, sum) VALUES (?,?,?,?,?)");
+            statement = connection.prepareStatement(SQL_CREATE_ORDER);
             statement.setString(1, order.getStartDate());
             statement.setLong(2,order.getUser().getId());
             statement.setLong(3,order.getBike().getId());
             statement.setString(4,order.getStatus().name());
             statement.setDouble(5,order.getSum());
             statement.executeUpdate();
+
+            long orderId = getOrderIdByUserAndStatus(order.getUser().getId(),order.getStatus().name());
+            order.setId(orderId);
 
         } catch (ConnectionPoolException e) {
             LOGGER.error("Exception occurred while creating connection, " , e);
@@ -290,6 +332,31 @@ public class OrderDAOImpl implements OrderDAO {
         }
         return order;
     }
+
+    @Override
+    public long getOrderIdByUserAndStatus(long userId, String orderStatus) throws DAOException {
+        ProxyConnection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        long orderId = 0L;
+
+        try {
+            connection = ConnectionPool.getInstance().getConnection();
+            statement = connection.prepareStatement("SELECT id FROM orders WHERE user_id = ? AND status = ?");
+            statement.setLong(1, userId);
+            statement.setString(2, orderStatus);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                orderId = resultSet.getLong("id");
+            }
+        } catch (ConnectionPoolException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return orderId;
+    }
+
 
     private Order parseOrder(ResultSet resultSet) {
         Order order = new Order();
@@ -339,6 +406,5 @@ public class OrderDAOImpl implements OrderDAO {
         return order;
 
     }
-
-
 }
+

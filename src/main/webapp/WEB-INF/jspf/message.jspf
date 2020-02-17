@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <c:if test="${error ne null}">
-	<input type="hidden" id="errorMessage" value= '<fmt:message key="loginOrPasswordWrong"/> ' />
+	<input type="hidden" id="errorMessage" value= '<fmt:message bundle="${loc}" key="${error}"/>' />
 	<c:remove var="error" scope="session" />
 </c:if>
 

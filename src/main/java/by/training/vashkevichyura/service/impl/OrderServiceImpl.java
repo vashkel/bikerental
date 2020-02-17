@@ -61,4 +61,16 @@ public class OrderServiceImpl implements OrderService {
         }
         return order;
     }
+
+    @Override
+    public boolean closeOrder(Order order) throws ServiceException {
+        boolean isPerformed = false;
+        try {
+            isPerformed = orderDAO.closeOrder(order);
+        } catch (DAOException e) {
+            e.printStackTrace();
+        }
+        return isPerformed;
+
+    }
 }

@@ -8,10 +8,13 @@ import java.util.List;
 
 public interface OrderDAO extends AbstractDAO<Order> {
 
+    boolean closeOrder(Order order) throws DAOException;
+
     List<Order> getAllOrdersByUserId(long userId) throws DAOException;
 
-
-    List <Order> getAllByLimit(PageInfo pageInfo) throws DAOException;
+    List<Order> getAllByLimit(PageInfo pageInfo) throws DAOException;
 
     Order createOrder(Order order) throws DAOException;
+
+    long getOrderIdByUserAndStatus(long id, String name) throws DAOException;
 }

@@ -10,6 +10,7 @@ import by.training.vashkevichyura.service.BikeService;
 import by.training.vashkevichyura.service.OrderService;
 import by.training.vashkevichyura.service.ServiceFactory;
 import by.training.vashkevichyura.util.RequestParameter;
+import by.training.vashkevichyura.util.SessionParameter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -28,18 +29,20 @@ public class OrderBikeCommand implements ActionCommand {
         Bike bike;
         Order order;
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
+        User user = (User) session.getAttribute(SessionParameter.USER.parameter());
 
 
         long bikeTypeId = (long)session.getAttribute("bikeTypeId");
         long rentalPointId = (long)session.getAttribute("rentalPointId");
-        double totalPrice = Double.parseDouble(request.getParameter("totalPrice"));
+        double totalPrice = Double.parseDouble(request.getParameter(RequestParameter.TOTAL_PRICE.parameter()));
         try {
             bike = bikeService.getBikeByTypeAndRentalPointId(bikeTypeId, rentalPointId);
+            //TODO if bike null return message
+
             order = orderService.createOrder(bike, user, totalPrice);
             System.out.println(bike);
             System.out.println(order);
-            session.setAttribute(RequestParameter.ORDER.parameter(), order);
+            session.setAttribute(SessionParameter.ORDER.parameter(), order);
             page = user.getRole().getHomePage();
         } catch (ServiceException e) {
             LOGGER.error("An exception occurred while create order: ", e);

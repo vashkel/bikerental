@@ -17,4 +17,5 @@ public interface UserService {
     void deleteUserById(long id) throws ServiceException;
 
     void changeStateById(long userId, String state) throws ServiceException;
+
 }

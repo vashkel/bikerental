@@ -142,7 +142,6 @@ public class UserServiceImpl implements UserService {
             throw new ServiceException("change status of user error : " + e.getMessage());
         }
     }
-
 }
 
 

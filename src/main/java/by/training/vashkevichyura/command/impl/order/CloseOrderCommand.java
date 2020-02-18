@@ -2,6 +2,7 @@ package by.training.vashkevichyura.command.impl.order;
 
 import by.training.vashkevichyura.command.ActionCommand;
 import by.training.vashkevichyura.command.PageConstant;
+import by.training.vashkevichyura.command.PageMessage;
 import by.training.vashkevichyura.entity.Order;
 import by.training.vashkevichyura.entity.User;
 import by.training.vashkevichyura.exception.ExceptionMessage;
@@ -32,7 +33,7 @@ public class CloseOrderCommand implements ActionCommand {
             boolean isPerformed = orderService.closeOrder(order);
             if (isPerformed) {
                 session.removeAttribute("order");
-                request.setAttribute(RequestParameter.MESSAGE.parameter(),ExceptionMessage.ORDER_CLOSE.message());
+                request.setAttribute(RequestParameter.MESSAGE.parameter(),PageMessage.ORDER_CLOSE.message());
                 page = user.getRole().getHomePage();
             } else {
                 session.setAttribute(RequestParameter.ERROR.parameter(), ExceptionMessage.ORDER_NOT_EXIST);

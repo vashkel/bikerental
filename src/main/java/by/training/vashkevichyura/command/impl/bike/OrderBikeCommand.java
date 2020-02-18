@@ -5,10 +5,12 @@ import by.training.vashkevichyura.command.PageConstant;
 import by.training.vashkevichyura.entity.Bike;
 import by.training.vashkevichyura.entity.Order;
 import by.training.vashkevichyura.entity.User;
+import by.training.vashkevichyura.exception.ExceptionMessage;
 import by.training.vashkevichyura.exception.ServiceException;
 import by.training.vashkevichyura.service.BikeService;
 import by.training.vashkevichyura.service.OrderService;
 import by.training.vashkevichyura.service.ServiceFactory;
+import by.training.vashkevichyura.service.UserService;
 import by.training.vashkevichyura.util.RequestParameter;
 import by.training.vashkevichyura.util.SessionParameter;
 import org.apache.logging.log4j.LogManager;
@@ -22,6 +24,7 @@ public class OrderBikeCommand implements ActionCommand {
     private static final Logger LOGGER = LogManager.getLogger(OrderBikeCommand.class);
     private static final BikeService bikeService = ServiceFactory.getInstance().getBikeService();
     private static final OrderService orderService = ServiceFactory.getInstance().getOrderService();
+    private static final UserService userService = ServiceFactory.getInstance().getUserService();
 
     @Override
     public String execute(HttpServletRequest request) {
@@ -37,8 +40,15 @@ public class OrderBikeCommand implements ActionCommand {
         double totalPrice = Double.parseDouble(request.getParameter(RequestParameter.TOTAL_PRICE.parameter()));
         try {
             bike = bikeService.getBikeByTypeAndRentalPointId(bikeTypeId, rentalPointId);
-            //TODO if bike null return message
-
+            if(bike == null){
+                request.setAttribute(RequestParameter.MESSAGE.parameter(),ExceptionMessage.NOT_FREE_BIKE.message());
+                return user.getRole().getHomePage();
+            }
+            double userBalance = user.getBalance();
+            if(totalPrice>userBalance){
+                request.setAttribute(RequestParameter.MESSAGE.parameter(),ExceptionMessage.NOT_ENOUGH_MONEY.message());
+                return user.getRole().getHomePage();
+            }
             order = orderService.createOrder(bike, user, totalPrice);
             System.out.println(bike);
             System.out.println(order);
@@ -50,10 +60,5 @@ public class OrderBikeCommand implements ActionCommand {
 
         }
         return page;
-    }
-
-    @Override
-    public boolean requiresRedirect() {
-        return true;
     }
 }

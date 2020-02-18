@@ -95,6 +95,7 @@ public class BikeDAOImpl implements BikeDAO {
           LOGGER.error("Exception occurred while creating connection, " , e);
           throw new DAOException("Exception occurred while creating connection, " , e);
         } catch (SQLException e) {
+            LOGGER.error("An exception occurred in the layer DAO while getting get bikeByID from the DB" , e);
             throw new DAOException("An exception occurred in the layer DAO while getting get bikeByID from the DB", e);
         } finally {
             try {

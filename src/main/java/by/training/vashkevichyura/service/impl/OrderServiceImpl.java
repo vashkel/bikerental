@@ -56,19 +56,31 @@ public class OrderServiceImpl implements OrderService {
         try {
             orderDAO.createOrder(order);
         } catch (DAOException e) {
-            LOGGER.error("An exception was thrown when searching for orders ; ", e);
-            throw new ServiceException("An exception was thrown when searching for orders ; ", e.getMessage());
+            LOGGER.error("An exception was thrown during create order : ", e);
+            throw new ServiceException("An exception was thrown during create order : ", e);
+        }
+        return order;
+    }
+    @Override
+    public Order findOpenOrder(User user) throws ServiceException {
+        Order order;
+        try {
+            order = orderDAO.findOpenOrder(user);
+        } catch (DAOException e) {
+            LOGGER.error("An exception was thrown during find open order : ", e);
+            throw new ServiceException("An exception was thrown during find open order : ", e);
         }
         return order;
     }
 
     @Override
     public boolean closeOrder(Order order) throws ServiceException {
-        boolean isPerformed = false;
+        boolean isPerformed;
         try {
             isPerformed = orderDAO.closeOrder(order);
         } catch (DAOException e) {
-            e.printStackTrace();
+            LOGGER.error("An exception was thrown during find open order : ", e);
+            throw new ServiceException("An exception was thrown during find open order : ", e);
         }
         return isPerformed;
 

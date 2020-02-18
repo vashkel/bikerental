@@ -38,6 +38,10 @@ public enum PageMessage {
 
     USER_DELETED("userDeleted"),
 
+    ORDER_CLOSE("orderClose"),
+
+    NOT_ENOUGH_MONEY("notEnoughMoney"),
+
     USER_STATE_CHANGED("userStateChanged");
 
     private String message;

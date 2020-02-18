@@ -31,6 +31,10 @@ public enum RequestParameter {
     RENTAL_POINT_ID("rentalPointId"),
     SURNAME("surname"),
     USERS_LIST("usersList"),
+    SECONDS("seconds"),
+    MINUTES("minutes"),
+    HOURS("hours"),
+    DAYS("days"),
     TOTAL_PRICE("totalPrice");
 
     private String parameter;

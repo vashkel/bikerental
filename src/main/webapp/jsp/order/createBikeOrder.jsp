@@ -15,7 +15,7 @@
 
     </style>
 
-    <%@ include file="../../WEB-INF/jspf/localizationVar.jspf" %>
+    <%@ include file="/WEB-INF/jspf/localizationVar.jspf" %>
 
     <title><fmt:message key="title"/></title>
 
@@ -179,7 +179,7 @@
 
 
 
-<%@ include file="../../WEB-INF/jspf/message.jspf" %>
+<%@ include file="/WEB-INF/jspf/message.jspf" %>
 
 </body>
 

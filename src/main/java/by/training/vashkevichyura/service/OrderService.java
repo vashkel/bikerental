@@ -15,5 +15,7 @@ public interface OrderService {
 
     Order createOrder(Bike bike, User user, double totalPrice) throws ServiceException;
 
+    Order findOpenOrder(User user) throws ServiceException;
+
     boolean closeOrder(Order order) throws ServiceException;
 }

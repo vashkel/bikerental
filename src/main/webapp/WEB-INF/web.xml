@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
          http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
-         version="3.1" metadata-complete="true">
+         version="3.1" metadata-complete="true" >
   <display-name>RentalBike</display-name>
   <session-config>
     <session-timeout>30</session-timeout>
@@ -26,6 +26,10 @@
       <taglib-uri>customtags</taglib-uri>
       <taglib-location>/WEB-INF/tld/custom.tld</taglib-location>
     </taglib>
+    <jsp-property-group>
+      <url-pattern>*.jsp</url-pattern>
+      <scripting-invalid>true</scripting-invalid>
+    </jsp-property-group>
   </jsp-config>
 
   <filter>
@@ -50,7 +54,13 @@
   <url-pattern>/BikeRentalServlet</url-pattern>
 </filter-mapping>
 
+    <error-page>
+        <error-code>404</error-code>
+        <location>/jsp/error/error.jsp</location>
+    </error-page>
+
   <error-page>
+      <exception-type>java.lang.Throwable</exception-type>
     <location>/jsp/error/error.jsp</location>
   </error-page>
 </web-app>

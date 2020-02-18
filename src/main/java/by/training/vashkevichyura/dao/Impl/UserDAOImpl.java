@@ -34,6 +34,7 @@ public class UserDAOImpl implements UserDAO {
     private final static String SQL_REGISTER_USER = "INSERT INTO users( name, surname, login, password, salt,email) " +
             "VALUES (?,?,?,?,?,?)";
     private final static String SQL_DELETE_USER_BY_ID = "DELETE FROM users WHERE id = ?";
+    private final static String SQL_CHANGE_STATE_BY_ID = "UPDATE users SET state=? WHERE id=?";
 
 
     @Override
@@ -56,6 +57,7 @@ public class UserDAOImpl implements UserDAO {
             LOGGER.error("Exception occurred while creating connection, " , e);
             throw new DAOException("Exception occurred while creating connection, " , e);
         } catch (SQLException e) {
+            LOGGER.error("An exception occurred in the layer DAO while add user to the DB", e);
             throw new DAOException("An exception occurred in the layer DAO while add user to the DB", e);
         } finally {
             close(statement,connection);
@@ -80,6 +82,7 @@ public class UserDAOImpl implements UserDAO {
             LOGGER.error("Exception occurred while creating connection, " , e);
             throw new DAOException("Exception occurred while creating connection, " , e);
         } catch (SQLException e) {
+            LOGGER.error("An exception occurred in the layer DAO while getting userByID from the DB", e);
             throw new DAOException("An exception occurred in the layer DAO while getting userByID from the DB", e);
         } finally {
             try {
@@ -109,6 +112,7 @@ public class UserDAOImpl implements UserDAO {
             LOGGER.error("Exception occurred while creating connection, " , e);
             throw new DAOException("Exception occurred while creating connection, " , e);
         } catch (SQLException e) {
+            LOGGER.error("An exception occurred in the layer DAO while getting all users from the DB" , e);
             throw new DAOException("An exception occurred in the layer DAO while getting all users from the DB", e);
         } finally {
             try {
@@ -141,8 +145,8 @@ public class UserDAOImpl implements UserDAO {
             LOGGER.error("Exception occurred while creating connection, " , e);
             throw new DAOException("Exception occurred while creating connection, " , e);
         } catch (SQLException e) {
+            LOGGER.error("An exception occurred in the layer DAO while update user to the DB" , e);
             throw new DAOException("An exception occurred in the layer DAO while update user to the DB", e);
-
         } finally {
             close(statement,connection);
         }
@@ -161,6 +165,7 @@ public class UserDAOImpl implements UserDAO {
             LOGGER.error("Exception occurred while creating connection, " , e);
             throw new DAOException("Exception occurred while creating connection, " , e);
         } catch (SQLException e) {
+            LOGGER.error("An exception occurred in the layer DAO while delete user from the DB" , e);
             throw new DAOException("An exception occurred in the layer DAO while delete user from the DB", e);
         } finally {
             close(statement,connection);
@@ -185,6 +190,7 @@ public class UserDAOImpl implements UserDAO {
             LOGGER.error("Exception occurred while creating connection, " , e);
             throw new DAOException("Exception occurred while creating connection, " , e);
         } catch (SQLException e) {
+            LOGGER.error("An exception occurred in the layer DAO while getting user by login from the DB" , e);
             throw new DAOException("An exception occurred in the layer DAO while getting user by login from the DB", e);
         } finally {
             try {
@@ -214,6 +220,7 @@ public class UserDAOImpl implements UserDAO {
             LOGGER.error("Exception occurred while creating connection, " , e);
             throw new DAOException("Exception occurred while creating connection, " , e);
         } catch (SQLException e) {
+            LOGGER.error("An exception occurred in the layer DAO while getting user by id from the DB" , e);
             throw new DAOException("An exception occurred in the layer DAO while getting user by id from the DB", e);
         } finally {
             try {
@@ -243,6 +250,7 @@ public class UserDAOImpl implements UserDAO {
                 LOGGER.error("Exception occurred while creating connection, " , e);
                 throw new DAOException("Exception occurred while creating connection, " , e);
             } catch (SQLException e) {
+                LOGGER.error("An exception occurred in the layer DAO while getting user by login from the DB" , e);
                 throw new DAOException("An exception occurred in the layer DAO while getting user by login from the DB", e);
             }finally {
                 try {
@@ -306,7 +314,7 @@ public class UserDAOImpl implements UserDAO {
         User user;
         try {
             connection = ConnectionPool.getInstance().getConnection();
-            statement = connection.prepareStatement("UPDATE users SET state=? WHERE id=?");
+            statement = connection.prepareStatement(SQL_CHANGE_STATE_BY_ID);
             statement.setString(1,state);
             statement.setLong(2,userId);
             statement.executeUpdate();
@@ -315,13 +323,16 @@ public class UserDAOImpl implements UserDAO {
             LOGGER.error("Exception occurred while creating connection, " , e);
             throw new DAOException("Exception occurred while creating connection, " , e);
         } catch (SQLException e) {
-            LOGGER.error("An exception occurred in the layer DAO while changing user user state to the DB", e);
+            LOGGER.error("An exception occurred in the layer DAO while changing user state to the DB", e);
             throw new DAOException("An exception occurred in the layer DAO while changing user  state the DB", e);
         }finally {
             close(statement,connection);
         }
         return user;
     }
+
+
+
 
     private User parseUser(ResultSet resultSet) {
         User user = new User();

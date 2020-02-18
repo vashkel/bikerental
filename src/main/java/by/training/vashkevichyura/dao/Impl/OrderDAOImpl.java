@@ -69,8 +69,22 @@ public class OrderDAOImpl implements OrderDAO {
             "LEFT JOIN rental_points AS rp ON bk.rental_point_id = rp.id WHERE o.id > ?" +
             " ORDER BY o.id LIMIT ? ";
 
-     private static final String SQL_CREATE_ORDER = "INSERT INTO orders (start_date, user_id, bike_id, status, sum)" +
-             " VALUES (?,?,?,?,?)";
+    private static final String SQL_FIND_OPEN_ORDER = "SELECT o.id, o.start_date, o.end_date,o.user_id, u.id," +
+            " o.bike_id, bk.id, o.status, o.sum ,u.name, u.surname, u.login, u.password, u.role, u.tel, u.state," +
+            " u.balance,bk.brand, bk.model, bk.bike_type_id, bt.id, bk.rental_point_id, rp.id, bk.status, " +
+            "bt.type, rp.name,rp.adress, rp.tel " +
+            "FROM orders AS o " +
+            "LEFT JOIN users AS u ON o.user_id = u.id " +
+            "LEFT JOIN bikes AS bk ON o.bike_id = bk.id " +
+            "LEFT JOIN bike_types AS bt ON bk.bike_type_id = bt.id " +
+            "LEFT JOIN rental_points AS rp ON bk.rental_point_id = rp.id WHERE u.id=? AND o.end_date IS NULL";
+
+    private static final String SQL_CREATE_ORDER = "INSERT INTO orders (start_date, user_id, bike_id, status, sum)" +
+            " VALUES (?,?,?,?,?)";
+    private static final String SQL_CLOSE_ORDER = "UPDATE orders SET end_date = ? , status = ? WHERE id = ?";
+    private static final String SQL_CLOSE_ORDER_GIVE_AWEY_BIKE = "UPDATE bikes SET status = ? WHERE id = ?";
+    private static final String SQL_SET_NEW_BALANCE = "UPDATE users SET balance = ? where id = ?";
+    private static final String SQL_GET_ORDER_ID_BY_USER_ID_AND_STATUS = "SELECT id FROM orders WHERE user_id = ? AND status = ?";
 
     @Override
     public void add(Order entity) throws DAOException {
@@ -89,8 +103,8 @@ public class OrderDAOImpl implements OrderDAO {
         } catch (ConnectionPoolException e) {
             e.printStackTrace();
         } catch (SQLException e) {
-            LOGGER.error("Exception occurred while creating connection, " , e);
-            throw new DAOException("Exception occurred while creating connection, " , e);
+            LOGGER.error("Exception occurred while creating connection, ", e);
+            throw new DAOException("Exception occurred while creating connection, ", e);
         } finally {
             close(statement, connection);
         }
@@ -111,8 +125,8 @@ public class OrderDAOImpl implements OrderDAO {
                 order = parseOrder(resultSet);
             }
         } catch (ConnectionPoolException e) {
-            LOGGER.error("Exception occurred while creating connection, " , e);
-            throw new DAOException("Exception occurred while creating connection, " , e);
+            LOGGER.error("Exception occurred while creating connection, ", e);
+            throw new DAOException("Exception occurred while creating connection, ", e);
         } catch (SQLException e) {
             LOGGER.error("Exception was thrown during getting order by id from the DB : ", e);
             throw new DAOException("Exception was thrown during getting order by id from the DB : ", e);
@@ -141,8 +155,8 @@ public class OrderDAOImpl implements OrderDAO {
                 orders.add(order);
             }
         } catch (ConnectionPoolException e) {
-            LOGGER.error("Exception occurred while creating connection, " , e);
-            throw new DAOException("Exception occurred while creating connection, " , e);
+            LOGGER.error("Exception occurred while creating connection, ", e);
+            throw new DAOException("Exception occurred while creating connection, ", e);
         } catch (SQLException e) {
             LOGGER.error("Exception was thrown during getting all orders from the DB : ", e);
             throw new DAOException("Exception was thrown during getting all orders from the DB : ", e);
@@ -171,8 +185,8 @@ public class OrderDAOImpl implements OrderDAO {
             statement.setLong(7, order.getId());
             statement.executeUpdate();
         } catch (ConnectionPoolException e) {
-            LOGGER.error("Exception occurred while creating connection, " , e);
-            throw new DAOException("Exception occurred while creating connection, " , e);
+            LOGGER.error("Exception occurred while creating connection, ", e);
+            throw new DAOException("Exception occurred while creating connection, ", e);
         } catch (SQLException e) {
             LOGGER.error("Exception was thrown during update order to the DB : ", e);
             throw new DAOException("Exception was thrown during update order to the DB : ", e);
@@ -192,8 +206,8 @@ public class OrderDAOImpl implements OrderDAO {
             statement.setLong(1, entity.getId());
             statement.executeUpdate();
         } catch (ConnectionPoolException e) {
-            LOGGER.error("Exception occurred while creating connection, " , e);
-            throw new DAOException("Exception occurred while creating connection, " , e);
+            LOGGER.error("Exception occurred while creating connection, ", e);
+            throw new DAOException("Exception occurred while creating connection, ", e);
         } catch (SQLException e) {
             LOGGER.error("Exception was thrown during delete order from DB : ", e);
             throw new DAOException("Exception was thrown during delete order from DB : ", e);
@@ -206,10 +220,10 @@ public class OrderDAOImpl implements OrderDAO {
     public boolean closeOrder(Order order) throws DAOException {
         ProxyConnection connection = null;
         PreparedStatement statement = null;
-        boolean shouldCommit = false;
+        boolean shouldCommit;
         try {
             connection = ConnectionPool.getInstance().getConnection();
-            statement = connection.prepareStatement("UPDATE orders SET end_date = ? , status = ? WHERE id = ?");
+            statement = connection.prepareStatement(SQL_CLOSE_ORDER);
             connection.setAutoCommit(false);
 
             statement.setString(1, DataFormatter.getCurrentDateTimeToDB());
@@ -217,33 +231,39 @@ public class OrderDAOImpl implements OrderDAO {
             statement.setLong(3, order.getId());
             int operation1 = statement.executeUpdate();
 
-            statement = connection.prepareStatement("UPDATE bikes SET status = ? WHERE id = ?");
+            statement = connection.prepareStatement(SQL_CLOSE_ORDER_GIVE_AWEY_BIKE);
             statement.setString(1, BikeStatusEnum.FREE.name());
             statement.setLong(2, order.getBike().getId());
             int operation2 = statement.executeUpdate();
 
-            shouldCommit = operation1 == 1 && operation2 == 1;
+            double newBalance = order.getUser().getBalance()-order.getSum();
+            statement = connection.prepareStatement(SQL_SET_NEW_BALANCE);
+            statement.setDouble(1,newBalance);
+            statement.setLong(2,order.getUser().getId());
+            int operation3 = statement.executeUpdate();
+
+            shouldCommit = operation1 == 1 && operation2 == 1 && operation3 == 1;
             if (shouldCommit) {
                 connection.commit();
             } else {
                 connection.rollback();
                 LOGGER.error("Transaction wasn't finished because of unexpected results.");
             }
+            connection.setAutoCommit(true);
             return shouldCommit;
-        } catch (ConnectionPoolException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
-            try {
-                connection.setAutoCommit(true);
-                close(statement,connection);
-            } catch (SQLException e) {
-                e.printStackTrace();
+        } catch (ConnectionPoolException | SQLException e) {
+            if (connection != null) {
+                try {
+                    connection.rollback();
+                } catch (SQLException e1) {
+                    throw LOGGER.throwing(new DAOException(e1));
+                }
             }
-
+            LOGGER.error("Exception was thrown during close order from DB : ", e);
+            throw new DAOException("Exception was thrown during close order from DB : ", e);
+        } finally {
+            close(statement, connection);
         }
-        return shouldCommit;
     }
 
     @Override
@@ -262,16 +282,17 @@ public class OrderDAOImpl implements OrderDAO {
                 orders.add(order);
             }
         } catch (ConnectionPoolException e) {
-            LOGGER.error("Exception occurred while creating connection, " , e);
-            throw new DAOException("Exception occurred while creating connection, " , e);
+            LOGGER.error("Exception occurred while creating connection, ", e);
+            throw new DAOException("Exception occurred while creating connection, ", e);
         } catch (SQLException e) {
             LOGGER.error("Exception was thrown during get All orders By user id from DB : ", e);
             throw new DAOException("Exception was thrown during get All orders By user id from DB : ", e);
-        }
-        try {
-            close(statement, connection, resultSet);
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } finally {
+            try {
+                close(statement, connection, resultSet);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return orders;
     }
@@ -285,23 +306,25 @@ public class OrderDAOImpl implements OrderDAO {
         try {
             connection = ConnectionPool.getInstance().getConnection();
             statement = connection.prepareStatement(SQL_GET_ALL_ORDERS_BY_LIMIT);
-            statement.setLong(1,pageInfo.getLastPagePoint());
-            statement.setInt(2,pageInfo.getDefaultElementOnPage());
+            statement.setLong(1, pageInfo.getLastPagePoint());
+            statement.setInt(2, pageInfo.getDefaultElementOnPage());
             resultSet = statement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 Order order = parseOrder(resultSet);
                 allOrdersByLimit.add(order);
             }
         } catch (ConnectionPoolException e) {
-            LOGGER.error("Exception occurred while creating connection, " , e);
-            throw new DAOException("Exception occurred while creating connection, " , e);
+            LOGGER.error("Exception occurred while creating connection, ", e);
+            throw new DAOException("Exception occurred while creating connection, ", e);
         } catch (SQLException e) {
             LOGGER.error("Exception was thrown during get All orders By Limit from DB : ", e);
             throw new DAOException("Exception was thrown during get All orders By Limit from DB : ", e);
-        }try {
-            close(statement, connection, resultSet);
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } finally {
+            try {
+                close(statement, connection, resultSet);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return allOrdersByLimit;
     }
@@ -314,21 +337,23 @@ public class OrderDAOImpl implements OrderDAO {
             connection = ConnectionPool.getInstance().getConnection();
             statement = connection.prepareStatement(SQL_CREATE_ORDER);
             statement.setString(1, order.getStartDate());
-            statement.setLong(2,order.getUser().getId());
-            statement.setLong(3,order.getBike().getId());
-            statement.setString(4,order.getStatus().name());
-            statement.setDouble(5,order.getSum());
+            statement.setLong(2, order.getUser().getId());
+            statement.setLong(3, order.getBike().getId());
+            statement.setString(4, order.getStatus().name());
+            statement.setDouble(5, order.getSum());
             statement.executeUpdate();
 
-            long orderId = getOrderIdByUserAndStatus(order.getUser().getId(),order.getStatus().name());
+            long orderId = getOrderIdByUserAndStatus(order.getUser().getId(), order.getStatus().name());
             order.setId(orderId);
 
         } catch (ConnectionPoolException e) {
-            LOGGER.error("Exception occurred while creating connection, " , e);
-            throw new DAOException("Exception occurred while creating connection, " , e);
+            LOGGER.error("Exception occurred while creating connection, ", e);
+            throw new DAOException("Exception occurred while creating connection, ", e);
         } catch (SQLException e) {
             LOGGER.error("Exception was thrown during creating order to the DB : ", e);
             throw new DAOException("Exception was thrown during creating order to the DB : ", e);
+        } finally {
+            close(statement, connection);
         }
         return order;
     }
@@ -342,19 +367,57 @@ public class OrderDAOImpl implements OrderDAO {
 
         try {
             connection = ConnectionPool.getInstance().getConnection();
-            statement = connection.prepareStatement("SELECT id FROM orders WHERE user_id = ? AND status = ?");
+            statement = connection.prepareStatement(SQL_GET_ORDER_ID_BY_USER_ID_AND_STATUS);
             statement.setLong(1, userId);
             statement.setString(2, orderStatus);
             resultSet = statement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 orderId = resultSet.getLong("id");
             }
         } catch (ConnectionPoolException e) {
-            e.printStackTrace();
+            LOGGER.error("Exception occurred while creating connection, ", e);
+            throw new DAOException("Exception occurred while creating connection, ", e);
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error("Exception was thrown during getting orderId by user and status to the DB : ", e);
+            throw new DAOException("Exception was thrown during getting orderId by user and status to the DB : ", e);
+        } finally {
+            try {
+                close(statement, connection, resultSet);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return orderId;
+    }
+    @Override
+    public Order findOpenOrder(User user) throws DAOException {
+        ProxyConnection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        Order order = null;
+
+        try {
+            connection = ConnectionPool.getInstance().getConnection();
+            statement = connection.prepareStatement(SQL_FIND_OPEN_ORDER);
+            statement.setLong(1,user.getId());
+            resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                order = parseOrder(resultSet);
+            }
+        } catch (ConnectionPoolException e) {
+            LOGGER.error("Exception occurred while creating connection, ", e);
+            throw new DAOException("Exception occurred while creating connection, ", e);
+        } catch (SQLException e) {
+            LOGGER.error("Exception was thrown during find open order from the DB : ", e);
+            throw new DAOException("Exception was thrown during find open order from the DB : ", e);
+        }finally {
+            try {
+                close(statement,connection,resultSet);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return order;
     }
 
 
@@ -362,7 +425,7 @@ public class OrderDAOImpl implements OrderDAO {
         Order order = new Order();
         try {
             order.setId(resultSet.getLong("o.id"));
-            order.setStartDate(String.valueOf(resultSet.getDate("o.start_date")));
+            order.setStartDate(String.valueOf(resultSet.getTimestamp("o.start_date")));
             order.setEndDate(String.valueOf(resultSet.getDate("o.end_date")));
 
             User user = new User();

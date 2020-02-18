@@ -1,5 +1,6 @@
 package by.training.vashkevichyura.dao;
 
+import by.training.vashkevichyura.entity.Order;
 import by.training.vashkevichyura.entity.User;
 import by.training.vashkevichyura.exception.DAOException;
 
@@ -55,4 +56,7 @@ public interface UserDAO extends AbstractDAO<User> {
      * @throws DAOException if occurred SQL exception.
      */
     User changeStateById(long userId, String state) throws DAOException ;
+
+
+
 }

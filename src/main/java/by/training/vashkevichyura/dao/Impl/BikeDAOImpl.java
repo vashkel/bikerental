@@ -69,6 +69,7 @@ public class BikeDAOImpl implements BikeDAO {
             statement.setLong(3,bike.getBikeType().getId());
             statement.setLong(4,bike.getRentalPoint().getId());
             statement.setString(5,bike.getBikeStatus().name());
+            statement.executeUpdate();
         } catch (SQLException | ConnectionPoolException e) {
             LOGGER.error("Exception in BikeDAOImpl add method. Impossible insert bike", e);
             throw new DAOException("Error occurred while inserting bike: " + e.getMessage());
@@ -86,23 +87,19 @@ public class BikeDAOImpl implements BikeDAO {
         try {
             connection = ConnectionPool.getInstance().getConnection();
             statement = connection.prepareStatement(SQL_GET_BIKE_BY_ID);
-            statement.setLong(1,id);
+            statement.setLong(1, id);
             resultSet = statement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 bike = parseBike(resultSet);
             }
         } catch (ConnectionPoolException e) {
-          LOGGER.error("Exception occurred while creating connection, " , e);
-          throw new DAOException("Exception occurred while creating connection, " , e);
+            LOGGER.error("Exception occurred while creating connection, ", e);
+            throw new DAOException("Exception occurred while creating connection, ", e);
         } catch (SQLException e) {
-            LOGGER.error("An exception occurred in the layer DAO while getting get bikeByID from the DB" , e);
-            throw new DAOException("An exception occurred in the layer DAO while getting get bikeByID from the DB", e);
+            LOGGER.error("An exception occurred in the layer DAO while getting bikeByID from the DB", e);
+            throw new DAOException("An exception occurred in the layer DAO while getting bikeByID from the DB", e);
         } finally {
-            try {
-                close(statement,connection,resultSet);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            close(statement, connection, resultSet);
         }
         return bike;
     }
@@ -122,16 +119,13 @@ public class BikeDAOImpl implements BikeDAO {
                 bikes.add(bike);
             }
         } catch (ConnectionPoolException e) {
-            LOGGER.error("Exception occurred while creating connection, " , e);
-            throw new DAOException("Exception occurred while creating connection, " , e);
+            LOGGER.error("Exception occurred while creating connection, ", e);
+            throw new DAOException("Exception occurred while creating connection, ", e);
         } catch (SQLException e) {
+            LOGGER.error("An exception occurred in the layer DAO while getting all bikes from the DB" , e);
             throw new DAOException("An exception occurred in the layer DAO while getting all bikes from the DB", e);
         } finally {
-            try {
-                close(statement, connection,resultSet);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            close(statement, connection, resultSet);
         }
         return bikes;
     }
@@ -154,16 +148,12 @@ public class BikeDAOImpl implements BikeDAO {
             }
         } catch (ConnectionPoolException e) {
             LOGGER.error("Exception occurred while creating connection, " , e);
-            throw new DAOException("Exception occurred while creating connection, " , e);
+            throw new DAOException("Exception occurred while creating connection, ", e);
         } catch (SQLException e) {
-            LOGGER.error("Exception occurred during get bike from DB "+ e);
+            LOGGER.error("Exception occurred during get bike from DB " + e);
             throw new DAOException("An exception occurred in the layer DAO while getting get all bikes from the DB", e);
-        }finally {
-            try {
-                close(statement,connection,resultSet);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        } finally {
+            close(statement, connection, resultSet);
         }
         return bikes;
     }
@@ -188,14 +178,11 @@ public class BikeDAOImpl implements BikeDAO {
             LOGGER.error("An exception occurred in the layer DAO while getting get all bikeBrand from the DB", e);
             throw new DAOException("An exception occurred in the layer DAO while getting get all bikeBrand from the DB", e);
         }finally {
-            try {
                 close(statement,connection,resultSet);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
         return brands;
     }
+
 
     @Override
     public Bike getBikeByTypeAndRentalPointId(long bikeTypeId, long rentalPointId) throws DAOException {
@@ -213,8 +200,8 @@ public class BikeDAOImpl implements BikeDAO {
             while(resultSet.next()){
                 bike = parseBike(resultSet);
             }
-            if(bike != null){
-                return bike;
+            if(bike == null){
+                return null;
             }
         } catch (ConnectionPoolException e) {
             LOGGER.error("Exception occurred while creating connection, " , e);
@@ -223,14 +210,9 @@ public class BikeDAOImpl implements BikeDAO {
             LOGGER.error("An exception occurred in the layer DAO while getting getting bike from the DB", e);
             throw new DAOException("An exception occurred in the layer DAO while getting bike from the DB", e);
         }finally {
-            try {
                 close(statement,connection,resultSet);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
-
-        return null;
+        return bike;
     }
 
     @Override
@@ -238,6 +220,31 @@ public class BikeDAOImpl implements BikeDAO {
         bike.setBikeStatus(BikeStatusEnum.BUSY);
         update(bike);
     }
+
+    @Override
+    public void addSomeBikes(Bike bike, int countBike) throws DAOException {
+        ProxyConnection connection = null;
+        PreparedStatement statement = null;
+        try {
+            connection = ConnectionPool.getInstance().getConnection();
+            statement = connection.prepareStatement(SQL_ADD_BIKE);
+            statement.setString(1,bike.getBrand());
+            statement.setString(2,bike.getModel());
+            statement.setLong(3,bike.getBikeType().getId());
+            statement.setLong(4,bike.getRentalPoint().getId());
+            statement.setString(5,bike.getBikeStatus().name());
+            for (int i = 0; i < countBike; i++){
+                statement.executeUpdate();
+            }
+        } catch (SQLException | ConnectionPoolException e) {
+            LOGGER.error("Exception in BikeDAOImpl addSomeBikes method. Impossible insert bike ", e);
+            throw new DAOException("Exception in BikeDAOImpl addSomeBikes method. Impossible insert bike " + e.getMessage());
+        } finally {
+            close(statement, connection);
+        }
+
+    }
+
 
     @Override
     public void update(Bike bike) throws DAOException {

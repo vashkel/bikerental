@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="ctg" uri="customtags" %>
 <fmt:setLocale value="${sessionScope.local}" />
 <fmt:setBundle basename="local"/>
 <!DOCTYPE html>
@@ -21,7 +22,7 @@
 <body>
 	
 	<c:set var="menuLabel" value="${ordersLabel}" scope="page"/>
-	<%@ include file="../../WEB-INF/jspf/smallMenu.jspf" %>
+	<%@ include file="../../jspf/smallMenu.jspf" %>
 
 	<div id="body" style="margin: 20px">
 		<c:if test="${orderListAllUsers!=null}">
@@ -41,6 +42,7 @@
 								<th><fmt:message key="bikeLabel"/></th>
 								<th><fmt:message key="bikePriceLabel"/></th>
 								<th><fmt:message key="rentalPointLabel"/></th>
+								<th><fmt:message key="minutesLabel"/></th>
 							</tr>
 							</thead>
 							<c:forEach items="${orderListAllUsers}" var="item">
@@ -53,6 +55,9 @@
 									<td><c:out value="${item.bike.bikeType.type}"/></td>
 									<td><c:out value="${item.sum}"/></td>
 									<td><c:out value="${item.bike.rentalPoint.name}"/></td>
+									<td>
+											<ctg:calculateTime finishTime="${item.endDate}" startTime="${item.startDate}"/>
+									</td>
 								</tr>
 								</tbody>
 							</c:forEach>
@@ -61,10 +66,20 @@
 				</div>
 			</div>
 		</c:if>
-		<%@ include file="/WEB-INF/jspf/pagination.jspf" %>
+		<%@ include file="/WEB-INF/jspf/pagination.jspf"%>
 	</div>
-	<%@ include file="../../WEB-INF/jspf/message.jspf" %>
+	<%@ include file="../../jspf/message.jspf"%>
 
+	<script type="text/javascript">
+        <%@include file="/resources/js1/calendar.js"%>
+        var fromDate = new Calendar();
+        fromDate.init({lng:'${sessionScope.local}'});
+        fromDate.add('fromDate', 'fromDate');
+
+        var toDate = new Calendar();
+        toDate.init({lng:'${sessionScope.local}'});
+        toDate.add('toDate', 'toDate');
+	</script>
 
 </body>
 </html>

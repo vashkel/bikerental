@@ -27,4 +27,16 @@ public class BikeTypeServiceImpl implements BikeTypeService {
         }
         return bikeTypes;
     }
+
+    @Override
+    public BikeType getById(long id) throws ServiceException {
+        BikeType bikeType;
+        try {
+           bikeType = bikeTypeDAO.getById(id);
+        } catch (DAOException e) {
+            LOGGER.error("get Bike by id error: " + e);
+            throw new ServiceException("get Bike by id error: " + e.getMessage());
+        }
+        return bikeType;
+    }
 }

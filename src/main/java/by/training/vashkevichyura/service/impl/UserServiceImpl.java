@@ -142,6 +142,18 @@ public class UserServiceImpl implements UserService {
             throw new ServiceException("change status of user error : " + e.getMessage());
         }
     }
+
+    @Override
+    public User getByID(long id) throws ServiceException {
+        User user;
+        try {
+            user = userDAO.getById(id);
+        } catch (DAOException e) {
+            LOGGER.error("Exception was thrown while getting user by id: " + e);
+            throw new ServiceException("Exception was thrown while getting user by id: " + e.getMessage());
+        }
+        return user;
+    }
 }
 
 

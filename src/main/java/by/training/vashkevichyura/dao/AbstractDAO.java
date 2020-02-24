@@ -136,8 +136,30 @@ public interface AbstractDAO<T extends Entity> {
      * @param resultSet  {@code ResultSet} to close
      * @throws DAOException - exception
      */
-    default void close(Statement statement, ProxyConnection connection, ResultSet resultSet) throws DAOException, SQLException {
-        close(statement, connection);
+    default void close(Statement statement, ProxyConnection connection, ResultSet resultSet) throws DAOException {
+        DAOException closeStatementException = null;
+        DAOException closeConnectionException = null;
+        SQLException closeResultSetException = null;
+        try {
+            resultSet.close();
+        } catch (SQLException e) {
+            closeResultSetException = e;
+        }
+        try {
+            close(statement);
+        } catch (DAOException e) {
+            closeStatementException = e;
+        }
+        try {
+            close(connection);
+        } catch (DAOException e) {
+            closeConnectionException = e;
+        }
+
+        if (closeStatementException != null || closeConnectionException != null || closeResultSetException != null) {
+            throw new DAOException("Could not close statement or/and connection");
+        }
+//        close(statement, connection);
 
 //        try {
 //            resultSet.close();

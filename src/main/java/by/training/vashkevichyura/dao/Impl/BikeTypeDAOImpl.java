@@ -70,14 +70,10 @@ public class BikeTypeDAOImpl implements BikeTypeDAO {
             LOGGER.error("getById BikeType from DB", e);
             throw new DAOException("getById BikeType from DB", e);
         } catch (ConnectionPoolException e) {
-            LOGGER.error("Exception occurred while creating connection, " , e);
-            throw new DAOException("Exception occurred while creating connection, " , e);
+            LOGGER.error("Exception occurred while creating connection, ", e);
+            throw new DAOException("Exception occurred while creating connection, ", e);
         } finally {
-            try {
-                close(statement, connection, resultSet);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            close(statement, connection, resultSet);
         }
         return bikeType;
     }
@@ -102,14 +98,11 @@ public class BikeTypeDAOImpl implements BikeTypeDAO {
             LOGGER.error("getAll  bikeTypes type error ", e);
             throw new DAOException("getAll bikeTypes type error ", e);
         } catch (ConnectionPoolException e) {
-            LOGGER.error("Exception occurred while creating connection, " , e);
-            throw new DAOException("Exception occurred while creating connection, " , e);
+            LOGGER.error("Exception occurred while creating connection, ", e);
+            throw new DAOException("Exception occurred while creating connection, ", e);
         } finally {
-            try {
-                close(statement, connection, resultSet);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            close(statement, connection, resultSet);
+
         }
         return bikeTypes;
     }

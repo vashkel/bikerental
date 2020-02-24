@@ -20,7 +20,7 @@
 </head>
 <body>
 <c:set var="menuLabel" value="${ordersLabel}" scope="page"/>
-<%@ include file="../../WEB-INF/jspf/smallMenu.jspf" %>
+<%@ include file="../../jspf/smallMenu.jspf" %>
 
 <div id="body" style="margin: 20px">
     <c:if test="${orderList!=null}">
@@ -40,6 +40,7 @@
                             <th><fmt:message key="bikeLabel"/></th>
                             <th><fmt:message key="bikePriceLabel"/></th>
                             <th><fmt:message key="rentalPointLabel"/></th>
+                            <th><fmt:message key="minutesLabel"/></th>
                         </tr>
                         </thead>
                         <c:forEach items="${orderList}" var="item">
@@ -52,6 +53,9 @@
                                 <td><c:out value="${item.bike.bikeType.type}"/></td>
                                 <td><c:out value="${item.sum}"/></td>
                                 <td><c:out value="${item.bike.rentalPoint.name}"/></td>
+                                <td>
+                                            <ctg:calculateTime finishTime="${item.endDate}" startTime="${item.startDate}"/>
+                                </td>
                             </tr>
                             </tbody>
                         </c:forEach>
@@ -62,6 +66,15 @@
     </c:if>
 </div>
 <!-- ------------------------ end of bike order list ------------------------------ -->
+<script type="text/javascript">
+    <%@include file="/resources/js1/calendar.js"%>
+    var fromDate = new Calendar();
+    fromDate.init({lng:'${sessionScope.local}'});
+    fromDate.add('fromDate', 'fromDate');
 
+    var toDate = new Calendar();
+    toDate.init({lng:'${sessionScope.local}'});
+    toDate.add('toDate', 'toDate');
+</script>
 </body>
 </html>

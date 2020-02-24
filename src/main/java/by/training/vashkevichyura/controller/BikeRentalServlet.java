@@ -2,7 +2,6 @@ package by.training.vashkevichyura.controller;
 
 import by.training.vashkevichyura.command.ActionCommand;
 import by.training.vashkevichyura.command.ActionFactory;
-import by.training.vashkevichyura.command.PageConstant;
 import by.training.vashkevichyura.connection.ConnectionPool;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -43,20 +42,17 @@ public class BikeRentalServlet extends HttpServlet {
             throws ServletException, IOException {
         String commandName = request.getParameter("command");
         System.out.println("command name - " + commandName);
-        String page;
         ActionCommand command = ActionFactory.defineCommand(commandName);
-        page = command.execute(request);
-        System.out.println("Action command" + page);
-        if (page != null) {
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
-            if (command.requiresRedirect()) {
-                response.sendRedirect(page);
-            } else {
+        Router commandRouter = command.execute(request);
+        System.out.println("Action command" + commandRouter.getPath());
+        switch (commandRouter.getType()) {
+            case FORWARD:
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(commandRouter.getPath());
                 dispatcher.forward(request, response);
-            }
-        } else {
-            page = PageConstant.ERROR_PAGE;
-            response.sendRedirect(page);
+                break;
+            case REDIRECT:
+                response.sendRedirect(commandRouter.getPath());
+                break;
         }
     }
 

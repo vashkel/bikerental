@@ -2,12 +2,18 @@ package by.training.vashkevichyura.command.impl.user;
 
 import by.training.vashkevichyura.command.ActionCommand;
 import by.training.vashkevichyura.command.PageConstant;
+import by.training.vashkevichyura.controller.Router;
+import by.training.vashkevichyura.entity.BikeType;
 import by.training.vashkevichyura.entity.Order;
+import by.training.vashkevichyura.entity.RentalPoint;
 import by.training.vashkevichyura.entity.User;
 import by.training.vashkevichyura.entity.UserRoleEnum;
 import by.training.vashkevichyura.exception.ExceptionMessage;
 import by.training.vashkevichyura.exception.ServiceException;
+import by.training.vashkevichyura.service.BikeService;
+import by.training.vashkevichyura.service.BikeTypeService;
 import by.training.vashkevichyura.service.OrderService;
+import by.training.vashkevichyura.service.RentalPointService;
 import by.training.vashkevichyura.service.ServiceFactory;
 import by.training.vashkevichyura.service.UserService;
 import by.training.vashkevichyura.util.AddTimeParameterToRequest;
@@ -18,16 +24,20 @@ import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 public class LoginCommand implements ActionCommand {
 
     private static final Logger LOGGER = LogManager.getLogger(LoginCommand.class);
     private UserService userService = ServiceFactory.getInstance().getUserService();
     private OrderService orderService = ServiceFactory.getInstance().getOrderService();
+    private BikeService bikeService = ServiceFactory.getInstance().getBikeService();
+    private RentalPointService rentalPointService = ServiceFactory.getInstance().getRentalPointService();
+    private BikeTypeService bikeTypeService = ServiceFactory.getInstance().getBikeTypeService();
 
     @Override
-    public String execute(HttpServletRequest request) {
-        String page;
+    public Router execute(HttpServletRequest request) {
+        Router router;
         HttpSession session = request.getSession(true);
         String password = request.getParameter(RequestParameter.PASSWORD.parameter());
         String login = request.getParameter(RequestParameter.LOGIN.parameter());
@@ -36,25 +46,34 @@ public class LoginCommand implements ActionCommand {
             user = userService.login(login, password);
             if (user == null) {
                 request.setAttribute(RequestParameter.ERROR.parameter(), ExceptionMessage.LOGIN_PASSWORD.message());
-                page = PageConstant.LOGIN_PAGE;
-                return page;
+                router = new Router(PageConstant.LOGIN_PAGE, Router.RouterType.FORWARD);
+                return router;
             }
             if (UserRoleEnum.USER.equals(user.getRole())) {
                 Order order = orderService.findOpenOrder(user);
                 if (order != null) {
-                    System.out.println(order.getStartDate());
                     session.setAttribute(SessionParameter.ORDER.parameter(), order);
                     AddTimeParameterToRequest.addParam(request, order.getStartDate());
                 }
             }
+            if (UserRoleEnum.ADMIN.equals(user.getRole())) {
+                List<RentalPoint> rentalPointList = rentalPointService.getRentalPoints();
+                List <BikeType> bikeTypesList = bikeTypeService.getBikeTypes();
+                session.setAttribute(RequestParameter.RENTAL_POINT_LIST.parameter(),rentalPointList);
+                session.setAttribute(RequestParameter.BIKE_TYPE_LIST.parameter(),bikeTypesList);
+//                PageInfo pageInfo = PageInfoHandler.pageInfoInit(request);
+//                List<Bike> bikes = bikeService.getAllBike(pageInfo);
+//                request.setAttribute(RequestParameter.BIKE_LIST.parameter(), bikes);
+//                PageInfoHandler.handleAndAddToSession(pageInfo, request, bikes);
+            }
             session.setAttribute(SessionParameter.USER.parameter(), user);
-            page = user.getRole().getHomePage();
+            router = new Router(user.getRole().getHomePage(), Router.RouterType.FORWARD);
         } catch (ServiceException e) {
             LOGGER.error("An exception occurred while get user data : ", e);
             request.setAttribute(RequestParameter.ERROR.parameter(), ExceptionMessage.LOGIN_PASSWORD.message());
-            page = PageConstant.LOGIN_PAGE;
+            router =new Router(PageConstant.ERROR_PAGE, Router.RouterType.REDIRECT);
         }
-        return page;
+        return router;
     }
 
 

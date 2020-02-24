@@ -1,7 +1,8 @@
-package by.training.vashkevichyura.command.impl.bike;
+package by.training.vashkevichyura.command.impl.order;
 
 import by.training.vashkevichyura.command.ActionCommand;
 import by.training.vashkevichyura.command.PageConstant;
+import by.training.vashkevichyura.controller.Router;
 import by.training.vashkevichyura.entity.Bike;
 import by.training.vashkevichyura.entity.Order;
 import by.training.vashkevichyura.entity.User;
@@ -11,6 +12,7 @@ import by.training.vashkevichyura.service.BikeService;
 import by.training.vashkevichyura.service.OrderService;
 import by.training.vashkevichyura.service.ServiceFactory;
 import by.training.vashkevichyura.service.UserService;
+import by.training.vashkevichyura.util.AddTimeParameterToRequest;
 import by.training.vashkevichyura.util.RequestParameter;
 import by.training.vashkevichyura.util.SessionParameter;
 import org.apache.logging.log4j.LogManager;
@@ -27,8 +29,8 @@ public class OrderBikeCommand implements ActionCommand {
     private static final UserService userService = ServiceFactory.getInstance().getUserService();
 
     @Override
-    public String execute(HttpServletRequest request) {
-        String page;
+    public Router execute(HttpServletRequest request) {
+        Router router;
         Bike bike;
         Order order;
         HttpSession session = request.getSession();
@@ -42,23 +44,22 @@ public class OrderBikeCommand implements ActionCommand {
             bike = bikeService.getBikeByTypeAndRentalPointId(bikeTypeId, rentalPointId);
             if(bike == null){
                 request.setAttribute(RequestParameter.MESSAGE.parameter(),ExceptionMessage.NOT_FREE_BIKE.message());
-                return user.getRole().getHomePage();
+                return new Router(user.getRole().getHomePage(),Router.RouterType.FORWARD);
             }
             double userBalance = user.getBalance();
             if(totalPrice>userBalance){
                 request.setAttribute(RequestParameter.MESSAGE.parameter(),ExceptionMessage.NOT_ENOUGH_MONEY.message());
-                return user.getRole().getHomePage();
+                return new Router(user.getRole().getHomePage(),Router.RouterType.FORWARD);
             }
             order = orderService.createOrder(bike, user, totalPrice);
-            System.out.println(bike);
-            System.out.println(order);
             session.setAttribute(SessionParameter.ORDER.parameter(), order);
-            page = user.getRole().getHomePage();
+            AddTimeParameterToRequest.addParam(request,order.getStartDate());
+            router = new Router(user.getRole().getHomePage(),Router.RouterType.FORWARD);
         } catch (ServiceException e) {
             LOGGER.error("An exception occurred while create order: ", e);
-            page = PageConstant.ERROR_PAGE;
+            router = new Router(PageConstant.ERROR_PAGE,Router.RouterType.REDIRECT);
 
         }
-        return page;
+        return router;
     }
 }

@@ -1,5 +1,5 @@
 package by.training.vashkevichyura.entity;
 
 public enum BikeTypeEnum {
-    CHILD,ROAD,MOUNTAIN;
+    CHILD,ROAD,MOUNTAIN
 }

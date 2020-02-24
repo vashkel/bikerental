@@ -2,6 +2,7 @@ package by.training.vashkevichyura.command.impl.bike;
 
 import by.training.vashkevichyura.command.ActionCommand;
 import by.training.vashkevichyura.command.PageConstant;
+import by.training.vashkevichyura.controller.Router;
 import by.training.vashkevichyura.entity.BikeType;
 import by.training.vashkevichyura.entity.RentalPoint;
 import by.training.vashkevichyura.exception.ServiceException;
@@ -23,8 +24,8 @@ public class GoToAddBikePageCommand implements ActionCommand {
     private RentalPointService rentalPointService = ServiceFactory.getInstance().getRentalPointService();
 
     @Override
-    public String execute(HttpServletRequest request){
-        String page;
+    public Router execute(HttpServletRequest request){
+        Router router;
         try {
             List<String> brands = bikeService.getAllBikeBrand();
             request.setAttribute(RequestParameter.BRAND_LIST.parameter(), brands);
@@ -35,11 +36,13 @@ public class GoToAddBikePageCommand implements ActionCommand {
             List<RentalPoint> rentalPoints = rentalPointService.getRentalPoints();
             request.setAttribute(RequestParameter.RENTAL_POINT_LIST.parameter(),rentalPoints);
 
-            page = PageConstant.ADD_BIKE_PAGE;
+            router = new Router(PageConstant.ADD_BIKE_PAGE,Router.RouterType.FORWARD);
+
         } catch (ServiceException e) {
             LOGGER.error("Exception occurred while adding bike: " + e);
-            page = PageConstant.ERROR_PAGE;
+            router = new Router(PageConstant.ERROR_PAGE,Router.RouterType.REDIRECT);
+
         }
-        return page;
+        return router;
     }
 }

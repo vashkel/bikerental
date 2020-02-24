@@ -61,12 +61,10 @@
 	<br>
 
 	<form action="BikeRentalServlet" method="post">
-		<input type="hidden" name="command" value="login"/>
 		<div class="row">
 			<div class="col-md-4">
 				<label><fmt:message key="loginLabel"/></label>
 			</div>
-
 			<div class="col-md-4">
 				<input type="text"
 					   name="login"
@@ -94,10 +92,10 @@
 					   oninput="setCustomValidity('')">
 			</div>
 		</div>
-
 		<div class="row">
 			<div class="col-md-4"></div>
 			<div class="col-md-4" align="center">
+				<input type="hidden" name="command" value="login"/>
 				<input type="submit" class="btn btn-primary" value="${enterButton}">
 			</div>
 		</div>
@@ -116,9 +114,9 @@
 
 			<form action="BikeRentalServlet" method="post" id="userDataForm" onsubmit="checkUserData(); return false">
 
-				<%@ include file="../../WEB-INF/jspf/userPersonalData.jspf" %>
+				<%@ include file="../../jspf/userPersonalData.jspf" %>
 
-				<%@ include file="../../WEB-INF/jspf/password.jspf" %>
+				<%@ include file="../../jspf/password.jspf" %>
 
 				<div class="row">
 					<div class="col-md-4"></div>
@@ -134,12 +132,12 @@
 	</div>
 </div>
 
-<%@ include file="../../WEB-INF/jspf/message.jspf" %>
+<%@ include file="../../jspf/message.jspf" %>
 
 <script type="text/javascript">
     var isLogin = initLogin();
     <%@include file="/resources/js1/login.js"%>
 </script>
-<jsp:include page="/jsp/static/footer.jsp"/>
+<jsp:include page="/WEB-INF/jsp/static/footer.jsp"/>
 </body>
 </html>

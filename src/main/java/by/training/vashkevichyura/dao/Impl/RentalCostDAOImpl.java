@@ -72,11 +72,7 @@ public class RentalCostDAOImpl implements RentalCostDAO {
             LOGGER.error("An exception occurred in the layer DAO while getting  rental cost ByID from the DB", e);
             throw new DAOException("An exception occurred in the layer DAO while getting  rental cost ByID from the DB", e);
         } finally {
-            try {
-                close(statement,connection,resultSet);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            close(statement, connection, resultSet);
         }
         return rentalCost;
     }
@@ -97,16 +93,12 @@ public class RentalCostDAOImpl implements RentalCostDAO {
             }
         } catch (ConnectionPoolException e) {
             LOGGER.error("Exception occurred while creating connection, " , e);
-            throw new DAOException("Exception occurred while creating connection, " , e);
+            throw new DAOException("Exception occurred while creating connection, ", e);
         } catch (SQLException e) {
             LOGGER.error("An exception occurred in the layer DAO while getting  all rental costs from the DB", e);
             throw new DAOException("An exception occurred in the layer DAO while getting all  rental costs from the DB", e);
         } finally {
-            try {
-                close(statement,connection,resultSet);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            close(statement, connection, resultSet);
         }
         return rentalCostsList;
     }
@@ -170,11 +162,13 @@ public class RentalCostDAOImpl implements RentalCostDAO {
                 price = resultSet.getDouble(1);
             }
         } catch (ConnectionPoolException e) {
-            e.printStackTrace();
+            LOGGER.error("Exception occurred while creating connection, " , e);
+            throw new DAOException("Exception occurred while creating connection, " , e);
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error("An exception occurred in the layer DAO while get price by bikeType id from the DB", e);
+            throw new DAOException("An exception occurred in the layer DAO while get price by bikeType id from the DB", e);
         }finally {
-            close(statement,connection);
+            close(statement,connection,resultSet);
         }
         return price;
     }
@@ -183,11 +177,9 @@ public class RentalCostDAOImpl implements RentalCostDAO {
         RentalCost rentalCost = new RentalCost();
         try {
             rentalCost.setId(resultSet.getLong("rental_cost.id"));
-
             BikeType bikeType = new BikeType();
             bikeType.setId(resultSet.getLong("bike_types.id"));
             bikeType.setType(BikeTypeEnum.valueOf(resultSet.getString("bike_types.type")));
-
             rentalCost.setBikeType(bikeType);
             rentalCost.setPrice(resultSet.getDouble("rental_cost.price"));
         } catch (SQLException e) {

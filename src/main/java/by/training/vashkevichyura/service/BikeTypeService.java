@@ -8,4 +8,6 @@ import java.util.List;
 public interface BikeTypeService {
 
     List<BikeType> getBikeTypes() throws ServiceException;
+
+    BikeType getById(long id) throws ServiceException ;
 }

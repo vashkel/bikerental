@@ -14,11 +14,12 @@ public class RentalCostServiceImpl implements RentalCostService {
 
     @Override
     public double getPriceByBikeTypeId(long bikeTypeId) throws ServiceException {
-        double price = 0;
+        double price;
         try {
             price = rentalCostDao.getPriceByBikeTypeId(bikeTypeId);
         } catch (DAOException e) {
-            e.printStackTrace();
+            LOGGER.error("An exception was thrown during getting price by bike type id : ", e);
+            throw new ServiceException("An exception was thrown during getting price by bike type id : ", e.getMessage());
         }
         return price;
     }

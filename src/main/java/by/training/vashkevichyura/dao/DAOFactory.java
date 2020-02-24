@@ -15,15 +15,27 @@ public class DAOFactory {
     private static final RentalPointDAOImpl rentalPointDAO = new RentalPointDAOImpl();
     private static final UserDAOImpl userDAO = new UserDAOImpl();
 
-    public BikeDAOImpl getBikeDAO() { return bikeDAO; }
+    public BikeDAOImpl getBikeDAO() {
+        return bikeDAO;
+    }
 
-    public OrderDAOImpl getOrderDAO() { return orderDAO; }
+    public OrderDAOImpl getOrderDAO() {
+        return orderDAO;
+    }
 
-    public BikeTypeDAOImpl getBikeTypeDAO() { return bikeTypeDAO; }
+    public BikeTypeDAOImpl getBikeTypeDAO() {
+        return bikeTypeDAO;
+    }
 
-    public RentalCostDAOImpl getRentalCostDAO() { return rentalCostDAO; }
+    public RentalCostDAOImpl getRentalCostDAO() {
+        return rentalCostDAO;
+    }
 
-    public RentalPointDAOImpl getRentalPointDAO() { return rentalPointDAO; }
+    public RentalPointDAOImpl getRentalPointDAO() {
+        return rentalPointDAO;
+    }
 
-    public UserDAOImpl getUserDAO(){return userDAO;}
+    public UserDAOImpl getUserDAO(){
+        return userDAO;
+    }
 }

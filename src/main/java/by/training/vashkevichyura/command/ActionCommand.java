@@ -1,5 +1,7 @@
 package by.training.vashkevichyura.command;
 
+import by.training.vashkevichyura.controller.Router;
+
 import javax.servlet.http.HttpServletRequest;
 
 public interface ActionCommand {
@@ -12,7 +14,7 @@ public interface ActionCommand {
      * @param request request to read the command from
      * @return forward page
      */
-    String execute(HttpServletRequest request);
+    Router execute(HttpServletRequest request);
 
     default boolean requiresRedirect() {
         return false;

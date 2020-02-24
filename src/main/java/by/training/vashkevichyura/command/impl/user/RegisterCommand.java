@@ -3,6 +3,7 @@ package by.training.vashkevichyura.command.impl.user;
 import by.training.vashkevichyura.command.ActionCommand;
 import by.training.vashkevichyura.command.PageConstant;
 import by.training.vashkevichyura.command.PageMessage;
+import by.training.vashkevichyura.controller.Router;
 import by.training.vashkevichyura.exception.ServiceException;
 import by.training.vashkevichyura.service.ServiceFactory;
 import by.training.vashkevichyura.service.UserService;
@@ -22,31 +23,26 @@ public class RegisterCommand implements ActionCommand {
     private UserService userService = ServiceFactory.getInstance().getUserService();
 
     @Override
-    public String execute(HttpServletRequest request) {
-        String page;
+    public Router execute(HttpServletRequest request) {
+        Router router;
         Map<String, String> requestParameters = RequestParameterHandler.requestParamToMap(request);
         String password = request.getParameter(RequestParameter.PASSWORD.parameter());
         try {
             userService.register(requestParameters, password);
-            page = PageConstant.REDIRECT_TO_LOGIN_PAGE;
+            router = new Router(PageConstant.REDIRECT_TO_LOGIN_PAGE, Router.RouterType.REDIRECT);
             request.setAttribute(SessionParameter.MESSAGE.parameter(), PageMessage.USER_ADDED.message());
         } catch (ServiceException e) {
             if (e.toString().isEmpty()) {
                 LOGGER.error("An error occurred while the user was creating, " + e.getMessage());
-                page = PageConstant.ERROR_PAGE;
+                router = new Router(PageConstant.ERROR_PAGE, Router.RouterType.REDIRECT);
             } else {
                 request.setAttribute(RequestParameter.ERROR.parameter(), e.toString());
                 RequestParameterHandler.addParamToRequest(request);
                 request.setAttribute(RequestParameter.LOGIN_MENU.parameter(), false);
-                page = PageConstant.LOGIN_PAGE;
+                router = new Router(PageConstant.LOGIN_PAGE, Router.RouterType.FORWARD);
             }
         }
-        return page;
-    }
-
-    @Override
-    public boolean requiresRedirect() {
-        return true;
+        return router;
     }
 }
 

@@ -14,7 +14,7 @@
 		<%@include file="/resources/css/header.css"%>
 	</style>
 
-	<%@ include file="../../WEB-INF/jspf/localizationVar.jspf" %>
+	<%@ include file="../../jspf/localizationVar.jspf" %>
 	
 	<title><fmt:message key="title"/> </title>
 </head>
@@ -36,6 +36,6 @@
 	        <p><b>Servlet name:</b> ${pageContext.errorData.servletName}</p>
 	    </div>
 	</section>
-	<jsp:include page="/jsp/static/footer.jsp"/>
+	<jsp:include page="/WEB-INF/jsp/static/footer.jsp"/>
 </body>
 </html>

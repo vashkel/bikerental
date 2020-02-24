@@ -17,8 +17,7 @@
 
 </head>
 <body>
-
-<jsp:forward page="/jsp/user/login.jsp"/>
+<jsp:forward page="/WEB-INF/jsp/user/login.jsp"/>
 
 
 </body>

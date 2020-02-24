@@ -1,7 +1,9 @@
 package by.training.vashkevichyura.service.impl;
 
 import by.training.vashkevichyura.dao.BikeDAO;
+import by.training.vashkevichyura.dao.BikeTypeDAO;
 import by.training.vashkevichyura.dao.DAOFactory;
+import by.training.vashkevichyura.dao.RentalPointDAO;
 import by.training.vashkevichyura.entity.Bike;
 import by.training.vashkevichyura.exception.DAOException;
 import by.training.vashkevichyura.exception.ServiceException;
@@ -16,6 +18,8 @@ public class BikeServiceImpl implements BikeService {
 
     private static final Logger LOGGER = LogManager.getLogger(BikeServiceImpl.class);
     private BikeDAO bikeDAO = DAOFactory.getInstance().getBikeDAO();
+    private BikeTypeDAO bikeTypeDAO = DAOFactory.getInstance().getBikeTypeDAO();
+    private RentalPointDAO rentalPointDAO = DAOFactory.getInstance().getRentalPointDAO();
 
     @Override
     public List<Bike> getAllBike(PageInfo pageInfo) throws ServiceException {
@@ -42,6 +46,7 @@ public class BikeServiceImpl implements BikeService {
         return brands;
     }
 
+
     @Override
     public Bike getBikeById(long id) throws ServiceException {
         Bike bike;
@@ -60,8 +65,18 @@ public class BikeServiceImpl implements BikeService {
         try {
             bikeDAO.add(bike);
         } catch (DAOException e) {
-            LOGGER.error("Add bike Exception: " + e);
+            LOGGER.error("Exception occurred while adding bike: " + e);
             throw new ServiceException("Exception occurred while adding bike: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void addSomeBikes(Bike bike, int countBike) throws ServiceException {
+        try {
+            bikeDAO.addSomeBikes(bike,countBike);
+        } catch (DAOException e) {
+            LOGGER.error("Add some bikes Exception: " + e);
+            throw new ServiceException("Add some bikes Exception: " + e.getMessage());
         }
     }
 
@@ -79,6 +94,7 @@ public class BikeServiceImpl implements BikeService {
         }
         return bike;
     }
+
 
 
 }

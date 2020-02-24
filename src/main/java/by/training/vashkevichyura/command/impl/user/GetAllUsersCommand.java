@@ -2,6 +2,7 @@ package by.training.vashkevichyura.command.impl.user;
 
 import by.training.vashkevichyura.command.ActionCommand;
 import by.training.vashkevichyura.command.PageConstant;
+import by.training.vashkevichyura.controller.Router;
 import by.training.vashkevichyura.entity.User;
 import by.training.vashkevichyura.exception.ServiceException;
 import by.training.vashkevichyura.service.ServiceFactory;
@@ -19,17 +20,17 @@ public class GetAllUsersCommand implements ActionCommand {
     private UserService userService = ServiceFactory.getInstance().getUserService();
 
     @Override
-    public String execute(HttpServletRequest request) {
-        String page;
+    public Router execute(HttpServletRequest request) {
+        Router router;
         List<User> allUsers;
         try {
             allUsers = userService.getAllUsers();
-            request.setAttribute(RequestParameter.USERS_LIST.parameter(), allUsers);
-            page = PageConstant.ADMIN_PAGE;
+            request.getSession().setAttribute(RequestParameter.USERS_LIST.parameter(), allUsers);
+            router = new Router(PageConstant.USER_CATALOG_PAGE, Router.RouterType.FORWARD);
         } catch (ServiceException e) {
             LOGGER.error("Exception occurred while getting all users: " , e);
-            page = PageConstant.ERROR_PAGE;
+            router = new Router(PageConstant.ERROR_PAGE, Router.RouterType.REDIRECT);
         }
-        return page;
+        return router;
     }
 }

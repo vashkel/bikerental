@@ -13,13 +13,13 @@
         <%@include file="/resources/css/header.css"%>
     </style>
 
-    <%@ include file="../../WEB-INF/jspf/localizationVar.jspf" %>
+    <%@ include file="../../jspf/localizationVar.jspf" %>
     <title><fmt:message key="title"/></title>
 </head>
 <body>
 
 <c:set var="menuLabel" value="${rentalPointsLabel}" scope="page"/>
-<%@ include file="../../WEB-INF/jspf/smallMenu.jspf" %>
+<%@ include file="../../jspf/smallMenu.jspf" %>
 
 <!---------------------------------------------Rental point List--------------------->
 <div id="body" style="margin: 20px">
@@ -54,7 +54,7 @@
         </div>
     </c:if>
 </div>
-<%@ include file="../../WEB-INF/jspf/message.jspf" %>
-<jsp:include page="/jsp/static/footer.jsp"></jsp:include>
+<%@ include file="../../jspf/message.jspf" %>
+<jsp:include page="/WEB-INF/jsp/static/footer.jsp"/>
 </body>
 </html>

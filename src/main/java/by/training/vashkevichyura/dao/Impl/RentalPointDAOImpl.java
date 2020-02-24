@@ -73,14 +73,10 @@ public class RentalPointDAOImpl implements RentalPointDAO {
         } catch (SQLException e) {
             throw new DAOException("An exception occurred in the layer DAO while getting rental point by ID from the DB", e);
         } catch (ConnectionPoolException e) {
-            LOGGER.error("Exception occurred while creating connection, " , e);
-            throw new DAOException("Exception occurred while creating connection, " , e);
+            LOGGER.error("Exception occurred while creating connection, ", e);
+            throw new DAOException("Exception occurred while creating connection, ", e);
         } finally {
-            try {
-                close(statement, connection, resultSet);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            close(statement, connection, resultSet);
         }
         return rentalPoint;
     }
@@ -104,16 +100,12 @@ public class RentalPointDAOImpl implements RentalPointDAO {
                 rentalPoints.add(rentalPoint);
             }
         } catch (ConnectionPoolException e) {
-            LOGGER.error("Exception occurred while creating connection, " , e);
-            throw new DAOException("Exception occurred while creating connection, " , e);
+            LOGGER.error("Exception occurred while creating connection, ", e);
+            throw new DAOException("Exception occurred while creating connection, ", e);
         } catch (SQLException e) {
             throw new DAOException("An exception occurred in the layer DAO while getting all rental points from the DB", e);
         } finally {
-            try {
-                close(statement, connection, resultSet);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            close(statement, connection, resultSet);
         }
         return rentalPoints;
     }
@@ -156,7 +148,6 @@ public class RentalPointDAOImpl implements RentalPointDAO {
             throw new DAOException("Exception occurred while creating connection, " , e);
         } catch (SQLException e) {
             throw new DAOException("An exception occurred in the layer DAO while delete rental point from the DB", e);
-
         } finally {
             close(statement, connection);
         }

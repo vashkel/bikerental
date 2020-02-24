@@ -40,10 +40,14 @@
 			<li style="float: right; color: white; padding: 18px 0px 15px 10px;"><fmt:message key="userLabel"/></li>
 		</ul>
 	</nav>
+
+	<div style="margin-top: 20px">
+		<%@ include file="/WEB-INF/jspf/editUser.jspf"%>
+	</div>
 	<!-- --------------------------end of menu -------------------------------- -->
 	<c:if test="${order!=null}">
 	<form action="BikeRentalServlet" method="post" id="bikeOrder">
-		<div class="container" style="margin-top: 15px">
+		<div class="container"  id="createOrder" style="margin-top: 15px">
 			<div align="center" style="border-bottom: 1px solid blue; font-size: 25px; padding-bottom: 5px">
 				<c:out value="${currentOrderLabel}"/>:
 			</div>
@@ -60,7 +64,7 @@
 
 					<div class="row" style="margin-top: 10px; padding-bottom: 10px; border-bottom: 1px solid gray;">
 						<div class="col-md-6">
-							<c:out value="${brandLabel}"></c:out> <c:out value="${modelLabel}"></c:out>:
+							<fmt:message key="brandLabel"/> <fmt:message key="modelLabel"/>:
 						</div>
 						<div class="col-md-6">
 							<c:out value="${order.bike.brand}"></c:out> <c:out value="${bikeOrder.bike.model}"></c:out>
@@ -69,7 +73,7 @@
 
 					<div class="row" style="margin-top: 10px; padding-bottom: 10px; border-bottom: 1px solid gray;">
 						<div class="col-md-6">
-							<c:out value="${characteristicsLabel}"></c:out>:
+							<fmt:message key="characteristicsLabel"/>:
 						</div>
 						<div class="col-md-6">
 							<c:out value="${order.bike.bikeType.type}"></c:out>,
@@ -78,7 +82,7 @@
 
 					<div class="row" style="margin-top: 10px; padding-bottom: 10px; border-bottom: 1px solid gray;">
 						<div class="col-md-6">
-							<c:out value="${startParkingLabel}"></c:out>:
+							<fmt:message key="startParkingLabel"/>:
 						</div>
 						<div class="col-md-6">
 							<c:out value="${order.bike.rentalPoint.name}"></c:out>
@@ -87,38 +91,35 @@
 				</div>
 			</div>
 
-
 			<div align="center" style="border-bottom: 1px solid gray; font-size: 20px; margin-top:20px">
-				<c:out value="${timeOfOrderLabel}"></c:out>:
+				<fmt:message key="timeOfOrderLabel"/>:
 			</div>
 
 			<div class="row" style="margin-top:10px">
-
-
 				<div class="col-md-2"></div>
 				<div class="col-md-2" style="font-size: 20px">
-					<label style="float:left"><c:out value="${daysLabel}"></c:out>: </label>
+					<label style="float:left"><fmt:message key="daysLabel"/>: </label>
 					<label style="float:left;" id="days">0</label>
 				</div>
 
 				<div class="col-md-2" style="font-size: 20px">
-					<label style="float:left;"><c:out value="${hoursLabel}"></c:out>: </label>
+					<label style="float:left;"><fmt:message key="hoursLabel"/>: </label>
 					<label style="float:left;" id="hours">0</label>
 				</div>
 
 				<div class="col-md-2" style="font-size: 20px">
-					<label style="float:left;"><c:out value="${minutesLabel}"></c:out>: </label>
+					<label style="float:left;"><fmt:message key="minutesLabel"/>: </label>
 					<label style="float:left;" id="minutes">0</label>
 				</div>
 
 				<div class="col-md-2" style="font-size: 20px">
-					<label style="float:left;"><c:out value="${secondsLabel}"></c:out>: </label>
+					<label style="float:left;"><fmt:message key="secondsLabel"/>: </label>
 					<label style="float:left;" id="seconds">0</label>
 				</div>
 			</div>
 
 			<div align="center" style="border-bottom: 1px solid gray; font-size: 20px; margin-top:20px">
-				<c:out value="${closeOrderLabel}"></c:out>:
+				<fmt:message key="closeOrderLabel"/>:
 			</div>
 		</div>
 
@@ -131,12 +132,20 @@
 	</form>
 	</c:if>
 
-	<div style="margin-top: 20px">
-		<%@ include file="/WEB-INF/jspf/editUser.jspf"%>
-	</div>
+	<input type="hidden" id="secondsInputParam" value="${seconds}">
+	<input type="hidden" id="minutesInputParam" value="${minutes}">
+	<input type="hidden" id="hoursInputParam" value="${hours}">
+	<input type="hidden" id="daysInputParam" value="${days}">
+	<input type="hidden" id="orderUser" value="${message}">
 
 	<%@ include file="/WEB-INF/jspf/message.jspf" %>
 
-	<jsp:include page="/jsp/static/footer.jsp"/>
+	<jsp:include page="/WEB-INF/jsp/static/footer.jsp"/>
+
+	<script type="text/javascript">
+        <%@ include file="/resources/js1/editUser.js" %>
+        showOrderTime();
+        <%@include file="/resources/js1/user.js"%>
+	</script>
 </body>
 </html>

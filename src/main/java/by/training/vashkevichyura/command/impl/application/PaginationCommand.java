@@ -2,6 +2,7 @@ package by.training.vashkevichyura.command.impl.application;
 
 import by.training.vashkevichyura.command.ActionCommand;
 import by.training.vashkevichyura.command.PageConstant;
+import by.training.vashkevichyura.controller.Router;
 import by.training.vashkevichyura.util.PageInfo;
 import by.training.vashkevichyura.util.RequestParameter;
 import by.training.vashkevichyura.util.SessionParameter;
@@ -19,17 +20,17 @@ public class PaginationCommand implements ActionCommand {
     private final static int PREV_PAGE = -1;
 
     @Override
-    public String execute(HttpServletRequest request)  {
-        String page;
+    public Router execute(HttpServletRequest request)  {
+        Router router;
         HttpSession httpSession = request.getSession(true);
         PageInfo pageInfo = (PageInfo) httpSession.getAttribute(SessionParameter.PAGE_INFO.parameter());
         if (pageInfo == null) {
             LOGGER.error( "pageInfo object not found");
-            page = PageConstant.ERROR_PAGE;
+            router = new Router(PageConstant.ERROR_PAGE,Router.RouterType.REDIRECT);
         } else {
             pageInfo.setChangePageFlag(true);
             String pageAction = request.getParameter(RequestParameter.PAGE_ACTION.parameter());
-            page = pageInfo.getPreviousUrlWithParam();
+            router = new Router(pageInfo.getPreviousUrlWithParam(),Router.RouterType.FORWARD);
             if (RequestParameter.PREVIOUS_PAGE.parameter().equals(pageAction)) {
                 if (pageInfo.getCurrentPage() > 1) {
                     pageInfo.removeLastPagePoint();		//removing 2 line because user change direction of paging
@@ -45,6 +46,6 @@ public class PaginationCommand implements ActionCommand {
                     pageInfo.setPageAction(NEXT_PAGE);
                 }
             }
-        } return page;
+        } return router;
     }
 }

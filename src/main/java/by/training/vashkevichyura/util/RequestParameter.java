@@ -35,8 +35,8 @@ public enum RequestParameter {
     MINUTES("minutes"),
     HOURS("hours"),
     DAYS("days"),
-    TOTAL_PRICE("totalPrice");
-
+    TOTAL_PRICE("totalPrice"),
+    BIKE_COUNT("bikeCount");
     private String parameter;
 
     RequestParameter(String parameter) {

@@ -15,14 +15,13 @@
         <%@include file="/resources/css/header.css"%>
     </style>
 
-    <%@ include file="../../WEB-INF/jspf/localizationVar.jspf" %>
+    <%@ include file="../../jspf/localizationVar.jspf" %>
 
     <title><fmt:message key="title"/></title>
 
 </head>
 <body>
-    <c:set var="menuLabel" value="${bikeCatalogLabel}" scope="page"/>
-    <%@ include file="../../WEB-INF/jspf/smallMenu.jspf" %>
+    <%@ include file="../../jspf/smallMenu.jspf" %>
             <!---------------------------------------------BikeList--------------------->
 
             <div id="body" style="margin: 20px" >
@@ -58,15 +57,20 @@
                                             </td>
                                             <td><c:out value="${item.bikeStatus}"/></td>
                                             <td>
-                                                <div class="dropdown">
-                                                <button onclick="myFunction()" class="dropbtn"><fmt:message key="change"/></button>
-                                                <div id="myDropdown" class="dropdown-content">
-                                                    <a href="BikeRentalServlet?command=delete_bike&bikeId=${item.id}">
-                                                        <fmt:message key="deleteLabel"/></a>
-                                                    <a href="BikeRentalServlet?command=update_bike&bikeId=${item.id}">
-                                                        <fmt:message key="updateLabel"/></a>
-                                                </div>
-                                            </div>
+                                                <a href="BikeRentalServlet?command=delete_bike&bikeId=${item.id}">
+                                                    <fmt:message key="deleteLabel"/>
+                                                </a> <br>
+                                                <c:if test="${item.state eq 'free'}">
+                                                    <a  href = "<c:url value="BikeRentalServlet?command=change_status_bike&bikeId=${item.id}&state=busy"></c:url>">
+                                                        <fmt:message key="changeStateLabel"/>
+                                                    </a>
+                                                </c:if>
+
+                                                <c:if test="${item.state eq 'busy'}">
+                                                <a href = "<c:url value="BikeRentalServlet?command=change_status_bike&bikeId=${item.id}&state=free"> </c:url>">
+                                                    <fmt:message key="changeStateLabel"/>
+                                                </a>
+                                                </c:if>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -78,7 +82,7 @@
                 </c:if>
             </div>
             <%@ include file="/WEB-INF/jspf/pagination.jspf" %>
-    <%@ include file="../../WEB-INF/jspf/message.jspf" %>
+    <%@ include file="../../jspf/message.jspf" %>
 
 </body>
 </html>

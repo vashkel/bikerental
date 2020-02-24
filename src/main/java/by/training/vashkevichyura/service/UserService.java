@@ -18,4 +18,6 @@ public interface UserService {
 
     void changeStateById(long userId, String state) throws ServiceException;
 
+    User getByID(long id) throws ServiceException;
+
 }

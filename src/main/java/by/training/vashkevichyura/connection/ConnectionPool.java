@@ -82,7 +82,6 @@ public class ConnectionPool {
 
     /**
      * Method that gives back connection
-     *
      */
     void releaseConnection(ProxyConnection connection) {
         taken.remove(connection);
@@ -111,5 +110,4 @@ public class ConnectionPool {
             LOGGER.warn("Exception while deregister database connection drivers", e);
         }
     }
-
 }

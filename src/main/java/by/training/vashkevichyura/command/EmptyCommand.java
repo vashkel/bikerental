@@ -1,5 +1,6 @@
 package by.training.vashkevichyura.command;
 
+import by.training.vashkevichyura.controller.Router;
 import by.training.vashkevichyura.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,14 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 public class EmptyCommand implements ActionCommand {
 
     @Override
-    public String execute(HttpServletRequest request) {
-        String page;
+    public Router execute(HttpServletRequest request) {
+        Router router;
         User user = (User) request.getSession().getAttribute("user");
         if (user != null) {
-            page = user.getRole().getHomePage();
+            router = new Router(user.getRole().getHomePage(), Router.RouterType.FORWARD);
         } else {
-            page = PageConstant.LOGIN_PAGE;
+            router = new Router(PageConstant.LOGIN_PAGE, Router.RouterType.FORWARD);
         }
-        return page;
+        return router;
     }
 }

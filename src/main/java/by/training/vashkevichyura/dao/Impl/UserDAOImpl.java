@@ -85,11 +85,7 @@ public class UserDAOImpl implements UserDAO {
             LOGGER.error("An exception occurred in the layer DAO while getting userByID from the DB", e);
             throw new DAOException("An exception occurred in the layer DAO while getting userByID from the DB", e);
         } finally {
-            try {
                 close(statement,connection,resultSet );
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
         return user;
     }
@@ -115,11 +111,7 @@ public class UserDAOImpl implements UserDAO {
             LOGGER.error("An exception occurred in the layer DAO while getting all users from the DB" , e);
             throw new DAOException("An exception occurred in the layer DAO while getting all users from the DB", e);
         } finally {
-            try {
                 close(statement,connection,resultSet);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
         return users;
     }
@@ -187,17 +179,13 @@ public class UserDAOImpl implements UserDAO {
                 user = parseUser(resultSet);
             }
         } catch (ConnectionPoolException e) {
-            LOGGER.error("Exception occurred while creating connection, " , e);
-            throw new DAOException("Exception occurred while creating connection, " , e);
+            LOGGER.error("Exception occurred while creating connection, ", e);
+            throw new DAOException("Exception occurred while creating connection, ", e);
         } catch (SQLException e) {
-            LOGGER.error("An exception occurred in the layer DAO while getting user by login from the DB" , e);
+            LOGGER.error("An exception occurred in the layer DAO while getting user by login from the DB", e);
             throw new DAOException("An exception occurred in the layer DAO while getting user by login from the DB", e);
         } finally {
-            try {
-                close(statement,connection,resultSet);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            close(statement, connection, resultSet);
         }
         return user;
     }
@@ -217,17 +205,13 @@ public class UserDAOImpl implements UserDAO {
                 user = parseUser(resultSet);
             }
         } catch (ConnectionPoolException e) {
-            LOGGER.error("Exception occurred while creating connection, " , e);
-            throw new DAOException("Exception occurred while creating connection, " , e);
+            LOGGER.error("Exception occurred while creating connection, ", e);
+            throw new DAOException("Exception occurred while creating connection, ", e);
         } catch (SQLException e) {
-            LOGGER.error("An exception occurred in the layer DAO while getting user by id from the DB" , e);
+            LOGGER.error("An exception occurred in the layer DAO while getting user by id from the DB", e);
             throw new DAOException("An exception occurred in the layer DAO while getting user by id from the DB", e);
         } finally {
-            try {
-                close(statement,connection,resultSet);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            close(statement, connection, resultSet);
         }
         return user;
     }
@@ -253,11 +237,7 @@ public class UserDAOImpl implements UserDAO {
                 LOGGER.error("An exception occurred in the layer DAO while getting user by login from the DB" , e);
                 throw new DAOException("An exception occurred in the layer DAO while getting user by login from the DB", e);
             }finally {
-                try {
                     close(statement,connection,resultSet);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
             }
         return id;
     }

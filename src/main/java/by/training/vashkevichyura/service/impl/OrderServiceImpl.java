@@ -9,7 +9,7 @@ import by.training.vashkevichyura.entity.User;
 import by.training.vashkevichyura.exception.DAOException;
 import by.training.vashkevichyura.exception.ServiceException;
 import by.training.vashkevichyura.service.OrderService;
-import by.training.vashkevichyura.util.DataFormatter;
+import by.training.vashkevichyura.util.DateFormatter;
 import by.training.vashkevichyura.util.PageInfo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -48,7 +48,7 @@ public class OrderServiceImpl implements OrderService {
     public Order createOrder(Bike bike, User user, double totalPrice) throws ServiceException {
 
         Order order = new Order();
-        order.setStartDate(DataFormatter.getCurrentDateTimeToDB());
+        order.setStartDate(DateFormatter.getCurrentDateTimeToDB());
         order.setUser(user);
         order.setBike(bike);
         order.setStatus(OrderStatusEnum.ACTIVE);

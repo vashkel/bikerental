@@ -35,7 +35,9 @@ public interface BikeDAO extends AbstractDAO<Bike> {
      * @return void
      * @throws DAOException
      */
-    void changeBikeStatusBusy(Bike bike) throws DAOException;
+    void changeBikeStatusOnBusy(Bike bike) throws DAOException;
 
     void addSomeBikes(Bike bike, int countBike) throws DAOException;
+
+    int changeStatusById(long bikeId, String status) throws DAOException;
 }

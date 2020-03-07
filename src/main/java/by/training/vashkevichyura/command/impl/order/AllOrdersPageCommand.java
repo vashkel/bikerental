@@ -20,7 +20,7 @@ import java.util.List;
 
 public class AllOrdersPageCommand implements ActionCommand {
     private static final Logger LOGGER = LogManager.getLogger(AllOrdersPageCommand.class);
-    private OrderService orderService = ServiceFactory.getInstance().getOrderService();
+    private OrderService orderService = ServiceFactory.getOrderService();
     @Override
     public Router execute(HttpServletRequest request) {
         Router router = new Router(PageConstant.ORDER_REPORTS_PAGE,Router.RouterType.FORWARD);
@@ -29,9 +29,6 @@ public class AllOrdersPageCommand implements ActionCommand {
         PageInfo pageInfo = PageInfoHandler.pageInfoInit(request);
         try {
             orderListAllUsers = orderService.getAllOrders(pageInfo);
-            for (Order order : orderListAllUsers) {
-                System.out.println(order);
-            }
             request.setAttribute(RequestParameter.ORDER_LIST_ALL_USERS.parameter(), orderListAllUsers);
             PageInfoHandler.handleAndAddToSession(pageInfo, request, orderListAllUsers);
         } catch (ServiceException e) {

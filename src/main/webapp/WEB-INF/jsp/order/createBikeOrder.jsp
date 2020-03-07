@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -26,9 +26,9 @@
 <div class="container-fluid" style="padding-left: 15px; padding-right: 15px">
     <div class="row">
         <div class="col-sm-12" style="background: #F0FFF0; padding-left: 10px; padding-bottom: 50px">
-            <form action="BikeRentalServlet" method="post" >
+            <form action="BikeRentalServlet" method="post">
                 <!-- --------------------------------select rental point ------------------------------------ -->
-                <div >
+                <div>
                     <label style="margin-left:10px; margin-top: 20px">
                         <fmt:message key="rentalPointLabel"/>:
                     </label>
@@ -37,7 +37,7 @@
                             <fmt:message key="chooseRentalPoint"/>
                         </option>
                         <c:forEach items="${rentalPointList}" var="rentalPoint">
-                            <option value="${rentalPoint.id}" >
+                            <option value="${rentalPoint.id}">
                                 <c:out value="${rentalPoint.adress}"/>
                             </option>
                         </c:forEach>
@@ -49,8 +49,8 @@
                     <label style="margin-left:10px; margin-top: 20px">
                         <fmt:message key="bikeTypeLabel"/>:
                     </label>
-                    <select	name="bikeTypeId"  class="form-control">
-                        <option selected value="0" >
+                    <select name="bikeTypeId" class="form-control">
+                        <option selected value="0">
                             <fmt:message key="chooseBikeTypeLabel"/>
                         </option>
                         <c:forEach items="${bikeTypesList}" var="item">
@@ -73,7 +73,7 @@
                            oninput="setCustomValidity('')">
                 </div>
                 <div style="text-align: center; margin-top: 25px">
-                    <input type="hidden" name="command" value="get_price_bike" />
+                    <input type="hidden" name="command" value="get_price_bike"/>
                     <input type="submit" class="btn btn-primary" value="<fmt:message key="priceLabel"/> "/>
                 </div>
             </form>
@@ -84,7 +84,8 @@
 <c:if test="${totalPrice ne null}">
     <form action="BikeRentalServlet" method="post">
         <div class="container-fluid" style="padding-left: 15px; padding-right: 15px">
-            <div class="row" style="font-size: 20px; font-weight: bold; padding-top: 5px; padding-left: 5px; color: #000080	">
+            <div class="row"
+                 style="font-size: 20px; font-weight: bold; padding-top: 5px; padding-left: 5px; color: #000080	">
                 <div class="col-sm-12" style="background:#F0FFF0">
                     <div class="col-sm-12" style="padding-top:10px;  background: white">
                         <label style="font-size: 16px;">

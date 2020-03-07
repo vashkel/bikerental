@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 
 public class GetPriceBikeCommand implements ActionCommand {
     private static final Logger LOGGER = LogManager.getLogger(GetPriceBikeCommand.class);
-    private static final RentalCostService rentalCostService = ServiceFactory.getInstance().getRentalCostService();
+    private static final RentalCostService rentalCostService = ServiceFactory.getRentalCostService();
     @Override
     public Router execute(HttpServletRequest request) {
         Router router;
@@ -27,7 +27,7 @@ public class GetPriceBikeCommand implements ActionCommand {
         int days = Integer.parseInt(request.getParameter("days"));
         if (rentalPointId == 0L||bikeTypeId == 0L){
             request.setAttribute(RequestParameter.ERROR.parameter(),ExceptionMessage.NULL_RENTAL_POINT_ID_OR_BIKE_TYPE_ID.message());
-            return new Router(PageConstant.CREATE_ORDER_PAGE,Router.RouterType.FORWARD);
+            return new Router(PageConstant.REDIRECT_CREATE_ORDER_PAGE,Router.RouterType.FORWARD);
         }
 
         session.setAttribute(RequestParameter.RENTAL_POINT_ID.parameter(),rentalPointId);

@@ -1,4 +1,4 @@
-package by.training.vashkevichyura.command;
+package by.training.vashkevichyura.entity;
 
 public enum  AccessLevel {
     USER,

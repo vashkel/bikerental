@@ -19,7 +19,7 @@ import java.util.List;
 
 public class FindUserOrdersCommand implements ActionCommand {
     private static final Logger LOGGER = LogManager.getLogger(FindUserOrdersCommand.class);
-    private OrderService orderService = ServiceFactory.getInstance().getOrderService();
+    private OrderService orderService = ServiceFactory.getOrderService();
 
     @Override
     public Router execute(HttpServletRequest request) {

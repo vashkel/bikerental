@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -54,7 +54,7 @@
                                 <td><c:out value="${item.sum}"/></td>
                                 <td><c:out value="${item.bike.rentalPoint.name}"/></td>
                                 <td>
-                                            <ctg:calculateTime finishTime="${item.endDate}" startTime="${item.startDate}"/>
+                                    <ctg:calculateTime finishTime="${item.endDate}" startTime="${item.startDate}"/>
                                 </td>
                             </tr>
                             </tbody>
@@ -69,11 +69,10 @@
 <script type="text/javascript">
     <%@include file="/resources/js1/calendar.js"%>
     var fromDate = new Calendar();
-    fromDate.init({lng:'${sessionScope.local}'});
+    fromDate.init({lng: '${sessionScope.local}'});
     fromDate.add('fromDate', 'fromDate');
-
     var toDate = new Calendar();
-    toDate.init({lng:'${sessionScope.local}'});
+    toDate.init({lng: '${sessionScope.local}'});
     toDate.add('toDate', 'toDate');
 </script>
 </body>

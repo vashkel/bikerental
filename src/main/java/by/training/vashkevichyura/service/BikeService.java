@@ -19,4 +19,7 @@ public interface BikeService {
 
     Bike getBikeByTypeAndRentalPointId(long bikeTypeId, long rentalPointId) throws ServiceException;
 
+    void changeStatusById(long bikeId, String status) throws ServiceException;
+
+    void deleteBikeById(long bikeId) throws ServiceException ;
 }

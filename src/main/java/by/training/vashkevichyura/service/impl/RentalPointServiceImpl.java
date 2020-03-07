@@ -14,7 +14,7 @@ import java.util.List;
 public class RentalPointServiceImpl implements RentalPointService {
 
     private static final Logger LOGGER = LogManager.getLogger(RentalPointServiceImpl.class);
-    private RentalPointDAO rentalPointDAO = DAOFactory.getInstance().getRentalPointDAO();
+    private RentalPointDAO rentalPointDAO = DAOFactory.getRentalPointDAO();
 
     @Override
     public List<RentalPoint> getRentalPoints() throws ServiceException {

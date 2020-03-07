@@ -56,7 +56,7 @@ public class OrderDAOImpl implements OrderDAO {
             "LEFT JOIN users AS u ON o.user_id = u.id " +
             "LEFT JOIN bikes AS bk ON o.bike_id = bk.id " +
             "LEFT JOIN bike_types AS bt ON bk.bike_type_id = bt.id " +
-            "LEFT JOIN rental_points AS rp ON bk.rental_point_id = rp.id WHERE o.end_date IS NOT NULL" ;
+            "LEFT JOIN rental_points AS rp ON bk.rental_point_id = rp.id WHERE o.end_date IS NOT NULL";
 
     private static final String SQL_GET_ALL_ORDERS_BY_LIMIT = "SELECT o.id, o.start_date, o.end_date,o.user_id, u.id," +
             " o.bike_id, bk.id, o.status, o.sum ,u.name, u.surname, u.login, u.password, u.role, u.tel, u.state," +
@@ -109,6 +109,7 @@ public class OrderDAOImpl implements OrderDAO {
             close(statement, connection);
         }
     }
+
 
     @Override
     public Order getById(long id) throws DAOException {
@@ -231,7 +232,7 @@ public class OrderDAOImpl implements OrderDAO {
             statement.setLong(2, order.getBike().getId());
             int operation2 = statement.executeUpdate();
 
-            double newBalance = order.getUser().getBalance()-order.getSum();
+            double newBalance = order.getUser().getBalance() - order.getSum();
             statement = connection.prepareStatement(SQL_SET_NEW_BALANCE);
             statement.setDouble(1,newBalance);
             statement.setLong(2,order.getUser().getId());

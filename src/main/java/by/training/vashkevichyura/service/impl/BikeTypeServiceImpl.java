@@ -13,7 +13,7 @@ import java.util.List;
 
 public class BikeTypeServiceImpl implements BikeTypeService {
 
-    private BikeTypeDAOImpl bikeTypeDAO = DAOFactory.getInstance().getBikeTypeDAO();
+    private BikeTypeDAOImpl bikeTypeDAO = DAOFactory.getBikeTypeDAO();
     private static final Logger LOGGER = LogManager.getLogger(BikeTypeDAOImpl.class);
 
     @Override

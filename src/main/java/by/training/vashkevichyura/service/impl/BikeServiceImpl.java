@@ -17,9 +17,9 @@ import java.util.List;
 public class BikeServiceImpl implements BikeService {
 
     private static final Logger LOGGER = LogManager.getLogger(BikeServiceImpl.class);
-    private BikeDAO bikeDAO = DAOFactory.getInstance().getBikeDAO();
-    private BikeTypeDAO bikeTypeDAO = DAOFactory.getInstance().getBikeTypeDAO();
-    private RentalPointDAO rentalPointDAO = DAOFactory.getInstance().getRentalPointDAO();
+    private BikeDAO bikeDAO = DAOFactory.getBikeDAO();
+    private BikeTypeDAO bikeTypeDAO = DAOFactory.getBikeTypeDAO();
+    private RentalPointDAO rentalPointDAO = DAOFactory.getRentalPointDAO();
 
     @Override
     public List<Bike> getAllBike(PageInfo pageInfo) throws ServiceException {
@@ -86,7 +86,7 @@ public class BikeServiceImpl implements BikeService {
         try {
             bike = bikeDAO.getBikeByTypeAndRentalPointId(bikeTypeId, rentalPointId);
             if(bike != null){
-                bikeDAO.changeBikeStatusBusy(bike);
+                bikeDAO.changeBikeStatusOnBusy(bike);
             }
         } catch (DAOException e) {
             LOGGER.error("getBikeByTypeAndRentalPointId " + e);
@@ -95,6 +95,27 @@ public class BikeServiceImpl implements BikeService {
         return bike;
     }
 
+    @Override
+    public void changeStatusById(long bikeId, String status) throws ServiceException {
+        try {
+            bikeDAO.changeStatusById(bikeId,status);
+        } catch (DAOException e) {
+            LOGGER.error("Exception occurred while change bike status by id: " + e);
+            throw new ServiceException("Exception occurred while change bike status by id: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void deleteBikeById(long bikeId) throws ServiceException {
+        Bike bike;
+        try {
+            bike = bikeDAO.getById(bikeId);
+            bikeDAO.delete(bike);
+        } catch (DAOException e) {
+            LOGGER.error("Exception occurred while delete bike by id: " + e);
+            throw new ServiceException("Exception occurred while delete bike by id: " + e.getMessage());
+        }
+    }
 
 
 }

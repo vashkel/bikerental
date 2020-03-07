@@ -1,6 +1,5 @@
 package by.training.vashkevichyura.dao;
 
-import by.training.vashkevichyura.entity.Order;
 import by.training.vashkevichyura.entity.User;
 import by.training.vashkevichyura.exception.DAOException;
 
@@ -55,8 +54,14 @@ public interface UserDAO extends AbstractDAO<User> {
      * @param userId - id of User that should delete.
      * @throws DAOException if occurred SQL exception.
      */
-    User changeStateById(long userId, String state) throws DAOException ;
+    int changeStateById(long userId, String state) throws DAOException ;
 
-
-
+    /**
+     * Change user password  to DB.
+     *
+     * @param password - that will change.
+     * @param user - user which changes password.
+     * @throws DAOException if occurred SQL exception.
+     */
+    void updatePassword(String password, User user) throws DAOException;
 }

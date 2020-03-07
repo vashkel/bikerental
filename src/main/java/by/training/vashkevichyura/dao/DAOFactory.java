@@ -3,39 +3,53 @@ package by.training.vashkevichyura.dao;
 import by.training.vashkevichyura.dao.Impl.*;
 
 public class DAOFactory {
-    private static final DAOFactory instance = new DAOFactory();
 
-    public static DAOFactory getInstance(){
-        return instance;
-    }
-    private static final BikeDAOImpl bikeDAO = new BikeDAOImpl();
-    private static final BikeTypeDAOImpl bikeTypeDAO = new BikeTypeDAOImpl();
-    private static final OrderDAOImpl orderDAO = new OrderDAOImpl();
-    private static final RentalCostDAOImpl rentalCostDAO = new RentalCostDAOImpl();
-    private static final RentalPointDAOImpl rentalPointDAO = new RentalPointDAOImpl();
-    private static final UserDAOImpl userDAO = new UserDAOImpl();
+    private static BikeDAOImpl bikeDAO;
+    private static BikeTypeDAOImpl bikeTypeDAO;
+    private static OrderDAOImpl orderDAO;
+    private static RentalCostDAOImpl rentalCostDAO;
+    private static RentalPointDAOImpl rentalPointDAO;
+    private static UserDAOImpl userDAO;
 
-    public BikeDAOImpl getBikeDAO() {
+    public static BikeDAOImpl getBikeDAO() {
+        if(bikeDAO == null){
+            bikeDAO = new BikeDAOImpl();
+        }
         return bikeDAO;
     }
 
-    public OrderDAOImpl getOrderDAO() {
+    public static OrderDAOImpl getOrderDAO() {
+        if(orderDAO == null){
+           orderDAO = new OrderDAOImpl();
+        }
         return orderDAO;
     }
 
-    public BikeTypeDAOImpl getBikeTypeDAO() {
+    public static BikeTypeDAOImpl getBikeTypeDAO() {
+        if(bikeTypeDAO == null){
+            bikeTypeDAO  = new BikeTypeDAOImpl();
+        }
         return bikeTypeDAO;
     }
 
-    public RentalCostDAOImpl getRentalCostDAO() {
+    public static RentalCostDAOImpl getRentalCostDAO() {
+        if(rentalCostDAO == null){
+            rentalCostDAO = new RentalCostDAOImpl();
+        }
         return rentalCostDAO;
     }
 
-    public RentalPointDAOImpl getRentalPointDAO() {
+    public static RentalPointDAOImpl getRentalPointDAO() {
+        if(rentalPointDAO == null){
+            rentalPointDAO  = new RentalPointDAOImpl();
+        }
         return rentalPointDAO;
     }
 
-    public UserDAOImpl getUserDAO(){
+    public static UserDAOImpl getUserDAO(){
+        if(userDAO == null){
+            userDAO = new UserDAOImpl();
+        }
         return userDAO;
     }
 }

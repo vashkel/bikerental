@@ -41,17 +41,15 @@ public class BikeRentalServlet extends HttpServlet {
     private void process(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String commandName = request.getParameter("command");
-        System.out.println("command name - " + commandName);
         ActionCommand command = ActionFactory.defineCommand(commandName);
         Router commandRouter = command.execute(request);
-        System.out.println("Action command" + commandRouter.getPath());
         switch (commandRouter.getType()) {
             case FORWARD:
                 RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(commandRouter.getPath());
                 dispatcher.forward(request, response);
                 break;
             case REDIRECT:
-                response.sendRedirect(commandRouter.getPath());
+                response.sendRedirect(request.getContextPath() + commandRouter.getPath());
                 break;
         }
     }

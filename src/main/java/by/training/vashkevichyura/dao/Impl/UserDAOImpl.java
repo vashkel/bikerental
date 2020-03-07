@@ -52,7 +52,6 @@ public class UserDAOImpl implements UserDAO {
             statement.setString(6,entity.getTel());
             statement.setDouble(7,entity.getBalance());
             statement.setString(8,entity.getEmail());
-            statement.executeUpdate();
         } catch (ConnectionPoolException e) {
             LOGGER.error("Exception occurred while creating connection, " , e);
             throw new DAOException("Exception occurred while creating connection, " , e);
@@ -288,17 +287,16 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public User changeStateById(long userId, String state) throws DAOException {
+    public int changeStateById(long userId, String state) throws DAOException {
         ProxyConnection connection = null;
         PreparedStatement statement = null;
-        User user;
+        int result;
         try {
             connection = ConnectionPool.getInstance().getConnection();
             statement = connection.prepareStatement(SQL_CHANGE_STATE_BY_ID);
             statement.setString(1,state);
             statement.setLong(2,userId);
-            statement.executeUpdate();
-            user = getById(userId);
+            result = statement.executeUpdate();
         } catch (ConnectionPoolException e) {
             LOGGER.error("Exception occurred while creating connection, " , e);
             throw new DAOException("Exception occurred while creating connection, " , e);
@@ -308,10 +306,29 @@ public class UserDAOImpl implements UserDAO {
         }finally {
             close(statement,connection);
         }
-        return user;
+        return result;
     }
 
+    @Override
+    public void updatePassword(String password, User user) throws DAOException {
+        ProxyConnection connection = null;
+        PreparedStatement statement = null;
 
+        try {
+            connection = ConnectionPool.getInstance().getConnection();
+            statement = connection.prepareStatement("UPDATE users SET password = ? , salt = ? WHERE id = ?");
+            statement.setString(1,user.getPassword());
+            statement.setString(2,user.getSalt());
+            statement.setLong(3,user.getId());
+            statement.executeUpdate();
+        } catch (ConnectionPoolException e) {
+            LOGGER.error("Exception occurred while creating connection, " , e);
+            throw new DAOException("Exception occurred while creating connection, " , e);
+        } catch (SQLException e) {
+            LOGGER.error("An exception occurred in the layer DAO while changing user password to the DB", e);
+            throw new DAOException("An exception occurred in the layer DAO while changing user password the DB", e);
+        }
+    }
 
 
     private User parseUser(ResultSet resultSet) {

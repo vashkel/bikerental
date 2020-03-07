@@ -1,5 +1,7 @@
 package by.training.vashkevichyura.service;
 
+import by.training.vashkevichyura.dao.DAOFactory;
+import by.training.vashkevichyura.generator.HashGenerator;
 import by.training.vashkevichyura.service.impl.BikeServiceImpl;
 import by.training.vashkevichyura.service.impl.BikeTypeServiceImpl;
 import by.training.vashkevichyura.service.impl.OrderServiceImpl;
@@ -9,40 +11,54 @@ import by.training.vashkevichyura.service.impl.UserServiceImpl;
 
 public class ServiceFactory {
 
-    private static final ServiceFactory instance = new ServiceFactory();
 
-    private static final UserService userService = new UserServiceImpl();
-    private static final OrderService orderService = new OrderServiceImpl();
-    private static final BikeService bikeService = new BikeServiceImpl();
-    private static final BikeTypeService bikeTypeService = new BikeTypeServiceImpl();
-    private static final RentalPointService rentalPointService = new RentalPointServiceImpl();
-    private static final RentalCostService rentalCostService = new RentalCostServiceImpl();
+    private static UserService userService;
+    private static OrderService orderService;
+    private static BikeService bikeService;
+    private static BikeTypeService bikeTypeService;
+    private static RentalPointService rentalPointService;
+    private static RentalCostService rentalCostService;
 
-    public static ServiceFactory getInstance() {
-        return instance;
-    }
 
-    public UserService getUserService() {
+    public  static UserService getUserService() {
+        if(userService==null){
+            userService = new UserServiceImpl(DAOFactory.getUserDAO(), new HashGenerator());
+        }
         return userService;
     }
 
-    public OrderService getOrderService() {
+    public static OrderService getOrderService() {
+        if(orderService == null){
+            orderService  = new OrderServiceImpl();
+        }
         return orderService;
     }
 
-    public BikeService getBikeService() {
+    public static BikeService getBikeService() {
+        if (bikeService == null){
+            bikeService = new BikeServiceImpl();
+        }
         return bikeService;
     }
 
-    public BikeTypeService getBikeTypeService() {
+    public static BikeTypeService getBikeTypeService() {
+        if(bikeTypeService == null){
+            bikeTypeService  = new BikeTypeServiceImpl();
+        }
         return bikeTypeService;
     }
 
-    public RentalPointService getRentalPointService() {
+    public static RentalPointService getRentalPointService() {
+        if (rentalPointService == null){
+            rentalPointService = new RentalPointServiceImpl();
+        }
         return rentalPointService;
     }
 
-    public  RentalCostService getRentalCostService() {
+    public static RentalCostService getRentalCostService() {
+        if(rentalCostService == null){
+            rentalCostService = new RentalCostServiceImpl();
+        }
         return rentalCostService;
     }
 }

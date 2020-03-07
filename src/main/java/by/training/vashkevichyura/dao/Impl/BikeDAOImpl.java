@@ -49,7 +49,7 @@ public class BikeDAOImpl implements BikeDAO {
     private static final String SQL_UPDATE_BIKE = "UPDATE bikes SET brand=?,model=?, bike_type_id=?," +
             "rental_point_id=?,status=? WHERE id=?";
 
-    private static final String SQL_DELETE_BIKE = "DELETE * FROM bikes WHERE id=?";
+    private static final String SQL_DELETE_BIKE = "DELETE FROM bikes WHERE id=?";
     private static final String SQL_GET_ALL_BRANDS = "SELECT DISTINCT brand from bikes";
     private static final String SQL_GET_BIKE_BY_TYPE_AND_RENTAL_POINT_ID = "SELECT " +
             "bikes.id, bikes.brand, bikes.model, bikes.bike_type_id, bike_types.type, bikes.rental_point_id," +
@@ -216,7 +216,7 @@ public class BikeDAOImpl implements BikeDAO {
     }
 
     @Override
-    public void changeBikeStatusBusy(Bike bike) throws DAOException {
+    public void changeBikeStatusOnBusy(Bike bike) throws DAOException {
         bike.setBikeStatus(BikeStatusEnum.BUSY);
         update(bike);
     }
@@ -245,6 +245,26 @@ public class BikeDAOImpl implements BikeDAO {
 
     }
 
+    @Override
+    public int changeStatusById(long bikeId, String bikeStatus) throws DAOException {
+        ProxyConnection connection = null;
+        PreparedStatement statement = null;
+        int result;
+        try {
+            connection = ConnectionPool.getInstance().getConnection();
+            statement = connection.prepareStatement("UPDATE bikes SET status = ? WHERE id = ?");
+            statement.setString(1,bikeStatus);
+            statement.setLong(2,bikeId);
+            result = statement.executeUpdate();
+        } catch (ConnectionPoolException e) {
+            LOGGER.error("Exception occurred while creating connection, " , e);
+            throw new DAOException("Exception occurred while creating connection, " , e);
+        } catch (SQLException e) {
+            LOGGER.error("An exception occurred in the layer DAO while change bikeStatus to the DB", e);
+            throw new DAOException("An exception occurred in the layer DAO while change bikeStatus to the DB", e);
+        }
+        return result;
+    }
 
     @Override
     public void update(Bike bike) throws DAOException {
@@ -276,7 +296,7 @@ public class BikeDAOImpl implements BikeDAO {
         ProxyConnection  connection = null;
         PreparedStatement statement = null;
         try {
-            connection =ConnectionPool.getInstance().getConnection();
+            connection = ConnectionPool.getInstance().getConnection();
             statement = connection.prepareStatement(SQL_DELETE_BIKE);
             statement.setLong(1, entity.getId());
             statement.executeUpdate();

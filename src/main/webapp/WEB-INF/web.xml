@@ -26,6 +26,7 @@
       <taglib-uri>customtags</taglib-uri>
       <taglib-location>/WEB-INF/tld/custom.tld</taglib-location>
     </taglib>
+
     <jsp-property-group>
       <url-pattern>*.jsp</url-pattern>
       <scripting-invalid>true</scripting-invalid>
@@ -40,7 +41,6 @@
     <filter-name>ServletSecurityFilter</filter-name>
     <url-pattern>/BikeRentalServlet</url-pattern>
   </filter-mapping>
-
   <filter>
     <filter-name>EncodingFilter</filter-name>
     <filter-class>by.training.vashkevichyura.controller.filter.EncodingFilter</filter-class>

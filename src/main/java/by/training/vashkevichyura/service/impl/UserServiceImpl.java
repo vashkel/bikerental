@@ -1,6 +1,5 @@
 package by.training.vashkevichyura.service.impl;
 
-import by.training.vashkevichyura.dao.DAOFactory;
 import by.training.vashkevichyura.dao.UserDAO;
 import by.training.vashkevichyura.entity.User;
 import by.training.vashkevichyura.exception.DAOException;
@@ -21,7 +20,12 @@ import java.util.Map;
 public class UserServiceImpl implements UserService {
 
     private static final Logger LOGGER = LogManager.getLogger(UserServiceImpl.class);
-    private UserDAO userDAO = DAOFactory.getInstance().getUserDAO();
+    private final UserDAO userDAO ;
+    private final HashGenerator HASH_GENERATOR;
+    public UserServiceImpl(UserDAO userDAO,HashGenerator hashGenerator) {
+        this.HASH_GENERATOR = hashGenerator;
+        this.userDAO = userDAO;
+    }
 
     @Override
     public User login(String login, String password) throws ServiceException {
@@ -37,7 +41,7 @@ public class UserServiceImpl implements UserService {
         try {
             user = userDAO.findByLogin(login);
             if (user != null) {
-                String hash = new HashGenerator().generateHash(password, user.getSalt());
+                String hash = HASH_GENERATOR.generateHash(password, user.getSalt());
                 if (hash.equals(user.getPassword())) {
                     return user;
                 }
@@ -154,7 +158,35 @@ public class UserServiceImpl implements UserService {
         }
         return user;
     }
-}
+
+    @Override
+    public void changePassword(String currentPassword, String newPassword, User user) throws ServiceException {
+        Pair<String, String> hashSalt;
+        if(!Validator.validatePassword(currentPassword)){
+            throw new ServiceException(ExceptionMessage.VALIDATION_ERROR.toString());
+        }
+        try{
+               User currentUser = login(user.getLogin(),currentPassword);
+               if (currentUser == null) {
+               throw new ServiceException(ExceptionMessage.CURRENT_PASSW_WRONG.toString());
+               }
+            if (!Validator.validatePassword(newPassword)) {
+                throw new ServiceException(ExceptionMessage.VALIDATION_ERROR.toString());
+            }
+            hashSalt = new HashGenerator().generateHashSalt(newPassword);
+            currentUser.setPassword(hashSalt.getKey());
+            currentUser.setSalt(hashSalt.getValue());
+            userDAO.updatePassword(newPassword, currentUser);
+        } catch (DAOException e) {
+            LOGGER.error("Exception was thrown while changing user password : " + e);
+            throw new ServiceException("Exception was thrown while changing user password : " + e.getMessage());
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+    }
+
+    }
+
 
 
 

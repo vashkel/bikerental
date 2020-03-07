@@ -7,6 +7,7 @@ public enum ExceptionMessage {
     ORDER_NOT_EXIST("orderNotExist"),
     NULL_RENTAL_POINT_ID_OR_BIKE_TYPE_ID("nullRentalPointIdOrBikeTypeId"),
     VALIDATION_ERROR("validationError"),
+    CURRENT_PASSW_WRONG("currentPasswordWrong"),
     NOT_FREE_BIKE("notFreeBike");
     private String message;
 

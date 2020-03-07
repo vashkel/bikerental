@@ -19,9 +19,9 @@ import java.util.List;
 
 public class GoToAddBikePageCommand implements ActionCommand {
     private static final Logger LOGGER = LogManager.getLogger(GoToAddBikePageCommand.class);
-    private BikeService bikeService = ServiceFactory.getInstance().getBikeService();
-    private BikeTypeService bikeTypeService = ServiceFactory.getInstance().getBikeTypeService();
-    private RentalPointService rentalPointService = ServiceFactory.getInstance().getRentalPointService();
+    private BikeService bikeService = ServiceFactory.getBikeService();
+    private BikeTypeService bikeTypeService = ServiceFactory.getBikeTypeService();
+    private RentalPointService rentalPointService = ServiceFactory.getRentalPointService();
 
     @Override
     public Router execute(HttpServletRequest request){

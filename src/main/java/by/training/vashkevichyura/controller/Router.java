@@ -9,6 +9,9 @@ public class Router {
         this.type = type;
     }
 
+    public Router() {
+    }
+
     public String getPath() {
         return path;
     }

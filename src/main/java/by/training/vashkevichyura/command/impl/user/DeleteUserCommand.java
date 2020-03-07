@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public class DeleteUserCommand implements ActionCommand {
     private static final Logger LOGGER = LogManager.getLogger(DeleteUserCommand.class);
-    private UserService userService = ServiceFactory.getInstance().getUserService();
+    private UserService userService = ServiceFactory.getUserService();
 
     @Override
     public Router execute(HttpServletRequest request) {
@@ -23,7 +23,7 @@ public class DeleteUserCommand implements ActionCommand {
         long userId = Long.parseLong(request.getParameter("userId"));
         try {
             userService.deleteUserById(userId);
-            router = new Router(PageConstant.ADMIN_PAGE, Router.RouterType.FORWARD);
+            router = new Router(PageConstant.REDIRECT_TO_USER_CATALOG_PAGE, Router.RouterType.FORWARD);
             request.setAttribute(SessionParameter.MESSAGE.parameter(), PageMessage.USER_DELETED.message());
         } catch (ServiceException e) {
             LOGGER.error("An error occurred while the user was deleting, " + e.getMessage());

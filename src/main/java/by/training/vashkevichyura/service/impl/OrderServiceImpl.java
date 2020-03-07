@@ -18,7 +18,7 @@ import java.util.List;
 
 public class OrderServiceImpl implements OrderService {
     private static final Logger LOGGER = LogManager.getLogger(OrderServiceImpl.class);
-    private OrderDAO orderDAO = DAOFactory.getInstance().getOrderDAO();
+    private OrderDAO orderDAO = DAOFactory.getOrderDAO();
 
     @Override
     public List<Order> getAllOrderByUser(User user) throws ServiceException {

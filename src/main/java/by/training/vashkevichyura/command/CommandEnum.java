@@ -1,6 +1,9 @@
 package by.training.vashkevichyura.command;
 
 import by.training.vashkevichyura.command.impl.application.ChangeLocalizationCommand;
+import by.training.vashkevichyura.command.impl.bike.ChangeStatusBikeCommand;
+import by.training.vashkevichyura.command.impl.bike.DeleteBikeCommand;
+import by.training.vashkevichyura.command.impl.user.ChangePasswordCommand;
 import by.training.vashkevichyura.command.impl.application.GoToHomePageCommand;
 import by.training.vashkevichyura.command.impl.application.PaginationCommand;
 import by.training.vashkevichyura.command.impl.bike.AddBikeCommand;
@@ -31,7 +34,7 @@ public enum CommandEnum {
     GET_ALL_USER(new GetAllUsersCommand()),
     ADD_BIKE(new AddBikeCommand()),
     GO_TO_ADD_BIKE_PAGE(new GoToAddBikePageCommand()),
-    GO_TO_HOME_PAGE(new GoToHomePageCommand()),
+    HOME(new GoToHomePageCommand()),
     RENTAL_POINTS_PAGE(new RentalPointCatalogCommand()),
     FIND_USER_ORDERS(new FindUserOrdersCommand()),
     DELETE_USER(new DeleteUserCommand()),
@@ -40,6 +43,9 @@ public enum CommandEnum {
     GET_PRICE_BIKE(new GetPriceBikeCommand()),
     ORDER_BIKE(new OrderBikeCommand()),
     CLOSE_ORDER(new CloseOrderCommand()),
+    CHANGE_PASSWORD(new ChangePasswordCommand()),
+    CHANGE_STATUS_BIKE(new ChangeStatusBikeCommand()),
+    DELETE_BIKE(new DeleteBikeCommand()),
     ALL_ORDERS_PAGE(new AllOrdersPageCommand());
 
     /**

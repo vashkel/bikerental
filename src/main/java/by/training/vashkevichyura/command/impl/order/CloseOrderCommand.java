@@ -22,8 +22,8 @@ import javax.servlet.http.HttpSession;
 
 public class CloseOrderCommand implements ActionCommand {
     private static final Logger LOGGER = LogManager.getLogger(CloseOrderCommand.class);
-    private static final OrderService orderService = ServiceFactory.getInstance().getOrderService();
-    private static final UserService userService = ServiceFactory.getInstance().getUserService();
+    private static final OrderService orderService = ServiceFactory.getOrderService();
+    private static final UserService userService = ServiceFactory.getUserService();
 
     @Override
     public Router execute(HttpServletRequest request) {

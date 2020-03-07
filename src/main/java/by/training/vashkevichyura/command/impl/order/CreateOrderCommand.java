@@ -20,8 +20,8 @@ import java.util.List;
 public class CreateOrderCommand implements ActionCommand {
 
    private static final Logger LOGGER = LogManager.getLogger(CreateOrderCommand.class);
-   private RentalPointService rentalPointService = ServiceFactory.getInstance().getRentalPointService();
-   private BikeTypeService bikeTypeService = ServiceFactory.getInstance().getBikeTypeService();
+   private RentalPointService rentalPointService = ServiceFactory.getRentalPointService();
+   private BikeTypeService bikeTypeService = ServiceFactory.getBikeTypeService();
 
     @Override
     public Router execute(HttpServletRequest request) {

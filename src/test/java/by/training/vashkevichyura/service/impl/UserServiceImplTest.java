@@ -1,43 +1,70 @@
 package by.training.vashkevichyura.service.impl;
 
+        import by.training.vashkevichyura.dao.UserDAO;
 import by.training.vashkevichyura.entity.User;
-import by.training.vashkevichyura.entity.UserRoleEnum;
-import by.training.vashkevichyura.entity.UserStateEnum;
+import by.training.vashkevichyura.exception.DAOException;
 import by.training.vashkevichyura.exception.ServiceException;
-import by.training.vashkevichyura.service.UserService;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import by.training.vashkevichyura.generator.HashGenerator;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-import static org.testng.Assert.assertNotNull;
+import java.security.NoSuchAlgorithmException;
 
+        import static org.junit.Assert.assertEquals;
+        import static org.junit.Assert.assertNull;
+        import static org.mockito.Mockito.when;
+
+@RunWith(MockitoJUnitRunner.Silent.class)
 public class UserServiceImplTest {
 
-    private  UserService userService = new UserServiceImpl();
-    private  User user = null;
-    private  UserRoleEnum role = null;
-    private  String userPassword = null;
+    @InjectMocks
+    private UserServiceImpl userService;
 
-    @BeforeClass
-    public  void setUp() throws ServiceException {
-        userService = mock(UserServiceImpl.class);
-        user = new User();
-        user.setId(1);
-        user.setEmail("email@gmail.com");
-        user.setName("yura");
-        user.setSurname("Surname");
-        user.setRole(UserRoleEnum.USER);
-        user.setTel("56486548654");
-        user.setBalance(500);
-        user.setState(UserStateEnum.ACTIVE);
+    @Mock
+    private UserDAO userDAO;
+    @Mock
+    private HashGenerator hashGenerator;
 
-        when(userService.login(user.getLogin(),userPassword)).thenReturn(user);
+
+    @Test
+    public void login_userNotFound() throws DAOException, ServiceException {
+        when(userDAO.findByLogin("vadik")).thenReturn(null);
+
+        User user = userService.login("vadik", "password");
+
+        assertNull(user);
     }
 
     @Test
-    public void testLoginUser() throws ServiceException {
-        User user1 = userService.login(user.getLogin(),userPassword);
-        assertNotNull(user1);
+    public void login_userFoundButPasswordWrong() throws DAOException, ServiceException, NoSuchAlgorithmException {
+        User user = new User();
+        user.setPassword("password");
+        user.setSalt("salt");
+
+
+        when(userDAO.findByLogin("vadk")).thenReturn(user);
+        when(hashGenerator.generateHash(user.getPassword(), user.getSalt())).thenReturn("other hash");
+        user = userService.login("mks", "password");
+
+        assertNull(user);
+
+    }
+
+    @Test
+    public void login_ok() throws DAOException, ServiceException, NoSuchAlgorithmException {
+        User user = new User();
+        user.setPassword("11111111");
+        user.setSalt("salt");
+
+        when(userDAO.findByLogin("virus")).thenReturn(user);
+        when(hashGenerator.generateHash(user.getPassword(), user.getSalt())).thenReturn("11111111");
+
+        User user2 = userService.login("virus", "11111111");
+
+        assertEquals(user, user2);
+
     }
 }

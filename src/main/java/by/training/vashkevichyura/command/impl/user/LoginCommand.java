@@ -29,11 +29,11 @@ import java.util.List;
 public class LoginCommand implements ActionCommand {
 
     private static final Logger LOGGER = LogManager.getLogger(LoginCommand.class);
-    private UserService userService = ServiceFactory.getInstance().getUserService();
-    private OrderService orderService = ServiceFactory.getInstance().getOrderService();
-    private BikeService bikeService = ServiceFactory.getInstance().getBikeService();
-    private RentalPointService rentalPointService = ServiceFactory.getInstance().getRentalPointService();
-    private BikeTypeService bikeTypeService = ServiceFactory.getInstance().getBikeTypeService();
+    private UserService userService = ServiceFactory.getUserService();
+    private OrderService orderService = ServiceFactory.getOrderService();
+    private BikeService bikeService = ServiceFactory.getBikeService();
+    private RentalPointService rentalPointService = ServiceFactory.getRentalPointService();
+    private BikeTypeService bikeTypeService = ServiceFactory.getBikeTypeService();
 
     @Override
     public Router execute(HttpServletRequest request) {
@@ -61,10 +61,6 @@ public class LoginCommand implements ActionCommand {
                 List <BikeType> bikeTypesList = bikeTypeService.getBikeTypes();
                 session.setAttribute(RequestParameter.RENTAL_POINT_LIST.parameter(),rentalPointList);
                 session.setAttribute(RequestParameter.BIKE_TYPE_LIST.parameter(),bikeTypesList);
-//                PageInfo pageInfo = PageInfoHandler.pageInfoInit(request);
-//                List<Bike> bikes = bikeService.getAllBike(pageInfo);
-//                request.setAttribute(RequestParameter.BIKE_LIST.parameter(), bikes);
-//                PageInfoHandler.handleAndAddToSession(pageInfo, request, bikes);
             }
             session.setAttribute(SessionParameter.USER.parameter(), user);
             router = new Router(user.getRole().getHomePage(), Router.RouterType.FORWARD);

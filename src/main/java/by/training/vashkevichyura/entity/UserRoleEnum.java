@@ -1,6 +1,5 @@
 package by.training.vashkevichyura.entity;
 
-import by.training.vashkevichyura.command.AccessLevel;
 import by.training.vashkevichyura.command.PageConstant;
 
 public enum UserRoleEnum {

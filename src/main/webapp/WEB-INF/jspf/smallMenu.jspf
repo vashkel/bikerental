@@ -10,22 +10,16 @@
 			<c:out value="${menuLabel}"/>
 		</li>
 		<li style="float:right; margin-right:10px">
-			<a
-					href="BikeRentalServlet?command=logout"><fmt:message key="logoutLabel"/>
-		   </a>
+			<a href="BikeRentalServlet?command=logout"><fmt:message key="logoutLabel"/></a>
 		</li>
 		<li style="float:right">
-			<a
-					href="BikeRentalServlet?command=home"><fmt:message key="homeLabel"/>
-			</a>
+			<a href="BikeRentalServlet?command=home"><fmt:message key="homeLabel"/></a>
 		</li>
 		<li style="float:right; color: white; font-weight: bold; padding: 18px 0px 15px 10px;">
 			<c:out value="${user.name}"/>
 		</li>
 		<li style="float:right; color: white; padding: 18px 0px 15px 10px;">
-			<c:if test="${user.role eq 'ADMIN'}"><fmt:message key="adminLabel"/>
-				</c:if>
-			<c:if test="${user.role eq 'USER'}"><fmt:message key="userLabel"/>
-				</c:if>
+			<c:if test="${user.role eq 'ADMIN'}"><fmt:message key="adminLabel"/></c:if>
+			<c:if test="${user.role eq 'USER'}"><fmt:message key="userLabel"/></c:if>
 	</ul>
 </nav>

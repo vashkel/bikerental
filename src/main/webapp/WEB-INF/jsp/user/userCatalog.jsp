@@ -12,12 +12,13 @@
     <style>
         <%@include file="/resources/css/bootstrap.min.css"%>
         <%@include file="/resources/css/header.css"%>
-        <%@ include file="/resources/css/button.css" %>
     </style>
 
     <%@ include file="/WEB-INF/jspf/localizationVar.jspf" %>
 
-    <title><fmt:message key="title"/></title>
+    <title>
+        <fmt:message key="title"/>
+    </title>
 
 </head>
 <body>
@@ -61,7 +62,7 @@
                                 <td><c:out value="${item.role}"/></td>
                                 <td><c:out value="${item.state}"/></td>
                                 <td>
-                                    <a href="BikeRentalServlet?command=delete_user&userId=${item.id}">
+                                    <a  href="BikeRentalServlet?command=delete_user&userId=${item.id}">
                                         <fmt:message key="deleteLabel"/>
                                     </a> <br>
                                     <c:if test="${item.state eq 'ACTIVE'}">
@@ -69,7 +70,6 @@
                                             <fmt:message key="changeStateLabel"/>
                                         </a>
                                     </c:if>
-
                                     <c:if test="${item.state eq 'BLOCKED'}">
                                         <a href = "<c:url value="BikeRentalServlet?command=change_state_user&userId=${item.id}&state=active"> </c:url>">
                                             <fmt:message key="changeStateLabel"/>
@@ -85,6 +85,7 @@
         </div>
     </c:if>
 </div>
+
 
 <!---------------------------------------------BikeList--------------------->
 <jsp:include page="/WEB-INF/jsp/static/footer.jsp"/>

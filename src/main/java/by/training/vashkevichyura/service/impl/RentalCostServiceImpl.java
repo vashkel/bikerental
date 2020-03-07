@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 
 public class RentalCostServiceImpl implements RentalCostService {
     private static final Logger LOGGER = LogManager.getLogger(RentalCostServiceImpl.class);
-    private static final RentalCostDAO rentalCostDao = DAOFactory.getInstance().getRentalCostDAO();
+    private static final RentalCostDAO rentalCostDao = DAOFactory.getRentalCostDAO();
 
     @Override
     public double getPriceByBikeTypeId(long bikeTypeId) throws ServiceException {

@@ -18,7 +18,7 @@ import java.util.List;
 
 public class BikeCatalogCommand implements ActionCommand {
      private static final Logger LOGGER = LogManager.getLogger(BikeCatalogCommand.class);
-     private BikeService  bikeService = ServiceFactory.getInstance().getBikeService();
+     private BikeService  bikeService = ServiceFactory.getBikeService();
 
     @Override
     public Router execute(HttpServletRequest request)  {

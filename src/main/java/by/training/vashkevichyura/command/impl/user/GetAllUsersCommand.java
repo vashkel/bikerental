@@ -17,7 +17,7 @@ import java.util.List;
 public class GetAllUsersCommand implements ActionCommand {
 
     private static final Logger LOGGER = LogManager.getLogger(GetAllUsersCommand.class);
-    private UserService userService = ServiceFactory.getInstance().getUserService();
+    private UserService userService = ServiceFactory.getUserService();
 
     @Override
     public Router execute(HttpServletRequest request) {

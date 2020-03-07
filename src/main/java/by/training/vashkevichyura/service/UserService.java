@@ -20,4 +20,6 @@ public interface UserService {
 
     User getByID(long id) throws ServiceException;
 
+    void changePassword(String currentPassword, String password, User user) throws ServiceException;
 }
+

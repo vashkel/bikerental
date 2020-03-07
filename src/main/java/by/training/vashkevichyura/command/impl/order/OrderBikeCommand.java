@@ -24,9 +24,9 @@ import javax.servlet.http.HttpSession;
 public class OrderBikeCommand implements ActionCommand {
 
     private static final Logger LOGGER = LogManager.getLogger(OrderBikeCommand.class);
-    private static final BikeService bikeService = ServiceFactory.getInstance().getBikeService();
-    private static final OrderService orderService = ServiceFactory.getInstance().getOrderService();
-    private static final UserService userService = ServiceFactory.getInstance().getUserService();
+    private static final BikeService bikeService = ServiceFactory.getBikeService();
+    private static final OrderService orderService = ServiceFactory.getOrderService();
+    private static final UserService userService = ServiceFactory.getUserService();
 
     @Override
     public Router execute(HttpServletRequest request) {
@@ -37,27 +37,27 @@ public class OrderBikeCommand implements ActionCommand {
         User user = (User) session.getAttribute(SessionParameter.USER.parameter());
 
 
-        long bikeTypeId = (long)session.getAttribute("bikeTypeId");
-        long rentalPointId = (long)session.getAttribute("rentalPointId");
+        long bikeTypeId = (long) session.getAttribute("bikeTypeId");
+        long rentalPointId = (long) session.getAttribute("rentalPointId");
         double totalPrice = Double.parseDouble(request.getParameter(RequestParameter.TOTAL_PRICE.parameter()));
         try {
             bike = bikeService.getBikeByTypeAndRentalPointId(bikeTypeId, rentalPointId);
-            if(bike == null){
-                request.setAttribute(RequestParameter.MESSAGE.parameter(),ExceptionMessage.NOT_FREE_BIKE.message());
-                return new Router(user.getRole().getHomePage(),Router.RouterType.FORWARD);
+            if (bike == null) {
+                request.setAttribute(RequestParameter.MESSAGE.parameter(), ExceptionMessage.NOT_FREE_BIKE.message());
+                return new Router(user.getRole().getHomePage(), Router.RouterType.FORWARD);
             }
             double userBalance = user.getBalance();
-            if(totalPrice>userBalance){
-                request.setAttribute(RequestParameter.MESSAGE.parameter(),ExceptionMessage.NOT_ENOUGH_MONEY.message());
-                return new Router(user.getRole().getHomePage(),Router.RouterType.FORWARD);
+            if (totalPrice > userBalance) {
+                request.setAttribute(RequestParameter.MESSAGE.parameter(), ExceptionMessage.NOT_ENOUGH_MONEY.message());
+                return new Router(user.getRole().getHomePage(), Router.RouterType.FORWARD);
             }
             order = orderService.createOrder(bike, user, totalPrice);
             session.setAttribute(SessionParameter.ORDER.parameter(), order);
-            AddTimeParameterToRequest.addParam(request,order.getStartDate());
-            router = new Router(user.getRole().getHomePage(),Router.RouterType.FORWARD);
+            AddTimeParameterToRequest.addParam(request, order.getStartDate());
+            router = new Router(user.getRole().getHomePage(), Router.RouterType.FORWARD);
         } catch (ServiceException e) {
             LOGGER.error("An exception occurred while create order: ", e);
-            router = new Router(PageConstant.ERROR_PAGE,Router.RouterType.REDIRECT);
+            router = new Router(PageConstant.ERROR_PAGE, Router.RouterType.REDIRECT);
 
         }
         return router;

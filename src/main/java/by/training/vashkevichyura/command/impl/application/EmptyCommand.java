@@ -1,5 +1,7 @@
-package by.training.vashkevichyura.command;
+package by.training.vashkevichyura.command.impl.application;
 
+import by.training.vashkevichyura.command.ActionCommand;
+import by.training.vashkevichyura.command.PageConstant;
 import by.training.vashkevichyura.controller.Router;
 import by.training.vashkevichyura.entity.User;
 

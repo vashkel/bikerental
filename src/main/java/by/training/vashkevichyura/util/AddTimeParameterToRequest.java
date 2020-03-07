@@ -22,10 +22,10 @@ public class AddTimeParameterToRequest {
 		long diffHours = difference / (60 * 60) % 24;
 		long diffDays = difference / (24 * 60 * 60);
 
-		request.setAttribute(RequestParameter.SECONDS.parameter(), diffSeconds);
-		request.setAttribute(RequestParameter.MINUTES.parameter(), diffMinutes);
-		request.setAttribute(RequestParameter.HOURS.parameter(), diffHours);
-		request.setAttribute(RequestParameter.DAYS.parameter(), diffDays);
+		request.getSession().setAttribute(RequestParameter.SECONDS.parameter(), diffSeconds);
+		request.getSession().setAttribute(RequestParameter.MINUTES.parameter(), diffMinutes);
+		request.getSession().setAttribute(RequestParameter.HOURS.parameter(), diffHours);
+		request.getSession().setAttribute(RequestParameter.DAYS.parameter(), diffDays);
 
 	}
 

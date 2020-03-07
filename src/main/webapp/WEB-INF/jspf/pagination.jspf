@@ -8,15 +8,15 @@
 			<div class="col-md-4">
 				<c:if test="${pageInfo.currentPage == 1}">
 					<label style="float:right; color: grey">
-                        <fmt:message key="previousLabel"/>
+						<fmt:message key="previousLabel"/>
 						<c:out value="${pageInfo.defaultElementOnPage}"/>
 					</label>
 				</c:if>
 				<c:if test="${pageInfo.currentPage != 1}">
 					<label style="float:right">
 						<a href="BikeRentalServlet?command=pagination&pageAction=previous">
-						   <fmt:message key="previousLabel"/>
-						   <c:out value="${pageInfo.defaultElementOnPage}"/>
+							<fmt:message key="previousLabel"/>
+							<c:out value="${pageInfo.defaultElementOnPage}"/>
 						</a>
 					</label>
 				</c:if>
@@ -33,15 +33,15 @@
 						<fmt:message key="nextLabel"/>
 						<c:out value="${pageInfo.defaultElementOnPage}"/>
 					</label>
-				</c:if>						
+				</c:if>
 				<c:if test="${pageInfo.lastPage eq false}">
 					<label>
 						<a href="BikeRentalServlet?command=pagination&pageAction=next">
-						   <fmt:message key="nextLabel"/>
-						   <c:out value="${pageInfo.defaultElementOnPage}"/>
+							<fmt:message key="nextLabel"/>
+							<c:out value="${pageInfo.defaultElementOnPage}"/>
 						</a>
 					</label>
-				</c:if>							
+				</c:if>
 			</div>
 		</div>
 	</c:if>

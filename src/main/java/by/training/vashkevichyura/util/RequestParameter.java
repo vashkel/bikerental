@@ -36,6 +36,7 @@ public enum RequestParameter {
     HOURS("hours"),
     DAYS("days"),
     TOTAL_PRICE("totalPrice"),
+    CURRENT_PASSWORD("currentPassword"),
     BIKE_COUNT("bikeCount");
     private String parameter;
 

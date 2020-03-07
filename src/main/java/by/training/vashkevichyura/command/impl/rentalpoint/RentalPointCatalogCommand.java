@@ -17,7 +17,7 @@ import java.util.List;
 public class RentalPointCatalogCommand implements ActionCommand {
 
     private static final Logger LOGGER = LogManager.getLogger(RentalPointCatalogCommand.class);
-    private RentalPointService rentalPointService = ServiceFactory.getInstance().getRentalPointService();
+    private RentalPointService rentalPointService = ServiceFactory.getRentalPointService();
 
     @Override
     public Router execute(HttpServletRequest request)  {

@@ -1,6 +1,6 @@
 package by.training.vashkevichyura.entity;
 
-public class User extends Entity{
+public class User extends Entity {
     private static final long serialVersionUID = 7164993002496265554L;
     private String name;
     private String surname;
@@ -95,21 +95,43 @@ public class User extends Entity{
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         User user = (User) o;
 
-        if (Double.compare(user.balance, balance) != 0) return false;
-        if (name != null ? !name.equals(user.name) : user.name != null) return false;
-        if (surname != null ? !surname.equals(user.surname) : user.surname != null) return false;
-        if (login != null ? !login.equals(user.login) : user.login != null) return false;
-        if (password != null ? !password.equals(user.password) : user.password != null) return false;
-        if (salt != null ? !salt.equals(user.salt) : user.salt != null) return false;
-        if (role != user.role) return false;
-        if (tel != null ? !tel.equals(user.tel) : user.tel != null) return false;
-        if (state != user.state) return false;
-        return email != null ? email.equals(user.email) : user.email == null;
+        if (Double.compare(user.balance, balance) != 0) {
+            return false;
+        }
+        if (name != null ? !name.equals(user.name) : user.name != null) {
+            return false;
+        }
+        if (surname != null ? !surname.equals(user.surname) : user.surname != null) {
+            return false;
+        }
+        if (login != null ? !login.equals(user.login) : user.login != null) {
+            return false;
+        }
+        if (password != null ? !password.equals(user.password) : user.password != null) {
+            return false;
+        }
+        if (salt != null ? !salt.equals(user.salt) : user.salt != null) {
+            return false;
+        }
+        if (role != user.role) {
+            return false;
+        }
+        if (tel != null ? !tel.equals(user.tel) : user.tel != null) {
+            return false;
+        }
+        if (state != user.state) {
+            return false;
+        }
+        return (email != null) ? email.equals(user.email) : (user.email == null);
     }
 
     @Override

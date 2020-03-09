@@ -17,6 +17,11 @@ CREATE TABLE IF NOT EXISTS bike_types (
     CONSTRAINT bikes_bike_types__fk FOREIGN KEY ('bike_type_id')REFERENCES bike_types('id'),
     CONSTRAINT bikes_rental_points__fk FOREIGN KEY ('rental_point_id') REFERENCES rental_points('id')
     );
+CREATE INDEX bikes_bike_types__fk
+  ON bikes (bike_type_id);
+
+CREATE INDEX bikes_rental_points__fk
+  ON bikes (rental_point_id);
 
 CREATE TABLE IF NOT EXISTS orders(
   'id' bigint NOT NULL PRIMARY KEY AUTO_INCREMENT UNIQUE,
@@ -29,6 +34,11 @@ CREATE TABLE IF NOT EXISTS orders(
   CONSTRAINT orders_users__fk FOREIGN KEY ('user_id') REFERENCES users ('id'),
   CONSTRAINT  orders_bikes__fk FOREIGN KEY ('bike_id') REFERENCES bikes('id')
 );
+CREATE INDEX orders_bikes__fk
+  ON orders (bike_id);
+
+CREATE INDEX orders_users__fk
+  ON orders (user_id);
 
 CREATE TABLE IF NOT EXISTS rental_cost(
   "id" bigint not null AUTO_INCREMENT UNIQUE PRIMARY KEY ,
@@ -54,7 +64,6 @@ CREATE TABLE IF NOT EXISTS users(
   'tel' int NOT NULL ,
   'state' enum('active','blocked') NOT NULL DEFAULT ('active'),
   balance double NOT NULL
-
 );
 
 

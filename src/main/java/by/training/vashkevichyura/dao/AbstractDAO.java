@@ -25,7 +25,7 @@ public interface AbstractDAO<T extends Entity> {
      * @param entity specified concrete entity
      * @throws DAOException is thrown if error occurs while adding entity
      */
-    void add(T entity) throws DAOException;
+    boolean add(T entity) throws DAOException;
 
 
     /**
@@ -121,11 +121,6 @@ public interface AbstractDAO<T extends Entity> {
         if (closeStatementException != null || closeConnectionException != null) {
             throw new DAOException("Could not close statement or/and connection");
         }
-//        try {
-//            close(statement);
-//        } finally {
-//            close(connection);
-//        }
     }
 
     /**
@@ -141,7 +136,9 @@ public interface AbstractDAO<T extends Entity> {
         DAOException closeConnectionException = null;
         SQLException closeResultSetException = null;
         try {
-            resultSet.close();
+            if (resultSet != null) {
+                resultSet.close();
+            }
         } catch (SQLException e) {
             closeResultSetException = e;
         }
@@ -155,18 +152,9 @@ public interface AbstractDAO<T extends Entity> {
         } catch (DAOException e) {
             closeConnectionException = e;
         }
-
         if (closeStatementException != null || closeConnectionException != null || closeResultSetException != null) {
             throw new DAOException("Could not close statement or/and connection");
         }
-//        close(statement, connection);
-
-//        try {
-//            resultSet.close();
-//            close(statement);
-//        } finally {
-//            close(connection);
-//        }
     }
 }
 

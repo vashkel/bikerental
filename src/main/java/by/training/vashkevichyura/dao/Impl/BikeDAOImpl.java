@@ -25,26 +25,26 @@ public class BikeDAOImpl implements BikeDAO {
     private final static Logger LOGGER = LogManager.getLogger(BikeDAOImpl.class);
 
     private static final String SQL_ADD_BIKE =
-            "INSERT into bikes (brand, model, bike_type_id, rental_point_id, status) VALUES (?,?,?,?,?)";
+            "INSERT INTO bikes (brand, model, bike_type_id, rental_point_id, status) VALUES (?,?,?,?,?)";
 
     private static final String SQL_GET_ALL_BIKES_BY_LIMIT ="SELECT " +
             "bikes.id, bikes.brand, bikes.model, bikes.bike_type_id, bike_types.type, bikes.rental_point_id," +
             " rental_points.name, rental_points.adress, rental_points.tel ,bikes.status " +
-            "FROM bikes  LEFT JOIN bike_types  ON bikes.bike_type_id = bike_types.id " +
-            "LEFT JOIN rental_points  ON bikes.rental_point_id = rental_points.id WHERE bikes.id > ?" +
+            "FROM bikes LEFT JOIN bike_types ON bikes.bike_type_id = bike_types.id " +
+            "LEFT JOIN rental_points ON bikes.rental_point_id = rental_points.id WHERE bikes.id > ?" +
             " ORDER BY bikes.id LIMIT ? ";
 
     private static final String SQL_GET_ALL_BIKES ="SELECT " +
             "bikes.id, bikes.brand, bikes.model, bikes.bike_type_id, bike_types.type, bikes.rental_point_id," +
             " rental_points.name, rental_points.adress, rental_points.tel ,bikes.status " +
-            "FROM bikes  LEFT JOIN bike_types  ON bikes.bike_type_id = bike_types.id " +
-            "LEFT JOIN rental_points  ON bikes.rental_point_id = rental_points.id";
+            "FROM bikes LEFT JOIN bike_types ON bikes.bike_type_id = bike_types.id " +
+            "LEFT JOIN rental_points ON bikes.rental_point_id = rental_points.id";
 
     private static final String SQL_GET_BIKE_BY_ID ="SELECT " +
             "bikes.id, bikes.brand, bikes.model, bikes.bike_type_id, bike_types.type, bikes.rental_point_id," +
             " rental_points.name, rental_points.adress, rental_points.tel ,bikes.status " +
-            "FROM bikes LEFT JOIN bike_types  ON bikes.bike_type_id = bike_types.id " +
-            "LEFT JOIN rental_points  ON bikes.rental_point_id = rental_points.id WHERE bikes.id = ?";
+            "FROM bikes LEFT JOIN bike_types ON bikes.bike_type_id = bike_types.id " +
+            "LEFT JOIN rental_points ON bikes.rental_point_id = rental_points.id WHERE bikes.id = ?";
 
     private static final String SQL_UPDATE_BIKE = "UPDATE bikes SET brand=?,model=?, bike_type_id=?," +
             "rental_point_id=?,status=? WHERE id=?";
@@ -54,11 +54,11 @@ public class BikeDAOImpl implements BikeDAO {
     private static final String SQL_GET_BIKE_BY_TYPE_AND_RENTAL_POINT_ID = "SELECT " +
             "bikes.id, bikes.brand, bikes.model, bikes.bike_type_id, bike_types.type, bikes.rental_point_id," +
             " rental_points.name, rental_points.adress, rental_points.tel ,bikes.status " +
-            "FROM bikes LEFT JOIN bike_types  ON bikes.bike_type_id = bike_types.id " +
+            "FROM bikes LEFT JOIN bike_types ON bikes.bike_type_id = bike_types.id " +
             "LEFT JOIN rental_points  ON bikes.rental_point_id = rental_points.id " +
             "WHERE bikes.bike_type_id = ? AND bikes.rental_point_id = ? AND bikes.status = ?";
     @Override
-    public void add(Bike bike) throws DAOException {
+    public boolean add(Bike bike) throws DAOException {
         ProxyConnection connection = null;
         PreparedStatement statement = null;
         try {
@@ -69,7 +69,8 @@ public class BikeDAOImpl implements BikeDAO {
             statement.setLong(3,bike.getBikeType().getId());
             statement.setLong(4,bike.getRentalPoint().getId());
             statement.setString(5,bike.getBikeStatus().name());
-            statement.executeUpdate();
+            int result = statement.executeUpdate();
+            return result > 0;
         } catch (SQLException | ConnectionPoolException e) {
             LOGGER.error("Exception in BikeDAOImpl add method. Impossible insert bike", e);
             throw new DAOException("Error occurred while inserting bike: " + e.getMessage());
@@ -314,24 +315,23 @@ public class BikeDAOImpl implements BikeDAO {
     private Bike parseBike(ResultSet resultSet) {
         Bike bike = new Bike();
         try {
-            bike.setId(resultSet.getLong("id"));
-            bike.setBrand(resultSet.getString("brand"));
-            bike.setModel(resultSet.getString("model"));
+            bike.setId(resultSet.getLong("bikes.id"));
+            bike.setBrand(resultSet.getString("bikes.brand"));
+            bike.setModel(resultSet.getString("bikes.model"));
 
             BikeType bikeType = new BikeType();
-            bikeType.setId(resultSet.getLong("bike_type_id"));
+            bikeType.setId(resultSet.getLong("bikes.bike_type_id"));
             bikeType.setType(BikeTypeEnum.valueOf(resultSet.getString("bike_types.type").toUpperCase()));
-
             bike.setBikeType(bikeType);
 
             RentalPoint rentalPoint = new RentalPoint();
-            rentalPoint.setId(resultSet.getLong("rental_point_id"));
+            rentalPoint.setId(resultSet.getLong("bikes.rental_point_id"));
             rentalPoint.setName(resultSet.getString("rental_points.name"));
             rentalPoint.setAdress(resultSet.getString("rental_points.adress"));
-            rentalPoint.setTel("rental_points.tel");
-
+            rentalPoint.setTel(resultSet.getString("rental_points.tel"));
             bike.setRentalPoint(rentalPoint);
-            bike.setBikeStatus(BikeStatusEnum.valueOf(resultSet.getString("status").toUpperCase()));
+
+            bike.setBikeStatus(BikeStatusEnum.valueOf(resultSet.getString("bikes.status").toUpperCase()));
         } catch (SQLException e) {
             e.printStackTrace();
         }

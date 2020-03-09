@@ -32,7 +32,7 @@ public class BikeTypeDAOImpl implements BikeTypeDAO {
     private final static String SQL_DELETE_BIKE_TYPE = "DELETE * FROM `bike-rental`.bike_types WHERE id=?";
 
     @Override
-    public void add(BikeType bikeType) throws DAOException {
+    public boolean add(BikeType bikeType) throws DAOException {
         ProxyConnection connection = null;
         PreparedStatement statement = null;
         try {
@@ -49,6 +49,7 @@ public class BikeTypeDAOImpl implements BikeTypeDAO {
         } finally {
             close(statement, connection);
         }
+        return false;
     }
 
     @Override

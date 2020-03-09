@@ -17,8 +17,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TimeZone;
 
 public class OrderDAOImpl implements OrderDAO {
     private static final Logger LOGGER = LogManager.getLogger();
@@ -87,7 +91,7 @@ public class OrderDAOImpl implements OrderDAO {
     private static final String SQL_GET_ORDER_ID_BY_USER_ID_AND_STATUS = "SELECT id FROM orders WHERE user_id = ? AND status = ?";
 
     @Override
-    public void add(Order entity) throws DAOException {
+    public boolean add(Order entity) throws DAOException {
         ProxyConnection connection = null;
         PreparedStatement statement = null;
         try {
@@ -108,6 +112,7 @@ public class OrderDAOImpl implements OrderDAO {
         } finally {
             close(statement, connection);
         }
+        return false;
     }
 
 
@@ -412,7 +417,10 @@ public class OrderDAOImpl implements OrderDAO {
         Order order = new Order();
         try {
             order.setId(resultSet.getLong("o.id"));
-            order.setStartDate(String.valueOf(resultSet.getTimestamp("o.start_date")));
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
+            df.setTimeZone(TimeZone.getTimeZone("UTC"));
+            Timestamp startDateTimestamp = resultSet.getTimestamp("o.start_date");
+            order.setStartDate(df.format(startDateTimestamp));
             order.setEndDate(String.valueOf(resultSet.getTimestamp("o.end_date")));
 
             User user = new User();

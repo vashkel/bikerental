@@ -38,7 +38,7 @@ public class UserDAOImpl implements UserDAO {
 
 
     @Override
-    public void add(User entity) throws DAOException {
+    public boolean add(User entity) throws DAOException {
         ProxyConnection connection = null;
         PreparedStatement statement = null;
         try {
@@ -61,6 +61,7 @@ public class UserDAOImpl implements UserDAO {
         } finally {
             close(statement,connection);
         }
+        return false;
     }
 
     @Override

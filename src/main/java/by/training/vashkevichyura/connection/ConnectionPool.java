@@ -3,6 +3,7 @@ package by.training.vashkevichyura.connection;
 import by.training.vashkevichyura.exception.ConnectionPoolException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.assertj.core.util.VisibleForTesting;
 
 import java.sql.Driver;
 import java.sql.DriverManager;
@@ -42,11 +43,11 @@ public class ConnectionPool {
     }
 
     /**
-     * Constructor initializes semaphoreControlSize, available and taken collections of Connection.
+     * Constructor initializes semaphoreControlSize, available and taken collections of Connections.
      * Create set value connections via ProxyConnectionFactory.
      */
-
-    private ConnectionPool() {
+    @VisibleForTesting
+    public ConnectionPool() {
         if (instance != null) {
             LOGGER.fatal("Trying to create second instance of singleton class ConnectionPool");
             throw new RuntimeException("Instance of ConnectionPool already exists");

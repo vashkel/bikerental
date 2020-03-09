@@ -31,7 +31,7 @@ public class RentalCostDAOImpl implements RentalCostDAO {
     private static final String SQL_DELETE_RENTAL_COST = "DELETE * FROM rental_cost WHERE id=?";
     private static final String SQL_GET_PRICE_BY_BIKETEPE_ID = "SELECT price FROM rental_cost WHERE bike_type_id = ?";
     @Override
-    public void add(RentalCost entity) throws DAOException {
+    public boolean add(RentalCost entity) throws DAOException {
         ProxyConnection connection = null;
         PreparedStatement statement = null;
         try {
@@ -49,6 +49,7 @@ public class RentalCostDAOImpl implements RentalCostDAO {
         } finally {
             close(statement,connection);
         }
+        return false;
     }
 
     @Override

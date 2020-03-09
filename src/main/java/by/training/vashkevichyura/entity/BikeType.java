@@ -8,6 +8,7 @@ public class BikeType extends Entity {
     public BikeTypeEnum getType() {
         return type;
     }
+
     public void setType(BikeTypeEnum type) {
         this.type = type;
     }

@@ -32,7 +32,7 @@ public class RentalPointDAOImpl implements RentalPointDAO {
     private static final String SQL_DELETE_RENTAL_POINT = "DELETE * FROM rental_points WHERE id=?";
 
     @Override
-    public void add(RentalPoint entity) throws DAOException {
+    public boolean add(RentalPoint entity) throws DAOException {
         ProxyConnection connection = null;
         PreparedStatement statement = null;
         try {
@@ -51,6 +51,7 @@ public class RentalPointDAOImpl implements RentalPointDAO {
         } finally {
             close(statement, connection);
         }
+        return false;
     }
 
     @Override

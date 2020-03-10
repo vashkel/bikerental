@@ -54,11 +54,11 @@
 </div>
 
 <form action="BikeRentalServlet" method="post" id="addBikeForm">
-
-    <div style="text-align:center; margin-bottom:10px; font-size: 28px">
-        <c:out value="${addBikeLabel}">:</c:out>
-    </div>
     <div class="col-md-8" id="addBike" style="float: left">
+
+        <div style="text-align:center; margin-bottom:10px; font-size: 28px">
+            <c:out value="${addBikeLabel}">:</c:out>
+        </div>
         <!--   ---------------------------------- bike brand ------------------------------------------ -->
         <div class="row">
             <div class="col-md-6">

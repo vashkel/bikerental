@@ -24,23 +24,23 @@ public class ChangePasswordCommand implements ActionCommand {
     public Router execute(HttpServletRequest request) {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-        Router router = new Router(user.getRole().getHomePage(),Router.RouterType.FORWARD);
+        Router router = new Router(user.getRole().getHomePage(), Router.RouterType.FORWARD);
 
         String currentPassword = request.getParameter(RequestParameter.CURRENT_PASSWORD.parameter());
         String password = request.getParameter(RequestParameter.PASSWORD.parameter());
 
-        try{
+        try {
             Order order = orderService.findOpenOrder(user);
-            request.setAttribute(RequestParameter.ORDER.parameter(),order);
-            if(order != null){
-                AddTimeParameterToRequest.addParam(request,order.getStartDate());
+            request.setAttribute(RequestParameter.ORDER.parameter(), order);
+            if (order != null) {
+                AddTimeParameterToRequest.addParam(request, order.getStartDate());
             }
-            userService.changePassword(currentPassword,password,user);
-            request.setAttribute(RequestParameter.MESSAGE.parameter(),PageMessage.PASSWORD_CHANGED.message());
-            request.setAttribute(RequestParameter.LOGIN_MENU.parameter(),false);
+            userService.changePassword(currentPassword, password, user);
+            request.setAttribute(RequestParameter.MESSAGE.parameter(), PageMessage.PASSWORD_CHANGED.message());
+            request.setAttribute(RequestParameter.LOGIN_MENU.parameter(), false);
         } catch (ServiceException e) {
-            request.setAttribute(RequestParameter.ERROR.parameter(),e);
-            request.setAttribute(RequestParameter.LOGIN_MENU.parameter(),false);
+            request.setAttribute(RequestParameter.ERROR.parameter(), e);
+            request.setAttribute(RequestParameter.LOGIN_MENU.parameter(), false);
         }
         return router;
     }

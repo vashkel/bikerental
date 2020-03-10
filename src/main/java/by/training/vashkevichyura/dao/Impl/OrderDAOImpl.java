@@ -7,22 +7,18 @@ import by.training.vashkevichyura.dao.OrderDAO;
 import by.training.vashkevichyura.entity.*;
 import by.training.vashkevichyura.exception.ConnectionPoolException;
 import by.training.vashkevichyura.exception.DAOException;
-import by.training.vashkevichyura.util.DateFormatter;
 import by.training.vashkevichyura.util.PageInfo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TimeZone;
 
 public class OrderDAOImpl implements OrderDAO {
     private static final Logger LOGGER = LogManager.getLogger();
@@ -97,8 +93,8 @@ public class OrderDAOImpl implements OrderDAO {
         try {
             connection = ConnectionPool.getInstance().getConnection();
             statement = connection.prepareStatement(SQL_ADD_ORDER);
-            statement.setDate(1, Date.valueOf(entity.getStartDate()));
-            statement.setDate(2, Date.valueOf(entity.getEndDate()));
+            statement.setTimestamp(1, Timestamp.valueOf(entity.getStartDate()));
+            statement.setTimestamp(2, Timestamp.valueOf(entity.getEndDate()));
             statement.setLong(3, entity.getUser().getId());
             statement.setLong(4, entity.getBike().getId());
             statement.setString(5, entity.getStatus().name());
@@ -156,10 +152,6 @@ public class OrderDAOImpl implements OrderDAO {
                 Order order = parseOrder(resultSet);
                 orders.add(order);
             }
-            for (Order order : orders) {
-                order.setStartDate(DateFormatter.modifyDateTimeToView(order.getStartDate()));
-                order.setEndDate(DateFormatter.modifyDateTimeToView(order.getEndDate()));
-            }
         } catch (ConnectionPoolException e) {
             LOGGER.error("Exception occurred while creating connection, ", e);
             throw new DAOException("Exception occurred while creating connection, ", e);
@@ -179,8 +171,8 @@ public class OrderDAOImpl implements OrderDAO {
         try {
             connection = ConnectionPool.getInstance().getConnection();
             statement = connection.prepareStatement(SQL_UPDATE_ORDER);
-            statement.setDate(1, Date.valueOf(order.getStartDate()));
-            statement.setDate(2, Date.valueOf(order.getEndDate()));
+            statement.setTimestamp(1, Timestamp.valueOf(order.getStartDate()));
+            statement.setTimestamp(2, Timestamp.valueOf(order.getEndDate()));
             statement.setLong(3, order.getUser().getId());
             statement.setLong(4, order.getBike().getId());
             statement.setString(5, order.getStatus().name());
@@ -227,7 +219,7 @@ public class OrderDAOImpl implements OrderDAO {
             statement = connection.prepareStatement(SQL_CLOSE_ORDER);
             connection.setAutoCommit(false);
 
-            statement.setString(1, DateFormatter.getCurrentDateTimeToDB());
+            statement.setTimestamp(1, Timestamp.valueOf(LocalDateTime.now()));
             statement.setString(2, OrderStatusEnum.FINISHED.name());
             statement.setLong(3, order.getId());
             int operation1 = statement.executeUpdate();
@@ -282,10 +274,6 @@ public class OrderDAOImpl implements OrderDAO {
                 Order order = parseOrder(resultSet);
                 orders.add(order);
             }
-            for (Order order : orders) {
-                order.setStartDate(DateFormatter.modifyDateTimeToView(order.getStartDate()));
-                order.setEndDate(DateFormatter.modifyDateTimeToView(order.getEndDate()));
-            }
         } catch (ConnectionPoolException e) {
             LOGGER.error("Exception occurred while creating connection, ", e);
             throw new DAOException("Exception occurred while creating connection, ", e);
@@ -314,10 +302,6 @@ public class OrderDAOImpl implements OrderDAO {
                 Order order = parseOrder(resultSet);
                 allOrdersByLimit.add(order);
             }
-            for (Order order : allOrdersByLimit) {
-                order.setStartDate(DateFormatter.modifyDateTimeToView(order.getStartDate()));
-                order.setEndDate(DateFormatter.modifyDateTimeToView(order.getEndDate()));
-            }
         } catch (ConnectionPoolException e) {
             LOGGER.error("Exception occurred while creating connection, ", e);
             throw new DAOException("Exception occurred while creating connection, ", e);
@@ -337,7 +321,7 @@ public class OrderDAOImpl implements OrderDAO {
         try {
             connection = ConnectionPool.getInstance().getConnection();
             statement = connection.prepareStatement(SQL_CREATE_ORDER);
-            statement.setString(1, order.getStartDate());
+            statement.setTimestamp(1, Timestamp.valueOf(order.getStartDate()));
             statement.setLong(2, order.getUser().getId());
             statement.setLong(3, order.getBike().getId());
             statement.setString(4, order.getStatus().name());
@@ -417,12 +401,10 @@ public class OrderDAOImpl implements OrderDAO {
         Order order = new Order();
         try {
             order.setId(resultSet.getLong("o.id"));
-            DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
-            df.setTimeZone(TimeZone.getTimeZone("UTC"));
-            Timestamp startDateTimestamp = resultSet.getTimestamp("o.start_date");
-            order.setStartDate(df.format(startDateTimestamp));
-            order.setEndDate(String.valueOf(resultSet.getTimestamp("o.end_date")));
-
+            order.setStartDate(resultSet.getTimestamp("o.start_date").toLocalDateTime());
+            if(resultSet.getTimestamp("o.end_date")!= null) {
+                order.setEndDate(resultSet.getTimestamp("o.end_date").toLocalDateTime());
+            }
             User user = new User();
             user.setId(resultSet.getLong("u.id"));
             user.setName(resultSet.getString("u.name"));

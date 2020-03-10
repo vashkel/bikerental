@@ -25,8 +25,8 @@ CREATE INDEX bikes_rental_points__fk
 
 CREATE TABLE IF NOT EXISTS orders(
   'id' bigint NOT NULL PRIMARY KEY AUTO_INCREMENT UNIQUE,
-  'start_date' datetime NOT NULL ,
-  'end_date' datetime  DEFAULT NULL ,
+  'start_date' timestamp NOT NULL ,
+  'end_date' timestamp  DEFAULT NULL ,
   'user_id' bigint NOT NULL ,
   'bike_id' bigint NOT NULL ,
   'status' enum('active','finished') NOT NULL ,

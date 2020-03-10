@@ -1,28 +1,30 @@
 package by.training.vashkevichyura.entity;
 
+import java.time.LocalDateTime;
+
 public class Order extends Entity{
     private static final long serialVersionUID = -4434253064260999533L;
-    private String startDate;
-    private String endDate;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
     private double sum;
     private User user;
     private Bike bike;
     private OrderStatusEnum status;
 
 
-    public String getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
 
-    public String getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
 

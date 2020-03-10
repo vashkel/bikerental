@@ -41,8 +41,8 @@ public class BikeTypeDAOImpl implements BikeTypeDAO {
             statement.setString(1, bikeType.getType().name());
             statement.executeUpdate();
         } catch (ConnectionPoolException e) {
-            LOGGER.error("Exception occurred while creating connection, " , e);
-            throw new DAOException("Exception occurred while creating connection, " , e);
+            LOGGER.error("Exception occurred while creating connection, ", e);
+            throw new DAOException("Exception occurred while creating connection, ", e);
         } catch (SQLException e) {
             LOGGER.error("Add BikeType to DB error", e);
             throw new DAOException("Add BikeType to DB error", e);
@@ -123,8 +123,8 @@ public class BikeTypeDAOImpl implements BikeTypeDAO {
             LOGGER.error("update bikeType error", e);
             throw new DAOException("update bikeType error", e);
         } catch (ConnectionPoolException e) {
-            LOGGER.error("Exception occurred while creating connection, " , e);
-            throw new DAOException("Exception occurred while creating connection, " , e);
+            LOGGER.error("Exception occurred while creating connection, ", e);
+            throw new DAOException("Exception occurred while creating connection, ", e);
         } finally {
             close(statement, connection);
         }
@@ -143,8 +143,8 @@ public class BikeTypeDAOImpl implements BikeTypeDAO {
             LOGGER.error("delete BikeType error", e);
             throw new DAOException("delete BikeType error", e);
         } catch (ConnectionPoolException e) {
-            LOGGER.error("Exception occurred while creating connection, " , e);
-            throw new DAOException("Exception occurred while creating connection, " , e);
+            LOGGER.error("Exception occurred while creating connection, ", e);
+            throw new DAOException("Exception occurred while creating connection, ", e);
         } finally {
             close(statement, connection);
         }

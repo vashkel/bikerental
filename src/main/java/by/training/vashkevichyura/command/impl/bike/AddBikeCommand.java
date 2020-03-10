@@ -43,29 +43,29 @@ public class AddBikeCommand implements ActionCommand {
         BikeType bikeType = null;
         RentalPoint rentalPoint = null;
 
-        if(bikeTypeId ==0 || rentalPointId == 0){
+        if (bikeTypeId == 0 || rentalPointId == 0) {
             request.setAttribute(RequestParameter.ERROR.parameter(), ExceptionMessage.NULL_RENTAL_POINT_ID_OR_BIKE_TYPE_ID.message());
             return new Router(PageConstant.ADMIN_PAGE, Router.RouterType.FORWARD);
         }
-            try {
-                bikeType = bikeTypeService.getById(bikeTypeId);
-                rentalPoint = rentalPointService.getById(rentalPointId);
-            } catch (ServiceException e) {
-               LOGGER.error("Exception occurred while getting bikeType and rentalPoint for bike : ", e);
-            }
-            bike.setBrand(brand);
-            bike.setModel(model);
-            bike.setBikeType(bikeType);
-            bike.setRentalPoint(rentalPoint);
-            bike.setBikeStatus(BikeStatusEnum.FREE);
-
-            try {
-                bikeService.addSomeBikes(bike, countBikes);
-                request.setAttribute(RequestParameter.MESSAGE.parameter(),PageMessage.BIKE_ADDED.message());
-                return new Router(PageConstant.ADMIN_PAGE, Router.RouterType.FORWARD);
-            } catch (ServiceException e) {
-                LOGGER.error("Exception occurred while adding some bikes : ", e);
-                return new Router(PageConstant.ERROR_PAGE, Router.RouterType.REDIRECT);
-            }
+        try {
+            bikeType = bikeTypeService.getById(bikeTypeId);
+            rentalPoint = rentalPointService.getById(rentalPointId);
+        } catch (ServiceException e) {
+            LOGGER.error("Exception occurred while getting bikeType and rentalPoint for bike : ", e);
         }
+        bike.setBrand(brand);
+        bike.setModel(model);
+        bike.setBikeType(bikeType);
+        bike.setRentalPoint(rentalPoint);
+        bike.setBikeStatus(BikeStatusEnum.FREE);
+
+        try {
+            bikeService.addSomeBikes(bike, countBikes);
+            request.setAttribute(RequestParameter.MESSAGE.parameter(), PageMessage.BIKE_ADDED.message());
+            return new Router(PageConstant.ADMIN_PAGE, Router.RouterType.FORWARD);
+        } catch (ServiceException e) {
+            LOGGER.error("Exception occurred while adding some bikes : ", e);
+            return new Router(PageConstant.ERROR_PAGE, Router.RouterType.REDIRECT);
+        }
+    }
     }

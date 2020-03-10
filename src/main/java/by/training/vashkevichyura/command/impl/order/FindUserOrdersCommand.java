@@ -29,11 +29,11 @@ public class FindUserOrdersCommand implements ActionCommand {
         try {
             List<Order> orderList = orderService.getAllOrderByUser(user);
             request.setAttribute(RequestParameter.ORDER_LIST.parameter(), orderList);
-            router = new Router(PageConstant.USER_ORDERS_CATALOG_PAGE,Router.RouterType.FORWARD);
+            router = new Router(PageConstant.USER_ORDERS_CATALOG_PAGE, Router.RouterType.FORWARD);
 
         } catch (ServiceException e) {
             LOGGER.error("Get orders by user error : ", e);
-            router = new Router(PageConstant.ERROR_PAGE,Router.RouterType.REDIRECT);
+            router = new Router(PageConstant.ERROR_PAGE, Router.RouterType.REDIRECT);
         }
         return router;
     }

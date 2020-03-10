@@ -5,10 +5,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class ActionFactory {
-   private static Logger LOGGER = LogManager.getLogger(ActionFactory.class);
+    private static Logger LOGGER = LogManager.getLogger(ActionFactory.class);
 
     public static ActionCommand defineCommand(String commandName) {
-
         ActionCommand currentCommand = new EmptyCommand();
         if (commandName == null || commandName.isEmpty()) {
             return currentCommand;
@@ -20,8 +19,6 @@ public class ActionFactory {
             LOGGER.error("Illegal command, " + e.getMessage());
         }
         return currentCommand;
-
     }
-
 }
 

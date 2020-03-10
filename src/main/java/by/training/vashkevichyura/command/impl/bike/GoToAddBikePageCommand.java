@@ -24,7 +24,7 @@ public class GoToAddBikePageCommand implements ActionCommand {
     private RentalPointService rentalPointService = ServiceFactory.getRentalPointService();
 
     @Override
-    public Router execute(HttpServletRequest request){
+    public Router execute(HttpServletRequest request) {
         Router router;
         try {
             List<String> brands = bikeService.getAllBikeBrand();
@@ -34,13 +34,13 @@ public class GoToAddBikePageCommand implements ActionCommand {
             request.setAttribute(RequestParameter.BIKE_TYPE_LIST.parameter(), bikeTypes);
 
             List<RentalPoint> rentalPoints = rentalPointService.getRentalPoints();
-            request.setAttribute(RequestParameter.RENTAL_POINT_LIST.parameter(),rentalPoints);
+            request.setAttribute(RequestParameter.RENTAL_POINT_LIST.parameter(), rentalPoints);
 
-            router = new Router(PageConstant.ADD_BIKE_PAGE,Router.RouterType.FORWARD);
+            router = new Router(PageConstant.ADD_BIKE_PAGE, Router.RouterType.FORWARD);
 
         } catch (ServiceException e) {
             LOGGER.error("Exception occurred while adding bike: " + e);
-            router = new Router(PageConstant.ERROR_PAGE,Router.RouterType.REDIRECT);
+            router = new Router(PageConstant.ERROR_PAGE, Router.RouterType.REDIRECT);
 
         }
         return router;

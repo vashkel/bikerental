@@ -7,7 +7,6 @@ public class PageInfo {
 
 
         private final static long ITEM_LAST_ID_FOR_FIRST_PAGE = 0;
-        private final static String DEFAULT_ELEMENT_ON_PAGE_KEY = "default_element_on_page";
         private final static int DEFAULT_ELEMENTS_COUNT_ON_PAGE = 15;
 
         /**

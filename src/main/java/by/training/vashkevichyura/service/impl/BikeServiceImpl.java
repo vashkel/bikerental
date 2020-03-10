@@ -1,9 +1,7 @@
 package by.training.vashkevichyura.service.impl;
 
 import by.training.vashkevichyura.dao.BikeDAO;
-import by.training.vashkevichyura.dao.BikeTypeDAO;
 import by.training.vashkevichyura.dao.DAOFactory;
-import by.training.vashkevichyura.dao.RentalPointDAO;
 import by.training.vashkevichyura.entity.Bike;
 import by.training.vashkevichyura.exception.DAOException;
 import by.training.vashkevichyura.exception.ServiceException;
@@ -18,8 +16,7 @@ public class BikeServiceImpl implements BikeService {
 
     private static final Logger LOGGER = LogManager.getLogger(BikeServiceImpl.class);
     private BikeDAO bikeDAO = DAOFactory.getBikeDAO();
-    private BikeTypeDAO bikeTypeDAO = DAOFactory.getBikeTypeDAO();
-    private RentalPointDAO rentalPointDAO = DAOFactory.getRentalPointDAO();
+
 
     @Override
     public List<Bike> getAllBike(PageInfo pageInfo) throws ServiceException {
@@ -73,7 +70,7 @@ public class BikeServiceImpl implements BikeService {
     @Override
     public void addSomeBikes(Bike bike, int countBike) throws ServiceException {
         try {
-            bikeDAO.addSomeBikes(bike,countBike);
+            bikeDAO.addSomeBikes(bike, countBike);
         } catch (DAOException e) {
             LOGGER.error("Add some bikes Exception: " + e);
             throw new ServiceException("Add some bikes Exception: " + e.getMessage());
@@ -85,7 +82,7 @@ public class BikeServiceImpl implements BikeService {
         Bike bike;
         try {
             bike = bikeDAO.getBikeByTypeAndRentalPointId(bikeTypeId, rentalPointId);
-            if(bike != null){
+            if (bike != null) {
                 bikeDAO.changeBikeStatusOnBusy(bike);
             }
         } catch (DAOException e) {
@@ -98,7 +95,7 @@ public class BikeServiceImpl implements BikeService {
     @Override
     public void changeStatusById(long bikeId, String status) throws ServiceException {
         try {
-            bikeDAO.changeStatusById(bikeId,status);
+            bikeDAO.changeStatusById(bikeId, status);
         } catch (DAOException e) {
             LOGGER.error("Exception occurred while change bike status by id: " + e);
             throw new ServiceException("Exception occurred while change bike status by id: " + e.getMessage());

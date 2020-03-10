@@ -15,6 +15,6 @@ public class ChangeLocalizationCommand implements ActionCommand {
         HttpSession session = request.getSession(true);
         User user = (User) session.getAttribute("user");
         session.setAttribute(SessionParameter.LOCAL.parameter(), request.getParameter(SessionParameter.LOCAL.parameter()));
-        return new Router(user.getRole().getHomePage(),Router.RouterType.FORWARD);
+        return new Router(user.getRole().getHomePage(), Router.RouterType.FORWARD);
     }
 }

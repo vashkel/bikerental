@@ -7,21 +7,48 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90c1688a-1441-4184-ab0d-dbe3e4204b7b" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/by/training/vashkevichyura/dao/Impl/BikeDAOImplTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/util/Dates.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a3745058-93c9-47be-bd22-40e91969eb9b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a3745058-93c9-47be-bd22-40e91969eb9b.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/connection/ConnectionPool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/connection/ConnectionPool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/controller/filter/PageRedirectSecurityFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/controller/filter/PageRedirectSecurityFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/AbstractDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/AbstractDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/ActionFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/ActionFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/application/ChangeLocalizationCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/application/ChangeLocalizationCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/application/PaginationCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/application/PaginationCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/bike/AddBikeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/bike/AddBikeCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/bike/BikeCatalogCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/bike/BikeCatalogCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/bike/ChangeStatusBikeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/bike/ChangeStatusBikeCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/bike/DeleteBikeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/bike/DeleteBikeCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/bike/GetPriceBikeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/bike/GetPriceBikeCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/bike/GoToAddBikePageCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/bike/GoToAddBikePageCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/order/AllOrdersPageCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/order/AllOrdersPageCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/order/CloseOrderCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/order/CloseOrderCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/order/CreateOrderCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/order/CreateOrderCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/order/FindUserOrdersCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/order/FindUserOrdersCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/rentalpoint/RentalPointCatalogCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/rentalpoint/RentalPointCatalogCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/user/ChangePasswordCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/user/ChangePasswordCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/user/ChangeStateUserCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/user/ChangeStateUserCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/user/DeleteUserCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/user/DeleteUserCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/user/GetAllUsersCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/user/GetAllUsersCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/user/LoginCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/user/LoginCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/user/RegisterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/user/RegisterCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/Impl/BikeDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/Impl/BikeDAOImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/Impl/BikeTypeDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/Impl/BikeTypeDAOImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/Impl/OrderDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/Impl/OrderDAOImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/Impl/RentalCostDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/Impl/RentalCostDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/Impl/RentalPointDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/Impl/RentalPointDAOImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/Impl/UserDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/Impl/UserDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/entity/BikeType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/entity/BikeType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/entity/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/entity/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/entity/RentalCost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/entity/RentalCost.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/service/impl/BikeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/service/impl/BikeServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/service/impl/BikeTypeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/service/impl/BikeTypeServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/service/impl/OrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/service/impl/OrderServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/tag/CalculationTimeTag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/tag/CalculationTimeTag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/util/AddTimeParameterToRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/util/AddTimeParameterToRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/util/DateFormatter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/util/PageInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/util/PageInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/sql/bike-rental.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/bike-rental.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/order/orderCatalog.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/order/orderCatalog.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/order/ordersReport.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/order/ordersReport.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tld/custom.tld" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tld/custom.tld" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -126,20 +153,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ProxyConnection.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/connection/ProxyConnection.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="25" column="75" selection-start-line="25" selection-start-column="75" selection-end-line="25" selection-end-column="75" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ConnectionPool.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/connection/ConnectionPool.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="799">
-              <caret line="47" column="7" lean-forward="true" selection-start-line="47" selection-start-column="7" selection-end-line="47" selection-end-column="7" />
+            <state relative-caret-position="289">
+              <caret line="114" lean-forward="true" selection-start-line="15" selection-end-line="114" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -150,17 +168,89 @@
       <file leaf-file-name="BikeDAOImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/Impl/BikeDAOImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="310" column="13" lean-forward="true" selection-start-line="310" selection-start-column="13" selection-end-line="310" selection-end-column="14" />
+            <state relative-caret-position="313">
+              <caret line="342" lean-forward="true" selection-start-line="23" selection-end-line="342" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BikeDAOImplTest.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/by/training/vashkevichyura/dao/Impl/BikeDAOImplTest.java">
+      <file leaf-file-name="BikeTypeDAOImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/Impl/BikeTypeDAOImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="639">
-              <caret line="109" selection-start-line="109" selection-end-line="109" />
+            <state relative-caret-position="289">
+              <caret line="153" column="1" selection-start-line="33" selection-start-column="4" selection-end-line="153" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RentalCostDAOImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/Impl/RentalCostDAOImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="193" lean-forward="true" selection-start-line="21" selection-start-column="3" selection-end-line="193" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserDAOImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/Impl/UserDAOImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="356" lean-forward="true" selection-start-line="22" selection-start-column="3" selection-end-line="356" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BikeServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/service/impl/BikeServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="313">
+              <caret line="118" lean-forward="true" selection-start-line="15" selection-end-line="118" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BikeTypeServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/service/impl/BikeTypeServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="313">
+              <caret line="42" lean-forward="true" selection-start-line="13" selection-end-line="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RentalCostServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/service/impl/RentalCostServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="313">
+              <caret line="26" lean-forward="true" selection-start-line="10" selection-end-line="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RentalPointServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/service/impl/RentalPointServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="313">
+              <caret line="42" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/service/impl/UserServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="313">
+              <caret line="196" lean-forward="true" selection-start-line="19" selection-end-line="196" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CalculationTimeTag.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/tag/CalculationTimeTag.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-234">
+              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -168,65 +258,128 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AbstractDAO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/AbstractDAO.java">
+      <file leaf-file-name="Order.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/entity/Order.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="164">
-              <caret line="149" column="13" lean-forward="true" selection-start-line="149" selection-start-column="13" selection-end-line="149" selection-end-column="13" />
+            <state relative-caret-position="374">
+              <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AddTimeParameterToRequest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/util/AddTimeParameterToRequest.java">
+      <file leaf-file-name="Router.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/controller/Router.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="29" selection-start-line="29" selection-end-line="29" />
+            <state relative-caret-position="170">
+              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OrderDAOImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/Impl/OrderDAOImpl.java">
+      <file leaf-file-name="RentalPointCatalogCommand.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/rentalpoint/RentalPointCatalogCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="421" selection-start-line="421" selection-end-line="421" />
+            <state relative-caret-position="289">
+              <caret line="36" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="36" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OrderServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/service/impl/OrderServiceImpl.java">
+      <file leaf-file-name="ChangePasswordCommand.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/user/ChangePasswordCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="453">
-              <caret line="74" lean-forward="true" selection-start-line="74" selection-end-line="74" />
+            <state relative-caret-position="289">
+              <caret line="47" lean-forward="true" selection-start-line="17" selection-end-line="47" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BikeType.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/entity/BikeType.java">
+      <file leaf-file-name="ChangeStateUserCommand.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/user/ChangeStateUserCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="33" column="28" selection-start-line="33" selection-start-column="28" selection-end-line="33" selection-end-column="28" />
+            <state relative-caret-position="289">
+              <caret line="37" lean-forward="true" selection-start-line="16" selection-end-line="37" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RentalPoint.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/entity/RentalPoint.java">
+      <file leaf-file-name="DeleteUserCommand.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/user/DeleteUserCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
+            <state relative-caret-position="313">
+              <caret line="34" lean-forward="true" selection-start-line="15" selection-start-column="1" selection-end-line="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GetAllUsersCommand.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/user/GetAllUsersCommand.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="313">
+              <caret line="36" lean-forward="true" selection-start-line="16" selection-end-line="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoginCommand.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/user/LoginCommand.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="313">
+              <caret line="76" lean-forward="true" selection-start-line="36" selection-end-line="76" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LogoutCommand.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/user/LogoutCommand.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RegisterCommand.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/user/RegisterCommand.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="313">
+              <caret line="54" lean-forward="true" selection-start-line="19" selection-end-line="54" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ActionFactory.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/ActionFactory.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-17">
+              <caret line="9" column="67" selection-start-line="9" selection-start-column="67" selection-end-line="9" selection-end-column="67" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CommandEnum.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/CommandEnum.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="25" column="12" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PageConstant.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/PageConstant.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-78">
               <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/entity/User.java">
+      <file leaf-file-name="PageMessage.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/PageMessage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1581">
-              <caret line="133" column="29" selection-start-line="133" selection-start-column="29" selection-end-line="133" selection-end-column="29" />
+            <state relative-caret-position="-146">
+              <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -244,15 +397,13 @@
         <option value="TestNG Test Class" />
         <option value="JUnit5 Test Class" />
         <option value="Jsp File" />
-        <option value="Class" />
         <option value="JUnit4 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>c:out</find>
-      <find>LoginCommand</find>
       <find>rentalpointid</find>
       <find>Evaluate</find>
       <find>getId</find>
@@ -281,6 +432,8 @@
       <find>SELECT IN</find>
       <find>System</find>
       <find>//</find>
+      <find>modifyDateTimeToView</find>
+      <find>execute</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -289,57 +442,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/ChangeStatusBikeCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/BikeDAO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/Impl/UserDAOImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/bike/ChangeStatusBikeCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/user/ChangeStateUserCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/DeleteBikeCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/service/BikeService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/service/impl/BikeServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/PageMessage.java" />
-        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/bike/DeleteBikeCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/user/LoginCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/PageConstant.java" />
-        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/bike/GetPriceBikeCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/CommandEnum.java" />
-        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/util/AddTimeParameterToRequest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/order/OrderBikeCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/application/GoToHomePageCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/resources/js1/editUser.js" />
-        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/application/ChangeLocalizationCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/controller/filter/PageRedirectSecurityFilter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/order/AllOrdersPageCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/bike/bikeCatalog.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/entity/UserRoleEnum.java" />
-        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/controller/BikeRentalServlet.java" />
-        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/ActionFactory.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/error/error.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/error/error404.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/order/createBikeOrder.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/order/orderCatalog.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/order/ordersReport.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user/admin.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user/login.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user/userCatalog.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jspf/editUser.jspf" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jspf/message.jspf" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user/user.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jspf/pagination.jspf" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jspf/password.jspf" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jspf/smallMenu.jspf" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jspf/userPersonalData.jspf" />
-        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/order/CloseOrderCommand.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/entity/BikeType.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/entity/User.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/connection/ConnectionPool.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/test/java/by/training/vashkevichyura/dao/Impl/BikeDAOImplTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/Impl/BikeDAOImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/sql/bike-rental.sql" />
-        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/Impl/OrderDAOImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/AbstractDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/entity/Order.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/order/OrderBikeCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/application/GoToHomePageCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/util/DateFormatter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/Impl/OrderDAOImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/service/impl/OrderServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/util/AddTimeParameterToRequest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/tag/CalculationTimeTag.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/tld/custom.tld" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/order/orderCatalog.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/order/ordersReport.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/util/Dates.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/util/PageInfo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/util/PageInfoHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/entity/RentalCost.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/sql/bike-rental.sql" />
+        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/order/AllOrdersPageCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/order/CloseOrderCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/order/CreateOrderCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/order/FindUserOrdersCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/bike/AddBikeCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/bike/BikeCatalogCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/bike/ChangeStatusBikeCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/bike/DeleteBikeCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/bike/GetPriceBikeCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/bike/GoToAddBikePageCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/application/ChangeLocalizationCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/application/PaginationCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/rentalpoint/RentalPointCatalogCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/user/ChangePasswordCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/user/ChangeStateUserCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/user/DeleteUserCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/user/GetAllUsersCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/user/LoginCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/user/RegisterCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/ActionFactory.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/Impl/BikeDAOImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/Impl/BikeTypeDAOImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/Impl/RentalCostDAOImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/Impl/UserDAOImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/service/impl/BikeServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/service/impl/BikeTypeServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/service/impl/UserServiceImpl.java" />
       </list>
     </option>
   </component>
@@ -375,7 +528,7 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="785" />
+    <option name="x" value="4" />
     <option name="width" value="811" />
     <option name="height" value="858" />
   </component>
@@ -427,7 +580,90 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="vashkevichyura" type="462c0819:PsiDirectoryNode" />
+              <item name="command" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="vashkevichyura" type="462c0819:PsiDirectoryNode" />
+              <item name="command" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="vashkevichyura" type="462c0819:PsiDirectoryNode" />
+              <item name="command" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="vashkevichyura" type="462c0819:PsiDirectoryNode" />
+              <item name="command" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
+              <item name="bike" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="vashkevichyura" type="462c0819:PsiDirectoryNode" />
+              <item name="command" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
+              <item name="order" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="vashkevichyura" type="462c0819:PsiDirectoryNode" />
+              <item name="command" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
+              <item name="rentalpoint" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="vashkevichyura" type="462c0819:PsiDirectoryNode" />
+              <item name="command" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="vashkevichyura" type="462c0819:PsiDirectoryNode" />
               <item name="connection" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="vashkevichyura" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
@@ -456,6 +692,43 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="vashkevichyura" type="462c0819:PsiDirectoryNode" />
               <item name="entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="vashkevichyura" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="vashkevichyura" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="vashkevichyura" type="462c0819:PsiDirectoryNode" />
+              <item name="tag" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="vashkevichyura" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
@@ -504,6 +777,42 @@
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="js1" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="jsp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="jsp" type="462c0819:PsiDirectoryNode" />
+              <item name="order" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Finalproject" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="tld" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="bikerental" type="b2602c69:ProjectViewProjectNode" />
@@ -1000,7 +1309,7 @@
       <workItem from="1582967639117" duration="40000" />
       <workItem from="1582967707393" duration="66338000" />
       <workItem from="1583499484810" duration="21719000" />
-      <workItem from="1583586426423" duration="14977000" />
+      <workItem from="1583586426423" duration="42896000" />
     </task>
     <task id="LOCAL-00001" summary="/">
       <created>1581321063862</created>
@@ -1079,7 +1388,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583560417966</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="//">
+      <created>1583732249232</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1583732249232</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1115,7 +1431,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1349562000" />
+    <option name="totallyTimeSpent" value="1377481000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1139,25 +1455,25 @@
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info id="Capture Tool" order="7" />
       <window_info id="Designer" order="1" />
-      <window_info anchor="right" id="Database" order="14" sideWeight="0.4963145" weight="0.47236505" />
+      <window_info anchor="right" id="Database" order="14" sideWeight="0.4963145" weight="0.7904884" />
       <window_info anchor="right" id="JSF" order="1" show_stripe_button="false" weight="0.32756326" />
       <window_info id="Structure" order="5" sideWeight="0.5088161" side_tool="true" weight="0.18573265" />
       <window_info anchor="right" id="Ant Build" order="6" weight="0.25" />
       <window_info id="UI Designer" order="3" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.6722365" weight="0.41899443" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.6722365" weight="0.41833812" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49871466" weight="0.32402235" />
-      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.7095116" weight="0.36173186" />
+      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.7095116" visible="true" weight="0.34776536" />
       <window_info anchor="right" id="Palette&#9;" order="9" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="bottom" id="Java Enterprise" order="10" sideWeight="0.49933422" weight="0.32714286" />
       <window_info anchor="right" id="Capture Analysis" order="10" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8039846" weight="0.30726257" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8039846" weight="0.4385475" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.32681563" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49800265" weight="0.34" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4857143" weight="0.31940874" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4857143" visible="true" weight="0.12532134" />
       <window_info anchor="right" id="Bean Validation" order="2" show_stripe_button="false" weight="0.3288948" />
       <window_info id="Web" order="6" sideWeight="0.5049702" side_tool="true" weight="0.311054" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49800265" weight="0.29189944" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49800265" weight="0.2905028" />
       <window_info anchor="right" id="Theme Preview" order="11" />
       <window_info id="Favorites" order="4" sideWeight="0.51428574" side_tool="true" weight="0.3382157" />
       <window_info anchor="right" id="Coverage" order="12" sideWeight="0.5036855" side_tool="true" weight="0.22879177" />
@@ -1165,7 +1481,7 @@
       <window_info anchor="right" x="0" y="0" width="152" height="658" id="Documentation" order="13" weight="0.32756326" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="SQL Generator" order="15" show_stripe_button="false" weight="0.32122904" />
-      <window_info anchor="bottom" id="Database Console" order="14" sideWeight="0.5565553" weight="0.32402235" />
+      <window_info anchor="bottom" id="Database Console" order="14" sideWeight="0.5565553" weight="0.3226257" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="7" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="4" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -1176,7 +1492,7 @@
       <window_info anchor="bottom" id="Database Console" order="14" sideWeight="0.5565553" weight="0.32402235" />
       <window_info anchor="right" id="Palette" order="8" />
       <window_info id="Image Layers" order="2" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8039846" visible="true" weight="0.30802292" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8039846" weight="0.30726257" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="6" weight="0.25" />
       <window_info id="UI Designer" order="3" />
@@ -1187,7 +1503,7 @@
       <window_info anchor="right" id="JSF" order="1" show_stripe_button="false" weight="0.32756326" />
       <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.3277635" side_tool="true" weight="0.4441341" />
       <window_info anchor="right" id="Key Promoter X" order="3" sideWeight="0.49891067" weight="0.32969153" />
-      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.7095116" weight="0.3624642" />
+      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.7095116" visible="true" weight="0.36173186" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49871466" weight="0.32402235" />
       <window_info anchor="right" x="0" y="0" width="152" height="658" id="Documentation" order="13" weight="0.32756326" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="7" weight="0.25" />
@@ -1195,10 +1511,10 @@
       <window_info anchor="bottom" id="Java Enterprise" order="10" sideWeight="0.49933422" weight="0.32714286" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.32681563" />
-      <window_info anchor="right" auto_hide="true" id="Maven Projects" order="5" sideWeight="0.49885583" weight="0.32133332" />
+      <window_info anchor="right" auto_hide="true" id="Maven Projects" order="5" sideWeight="0.49885583" weight="0.3206941" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49800265" weight="0.29189944" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4857143" visible="true" weight="0.3195739" />
-      <window_info anchor="right" id="Database" order="14" sideWeight="0.4963145" weight="0.47270307" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4857143" weight="0.31940874" />
+      <window_info anchor="right" id="Database" order="14" sideWeight="0.4963145" weight="0.47236505" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info id="Web" order="6" sideWeight="0.5049702" side_tool="true" weight="0.311054" />
       <window_info anchor="right" id="Palette&#9;" order="9" />
@@ -1207,7 +1523,7 @@
       <window_info anchor="right" id="CDI" order="0" show_stripe_button="false" weight="0.32756326" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Coverage" order="12" sideWeight="0.5036855" side_tool="true" weight="0.22879177" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.6722365" weight="0.41977078" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.6722365" weight="0.41899443" />
       <window_info anchor="bottom" id="SQL Generator" order="15" show_stripe_button="false" weight="0.32122904" />
       <window_info anchor="right" id="Bean Validation" order="2" show_stripe_button="false" weight="0.3288948" />
     </layout-to-restore>
@@ -1283,49 +1599,51 @@
           <properties />
           <option name="timeStamp" value="121" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/service/impl/BikeServiceImpl.java</url>
-          <line>111</line>
+          <line>108</line>
           <properties />
           <option name="timeStamp" value="185" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/service/impl/OrderServiceImpl.java</url>
           <line>67</line>
           <properties />
           <option name="timeStamp" value="193" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/Impl/BikeDAOImpl.java</url>
-          <line>317</line>
-          <properties />
-          <option name="timeStamp" value="200" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/by/training/vashkevichyura/dao/Impl/BikeDAOImplTest.java</url>
           <line>120</line>
           <properties />
           <option name="timeStamp" value="202" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/Impl/OrderDAOImpl.java</url>
-          <line>421</line>
+          <url>file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/user/LoginCommand.java</url>
+          <line>52</line>
           <properties />
-          <option name="timeStamp" value="203" />
+          <option name="timeStamp" value="210" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>jar://$MAVEN_REPOSITORY$/mysql/mysql-connector-java/8.0.11/mysql-connector-java-8.0.11-sources.jar!/com/mysql/cj/jdbc/result/ResultSetImpl.java</url>
+          <line>964</line>
+          <properties class="com.mysql.cj.jdbc.result.ResultSetImpl" method="getTimestamp">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="216" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/util/AddTimeParameterToRequest.java</url>
-          <line>12</line>
+          <line>8</line>
           <properties class="by.training.vashkevichyura.util.AddTimeParameterToRequest" method="addParam">
             <option name="EMULATED" value="true" />
           </properties>
-          <option name="timeStamp" value="192" />
+          <option name="timeStamp" value="217" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="204" />
+      <option name="time" value="218" />
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
@@ -1371,176 +1689,31 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/ActionFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/controller/BikeRentalServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="43" column="51" selection-start-line="43" selection-start-column="51" selection-end-line="43" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/bike/bikeCatalog.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1428">
-          <caret line="84" selection-start-line="84" selection-end-line="84" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/error/error.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="9" selection-start-column="9" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/order/createBikeOrder.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-101">
-          <caret line="74" column="18" selection-start-line="74" selection-start-column="18" selection-end-line="74" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/error/error404.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/order/orderCatalog.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="86">
-          <caret line="21" column="12" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/order/ordersReport.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user/login.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2227">
-          <caret line="131" column="7" selection-end-line="131" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user/userCatalog.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="29" selection-start-line="30" selection-start-column="29" selection-end-line="30" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jspf/editUser.jspf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="44" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user/admin.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="986">
-          <caret line="58" column="36" selection-start-line="58" selection-start-column="36" selection-end-line="58" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user/user.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/util/PageInfoHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1054">
-          <caret line="62" column="27" selection-start-line="62" selection-start-column="27" selection-end-line="62" selection-end-column="27" />
+          <caret line="101" lean-forward="true" selection-start-line="101" selection-end-line="101" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jspf/message.jspf">
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/util/RequestParameter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/util/RequestParameterHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="4" column="21" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="22" />
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jspf/pagination.jspf">
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/entity/UserStateEnum.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="44" column="18" selection-start-line="44" selection-start-column="18" selection-end-line="44" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jspf/password.jspf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1003">
-          <caret line="59" column="9" selection-start-line="59" selection-start-column="9" selection-end-line="59" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jspf/smallMenu.jspf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="49" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jspf/userPersonalData.jspf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="108" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://a3745058-93c9-47be-bd22-40e91969eb9b/schema/bike-rental/table/orders">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/order/CloseOrderCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="39" column="90" selection-start-line="39" selection-start-column="90" selection-end-line="39" selection-end-column="90" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/ActionCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="24" column="12" lean-forward="true" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/logs/logs.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6313" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/application/EmptyCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/application/ChangeLocalizationCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="17" column="82" selection-start-line="17" selection-start-column="82" selection-end-line="17" selection-end-column="82" />
+        <state relative-caret-position="34">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -1551,191 +1724,355 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/entity/RentalPoint.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/entity/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1581">
+        <state relative-caret-position="693">
           <caret line="133" column="29" selection-start-line="133" selection-start-column="29" selection-end-line="133" selection-end-column="29" />
         </state>
       </provider>
     </entry>
-    <entry file="das://a3745058-93c9-47be-bd22-40e91969eb9b/schema/bike-rental/table/bike_types">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/by/training/vashkevichyura/dao/Impl/UserDAOImplTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/entity/RentalPoint.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-531">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        <state relative-caret-position="-316">
+          <caret line="29" column="34" lean-forward="true" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="34" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#263#264#0" expanded="true" />
+            <element signature="e#290#291#0" expanded="true" />
+            <element signature="e#330#331#0" expanded="true" />
+            <element signature="e#362#363#0" expanded="true" />
+            <element signature="e#395#396#0" expanded="true" />
+            <element signature="e#424#425#0" expanded="true" />
+            <element signature="e#468#469#0" expanded="true" />
+            <element signature="e#504#505#0" expanded="true" />
+            <element signature="e#534#535#0" expanded="true" />
+            <element signature="e#560#561#0" expanded="true" />
+            <element signature="e#598#599#0" expanded="true" />
+            <element signature="e#628#629#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/by/training/vashkevichyura/service/impl/UserServiceImplTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/entity/RentalCost.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-182">
-          <caret line="26" column="26" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/entity/BikeType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="33" column="28" selection-start-line="33" selection-start-column="28" selection-end-line="33" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/mockito/mockito-core/3.2.4/mockito-core-3.2.4.jar!/org/mockito/internal/creation/bytebuddy/MockMethodInterceptor.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="69" selection-start-line="69" selection-end-line="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="21" lean-forward="true" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://a3745058-93c9-47be-bd22-40e91969eb9b/schema/bike-rental/table/bikes">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/testng/testng/7.0.0/testng-7.0.0-sources.jar!/org/testng/internal/TestInvoker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="594" selection-start-line="594" selection-end-line="594" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/sql/bike_rental_data.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="41" column="108" lean-forward="true" selection-end-line="41" selection-end-column="108" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/a3745058-93c9-47be-bd22-40e91969eb9b/console_6.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-680">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/sql/bike-rental.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="37" column="21" selection-start-line="37" selection-start-column="21" selection-end-line="37" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/connection/ProxyConnection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="25" column="75" selection-start-line="25" selection-start-column="75" selection-end-line="25" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/connection/ConnectionPool.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
-          <caret line="47" column="7" lean-forward="true" selection-start-line="47" selection-start-column="7" selection-end-line="47" selection-end-column="7" />
+        <state relative-caret-position="-44">
+          <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#250#251#0" expanded="true" />
+            <element signature="e#281#282#0" expanded="true" />
+            <element signature="e#331#332#0" expanded="true" />
+            <element signature="e#371#372#0" expanded="true" />
+            <element signature="e#403#404#0" expanded="true" />
+            <element signature="e#431#432#0" expanded="true" />
+            <element signature="e#473#474#0" expanded="true" />
+            <element signature="e#507#508#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_151/src.zip!/java/sql/ResultSet.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/entity/OrderStatusEnum.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="707" column="23" selection-start-line="707" selection-start-column="23" selection-end-line="707" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/mysql/mysql-connector-java/8.0.11/mysql-connector-java-8.0.11-sources.jar!/com/mysql/cj/jdbc/result/ResultSetImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="933" column="21" selection-start-line="933" selection-start-column="21" selection-end-line="933" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_151/src.zip!/java/lang/String.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="2992" column="25" selection-start-line="2992" selection-start-column="25" selection-end-line="2992" selection-end-column="25" />
-          <folding>
-            <element signature="e#117893#117894#0" expanded="true" />
-            <element signature="e#117955#117956#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://a3745058-93c9-47be-bd22-40e91969eb9b/schema/bike-rental/table/users">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
+        <state relative-caret-position="34">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/Impl/OrderDAOImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="421" selection-start-line="421" selection-end-line="421" />
+        <state relative-caret-position="-1066">
+          <caret line="221" column="75" selection-start-line="221" selection-start-column="75" selection-end-line="221" selection-end-column="75" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/util/AddTimeParameterToRequest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/sql/bike-rental.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
+        <state relative-caret-position="46">
+          <caret line="28" column="22" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/service/impl/OrderServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/order/AllOrdersPageCommand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="74" lean-forward="true" selection-start-line="74" selection-end-line="74" />
+        <state relative-caret-position="337">
+          <caret line="45" lean-forward="true" selection-start-line="20" selection-end-line="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/order/CloseOrderCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="54" lean-forward="true" selection-start-line="22" selection-end-line="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/order/CreateOrderCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="44" lean-forward="true" selection-start-line="19" selection-end-line="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/order/FindUserOrdersCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="40" lean-forward="true" selection-start-line="19" selection-end-line="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/order/OrderBikeCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="65" lean-forward="true" selection-start-line="23" selection-end-line="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/bike/AddBikeCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="70" selection-start-line="24" selection-end-line="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/bike/BikeCatalogCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="39" selection-start-line="18" selection-end-line="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/bike/ChangeStatusBikeCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="37" lean-forward="true" selection-start-line="16" selection-end-line="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/bike/DeleteBikeCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="34" lean-forward="true" selection-start-line="15" selection-end-line="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/bike/GetPriceBikeCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="47" lean-forward="true" selection-start-line="16" selection-end-line="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/bike/GoToAddBikePageCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="48" lean-forward="true" selection-start-line="19" selection-end-line="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/application/ChangeLocalizationCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="20" lean-forward="true" selection-start-line="10" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/application/EmptyCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="23" lean-forward="true" selection-start-line="9" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/application/GoToHomePageCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="48" lean-forward="true" selection-start-line="20" selection-end-line="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/application/PaginationCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="51" column="1" lean-forward="true" selection-start-line="51" selection-start-column="1" selection-end-line="51" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/rentalpoint/RentalPointCatalogCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="36" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/user/ChangePasswordCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="47" lean-forward="true" selection-start-line="17" selection-end-line="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/user/ChangeStateUserCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="37" lean-forward="true" selection-start-line="16" selection-end-line="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/user/DeleteUserCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="34" lean-forward="true" selection-start-line="15" selection-start-column="1" selection-end-line="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/user/GetAllUsersCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="36" lean-forward="true" selection-start-line="16" selection-end-line="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/user/LoginCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="76" lean-forward="true" selection-start-line="36" selection-end-line="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/user/LogoutCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/impl/user/RegisterCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="54" lean-forward="true" selection-start-line="19" selection-end-line="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/ActionFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-17">
+          <caret line="9" column="67" selection-start-line="9" selection-start-column="67" selection-end-line="9" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/CommandEnum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="25" column="12" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/PageConstant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-78">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/command/PageMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-146">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/connection/ConnectionPool.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="114" lean-forward="true" selection-start-line="15" selection-end-line="114" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/controller/Router.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/Impl/BikeDAOImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="310" column="13" lean-forward="true" selection-start-line="310" selection-start-column="13" selection-end-line="310" selection-end-column="14" />
+        <state relative-caret-position="313">
+          <caret line="342" lean-forward="true" selection-start-line="23" selection-end-line="342" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/AbstractDAO.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/Impl/BikeTypeDAOImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="149" column="13" lean-forward="true" selection-start-line="149" selection-start-column="13" selection-end-line="149" selection-end-column="13" />
+        <state relative-caret-position="289">
+          <caret line="153" column="1" selection-start-line="33" selection-start-column="4" selection-end-line="153" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/by/training/vashkevichyura/dao/Impl/BikeDAOImplTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/Impl/RentalCostDAOImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="639">
-          <caret line="109" selection-start-line="109" selection-end-line="109" />
+        <state relative-caret-position="289">
+          <caret line="193" lean-forward="true" selection-start-line="21" selection-start-column="3" selection-end-line="193" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/dao/Impl/UserDAOImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="356" lean-forward="true" selection-start-line="22" selection-start-column="3" selection-end-line="356" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/service/impl/BikeServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="118" lean-forward="true" selection-start-line="15" selection-end-line="118" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/service/impl/BikeTypeServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="42" lean-forward="true" selection-start-line="13" selection-end-line="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/service/impl/RentalCostServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="26" lean-forward="true" selection-start-line="10" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/service/impl/RentalPointServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="42" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/service/impl/UserServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="196" lean-forward="true" selection-start-line="19" selection-end-line="196" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/tag/CalculationTimeTag.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-234">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/training/vashkevichyura/entity/Order.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
         </state>
       </provider>
     </entry>

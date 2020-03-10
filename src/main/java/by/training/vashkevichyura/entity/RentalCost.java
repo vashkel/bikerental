@@ -25,12 +25,18 @@ public class RentalCost extends Entity {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         RentalCost that = (RentalCost) o;
 
-        if (Double.compare(that.price, price) != 0) return false;
+        if (Double.compare(that.price, price) != 0) {
+            return false;
+        }
         return bikeType.equals(that.bikeType);
     }
 

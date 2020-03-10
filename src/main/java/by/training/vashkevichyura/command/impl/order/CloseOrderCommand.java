@@ -36,17 +36,17 @@ public class CloseOrderCommand implements ActionCommand {
             boolean isPerformed = orderService.closeOrder(order);
             if (isPerformed) {
                 session.removeAttribute("order");
-                request.setAttribute(RequestParameter.MESSAGE.parameter(),PageMessage.ORDER_CLOSE.message());
-                router = new Router(user.getRole().getHomePage(),Router.RouterType.FORWARD);
+                request.setAttribute(RequestParameter.MESSAGE.parameter(), PageMessage.ORDER_CLOSE.message());
+                router = new Router(user.getRole().getHomePage(), Router.RouterType.FORWARD);
                 User updatedUser = userService.getByID(user.getId());
                 session.removeAttribute("user");
-                session.setAttribute("user",updatedUser);
+                session.setAttribute("user", updatedUser);
             } else {
                 session.setAttribute(RequestParameter.ERROR.parameter(), ExceptionMessage.ORDER_NOT_EXIST);
             }
         } catch (ServiceException e) {
             LOGGER.error("Exception occurred while closing order,", e);
-            router = new Router(PageConstant.ERROR_PAGE,Router.RouterType.REDIRECT);
+            router = new Router(PageConstant.ERROR_PAGE, Router.RouterType.REDIRECT);
 
         }
         return router;

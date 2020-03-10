@@ -58,16 +58,16 @@ public class LoginCommand implements ActionCommand {
             }
             if (UserRoleEnum.ADMIN.equals(user.getRole())) {
                 List<RentalPoint> rentalPointList = rentalPointService.getRentalPoints();
-                List <BikeType> bikeTypesList = bikeTypeService.getBikeTypes();
-                session.setAttribute(RequestParameter.RENTAL_POINT_LIST.parameter(),rentalPointList);
-                session.setAttribute(RequestParameter.BIKE_TYPE_LIST.parameter(),bikeTypesList);
+                List<BikeType> bikeTypesList = bikeTypeService.getBikeTypes();
+                session.setAttribute(RequestParameter.RENTAL_POINT_LIST.parameter(), rentalPointList);
+                session.setAttribute(RequestParameter.BIKE_TYPE_LIST.parameter(), bikeTypesList);
             }
             session.setAttribute(SessionParameter.USER.parameter(), user);
             router = new Router(user.getRole().getHomePage(), Router.RouterType.FORWARD);
         } catch (ServiceException e) {
             LOGGER.error("An exception occurred while get user data : ", e);
             request.setAttribute(RequestParameter.ERROR.parameter(), ExceptionMessage.LOGIN_PASSWORD.message());
-            router =new Router(PageConstant.ERROR_PAGE, Router.RouterType.REDIRECT);
+            router = new Router(PageConstant.ERROR_PAGE, Router.RouterType.REDIRECT);
         }
         return router;
     }

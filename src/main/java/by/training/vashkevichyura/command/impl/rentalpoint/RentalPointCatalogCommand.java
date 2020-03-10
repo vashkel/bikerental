@@ -20,16 +20,16 @@ public class RentalPointCatalogCommand implements ActionCommand {
     private RentalPointService rentalPointService = ServiceFactory.getRentalPointService();
 
     @Override
-    public Router execute(HttpServletRequest request)  {
+    public Router execute(HttpServletRequest request) {
         Router router;
         List<RentalPoint> rentalPoints;
         try {
             rentalPoints = rentalPointService.getRentalPoints();
             request.setAttribute(RequestParameter.RENTAL_POINT_LIST.parameter(), rentalPoints);
-            router = new Router(PageConstant.RENTAL_POINTS_CATALOG_PAGE,Router.RouterType.FORWARD);
+            router = new Router(PageConstant.RENTAL_POINTS_CATALOG_PAGE, Router.RouterType.FORWARD);
         } catch (ServiceException e) {
             LOGGER.error("Get all rental points exception " + e.getMessage());
-            router = router = new Router(PageConstant.ERROR_PAGE,Router.RouterType.REDIRECT);
+            router = router = new Router(PageConstant.ERROR_PAGE, Router.RouterType.REDIRECT);
         }
         return router;
     }

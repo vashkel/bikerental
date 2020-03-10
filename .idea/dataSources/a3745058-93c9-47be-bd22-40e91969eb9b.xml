@@ -1231,13 +1231,13 @@
     </column>
     <column id="305" parent="284" name="start_date">
       <Position>2</Position>
-      <DataType>datetime|0s</DataType>
+      <DataType>timestamp|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="306" parent="284" name="end_date">
       <Position>3</Position>
-      <DataType>datetime|0s</DataType>
+      <DataType>timestamp|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="307" parent="284" name="user_id">

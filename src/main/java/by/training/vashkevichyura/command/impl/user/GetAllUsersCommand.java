@@ -28,7 +28,7 @@ public class GetAllUsersCommand implements ActionCommand {
             request.getSession().setAttribute(RequestParameter.USERS_LIST.parameter(), allUsers);
             router = new Router(PageConstant.USER_CATALOG_PAGE, Router.RouterType.FORWARD);
         } catch (ServiceException e) {
-            LOGGER.error("Exception occurred while getting all users: " , e);
+            LOGGER.error("Exception occurred while getting all users: ", e);
             router = new Router(PageConstant.ERROR_PAGE, Router.RouterType.REDIRECT);
         }
         return router;

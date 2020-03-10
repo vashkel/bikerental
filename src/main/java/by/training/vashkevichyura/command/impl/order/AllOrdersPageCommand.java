@@ -21,9 +21,10 @@ import java.util.List;
 public class AllOrdersPageCommand implements ActionCommand {
     private static final Logger LOGGER = LogManager.getLogger(AllOrdersPageCommand.class);
     private OrderService orderService = ServiceFactory.getOrderService();
+
     @Override
     public Router execute(HttpServletRequest request) {
-        Router router = new Router(PageConstant.ORDER_REPORTS_PAGE,Router.RouterType.FORWARD);
+        Router router = new Router(PageConstant.ORDER_REPORTS_PAGE, Router.RouterType.FORWARD);
 
         List<Order> orderListAllUsers;
         PageInfo pageInfo = PageInfoHandler.pageInfoInit(request);
@@ -33,7 +34,7 @@ public class AllOrdersPageCommand implements ActionCommand {
             PageInfoHandler.handleAndAddToSession(pageInfo, request, orderListAllUsers);
         } catch (ServiceException e) {
             LOGGER.error("Exception occurred while find orders, ", e);
-            router = new Router(PageConstant.ERROR_PAGE,Router.RouterType.REDIRECT);
+            router = new Router(PageConstant.ERROR_PAGE, Router.RouterType.REDIRECT);
             request.setAttribute(RequestParameter.ERROR.parameter(), e);
             //remove the parameter to make paging menu unavailable.
             HttpSession session = request.getSession(true);

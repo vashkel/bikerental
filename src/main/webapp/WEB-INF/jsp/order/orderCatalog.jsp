@@ -47,8 +47,8 @@
                             <tbody>
                             <tr>
                                 <td><c:out value="${item.id}"/></td>
-                                <td><c:out value="${item.startDate}"/></td>
-                                <td><c:out value="${item.endDate}"/></td>
+                                <td>${ctg:formatLocalDateTime(item.startDate, 'dd.MM.yyyy HH:mm:ss' )}</td>
+                                <td>${ctg:formatLocalDateTime(item.endDate, 'dd.MM.yyyy HH:mm:ss' )}</td>
                                 <td><c:out value="${item.user.name}"/></td>
                                 <td><c:out value="${item.bike.bikeType.type}"/></td>
                                 <td><c:out value="${item.sum}"/></td>

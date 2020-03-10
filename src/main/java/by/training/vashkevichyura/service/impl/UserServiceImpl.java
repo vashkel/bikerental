@@ -20,9 +20,10 @@ import java.util.Map;
 public class UserServiceImpl implements UserService {
 
     private static final Logger LOGGER = LogManager.getLogger(UserServiceImpl.class);
-    private final UserDAO userDAO ;
+    private final UserDAO userDAO;
     private final HashGenerator HASH_GENERATOR;
-    public UserServiceImpl(UserDAO userDAO,HashGenerator hashGenerator) {
+
+    public UserServiceImpl(UserDAO userDAO, HashGenerator hashGenerator) {
         this.HASH_GENERATOR = hashGenerator;
         this.userDAO = userDAO;
     }
@@ -121,8 +122,8 @@ public class UserServiceImpl implements UserService {
         try {
             users = userDAO.getAll();
         } catch (DAOException e) {
-            LOGGER.error("get all users error" ,e);
-            throw new ServiceException("get all users error" ,e.getMessage());
+            LOGGER.error("get all users error", e);
+            throw new ServiceException("get all users error", e.getMessage());
         }
         return users;
     }
@@ -130,17 +131,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUserById(long id) throws ServiceException {
         try {
-         userDAO.deleteUserById(id);
+            userDAO.deleteUserById(id);
         } catch (DAOException e) {
-           LOGGER.error("delete user error : " + e);
-           throw new ServiceException("delete user error : " + e.getMessage());
+            LOGGER.error("delete user error : " + e);
+            throw new ServiceException("delete user error : " + e.getMessage());
         }
     }
 
     @Override
     public void changeStateById(long userId, String state) throws ServiceException {
         try {
-            userDAO.changeStateById(userId,state);
+            userDAO.changeStateById(userId, state);
         } catch (DAOException e) {
             LOGGER.error("change status of user error : " + e);
             throw new ServiceException("change status of user error : " + e.getMessage());
@@ -162,14 +163,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public void changePassword(String currentPassword, String newPassword, User user) throws ServiceException {
         Pair<String, String> hashSalt;
-        if(!Validator.validatePassword(currentPassword)){
+        if (!Validator.validatePassword(currentPassword)) {
             throw new ServiceException(ExceptionMessage.VALIDATION_ERROR.toString());
         }
-        try{
-               User currentUser = login(user.getLogin(),currentPassword);
-               if (currentUser == null) {
-               throw new ServiceException(ExceptionMessage.CURRENT_PASSW_WRONG.toString());
-               }
+        try {
+            User currentUser = login(user.getLogin(), currentPassword);
+            if (currentUser == null) {
+                throw new ServiceException(ExceptionMessage.CURRENT_PASSW_WRONG.toString());
+            }
             if (!Validator.validatePassword(newPassword)) {
                 throw new ServiceException(ExceptionMessage.VALIDATION_ERROR.toString());
             }
@@ -185,7 +186,7 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    }
+}
 
 
 

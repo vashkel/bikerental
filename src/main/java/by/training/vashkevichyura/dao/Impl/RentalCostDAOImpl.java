@@ -30,6 +30,7 @@ public class RentalCostDAOImpl implements RentalCostDAO {
     private static final String SQL_UPDATE_RENTAL_COST = "UPDATE rental_cost SET bike_type_id=?,price=? WHERE id=?";
     private static final String SQL_DELETE_RENTAL_COST = "DELETE * FROM rental_cost WHERE id=?";
     private static final String SQL_GET_PRICE_BY_BIKETEPE_ID = "SELECT price FROM rental_cost WHERE bike_type_id = ?";
+
     @Override
     public boolean add(RentalCost entity) throws DAOException {
         ProxyConnection connection = null;
@@ -37,17 +38,17 @@ public class RentalCostDAOImpl implements RentalCostDAO {
         try {
             connection = ConnectionPool.getInstance().getConnection();
             statement = connection.prepareStatement(SQL_ADD_RENTAL_COST);
-            statement.setLong(1,entity.getBikeType().getId());
-            statement.setDouble(2,entity.getPrice());
+            statement.setLong(1, entity.getBikeType().getId());
+            statement.setDouble(2, entity.getPrice());
             statement.executeUpdate();
         } catch (ConnectionPoolException e) {
-            LOGGER.error("Exception occurred while creating connection, " , e);
-            throw new DAOException("Exception occurred while creating connection, " , e);
+            LOGGER.error("Exception occurred while creating connection, ", e);
+            throw new DAOException("Exception occurred while creating connection, ", e);
         } catch (SQLException e) {
             LOGGER.error("An exception occurred in the layer DAO while add rental cost to the DB ", e);
             throw new DAOException("An exception occurred in the layer DAO while add rental cost to the DB ", e);
         } finally {
-            close(statement,connection);
+            close(statement, connection);
         }
         return false;
     }
@@ -57,18 +58,18 @@ public class RentalCostDAOImpl implements RentalCostDAO {
         RentalCost rentalCost = new RentalCost();
         ProxyConnection connection = null;
         PreparedStatement statement = null;
-        ResultSet resultSet =null;
+        ResultSet resultSet = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
             statement = connection.prepareStatement(SQL_GET_RENTAL_COST_BY_ID);
-            statement.setLong(1,id);
-           resultSet = statement.executeQuery();
-            while (resultSet.next()){
-               rentalCost = parseRentalCost(resultSet);
+            statement.setLong(1, id);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                rentalCost = parseRentalCost(resultSet);
             }
         } catch (ConnectionPoolException e) {
-            LOGGER.error("Exception occurred while creating connection, " , e);
-            throw new DAOException("Exception occurred while creating connection, " , e);
+            LOGGER.error("Exception occurred while creating connection, ", e);
+            throw new DAOException("Exception occurred while creating connection, ", e);
         } catch (SQLException e) {
             LOGGER.error("An exception occurred in the layer DAO while getting  rental cost ByID from the DB", e);
             throw new DAOException("An exception occurred in the layer DAO while getting  rental cost ByID from the DB", e);
@@ -87,13 +88,13 @@ public class RentalCostDAOImpl implements RentalCostDAO {
         try {
             connection = ConnectionPool.getInstance().getConnection();
             statement = connection.prepareStatement(SQL_GET_ALL_RENTAL_COSTS);
-           resultSet = statement.executeQuery();
-            while (resultSet.next()){
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
                 RentalCost rentalCost = parseRentalCost(resultSet);
                 rentalCostsList.add(rentalCost);
             }
         } catch (ConnectionPoolException e) {
-            LOGGER.error("Exception occurred while creating connection, " , e);
+            LOGGER.error("Exception occurred while creating connection, ", e);
             throw new DAOException("Exception occurred while creating connection, ", e);
         } catch (SQLException e) {
             LOGGER.error("An exception occurred in the layer DAO while getting  all rental costs from the DB", e);
@@ -112,18 +113,18 @@ public class RentalCostDAOImpl implements RentalCostDAO {
         try {
             connection = ConnectionPool.getInstance().getConnection();
             statement = connection.prepareStatement(SQL_UPDATE_RENTAL_COST);
-            statement.setLong(1,rentalCost.getBikeType().getId());
-            statement.setDouble(2,rentalCost.getPrice());
-            statement.setLong(3,rentalCost.getId());
+            statement.setLong(1, rentalCost.getBikeType().getId());
+            statement.setDouble(2, rentalCost.getPrice());
+            statement.setLong(3, rentalCost.getId());
             statement.executeUpdate();
         } catch (ConnectionPoolException e) {
-            LOGGER.error("Exception occurred while creating connection, " , e);
-            throw new DAOException("Exception occurred while creating connection, " , e);
+            LOGGER.error("Exception occurred while creating connection, ", e);
+            throw new DAOException("Exception occurred while creating connection, ", e);
         } catch (SQLException e) {
             LOGGER.error("An exception occurred in the layer DAO while updating rental cost to the DB", e);
             throw new DAOException("An exception occurred in the layer DAO while updating rental cost to the DB", e);
         } finally {
-            close(statement,connection);
+            close(statement, connection);
         }
     }
 
@@ -137,13 +138,13 @@ public class RentalCostDAOImpl implements RentalCostDAO {
             statement.setLong(1, entity.getId());
             statement.execute();
         } catch (ConnectionPoolException e) {
-            LOGGER.error("Exception occurred while creating connection, " , e);
-            throw new DAOException("Exception occurred while creating connection, " , e);
+            LOGGER.error("Exception occurred while creating connection, ", e);
+            throw new DAOException("Exception occurred while creating connection, ", e);
         } catch (SQLException e) {
             LOGGER.error("An exception occurred in the layer DAO while delete rental cost from the DB", e);
             throw new DAOException("An exception occurred in the layer DAO while delete rental cost from the DB", e);
         } finally {
-            close(statement,connection);
+            close(statement, connection);
         }
     }
 
@@ -157,24 +158,24 @@ public class RentalCostDAOImpl implements RentalCostDAO {
         try {
             connection = ConnectionPool.getInstance().getConnection();
             statement = connection.prepareStatement(SQL_GET_PRICE_BY_BIKETEPE_ID);
-            statement.setLong(1,bikeTypeId);
+            statement.setLong(1, bikeTypeId);
             resultSet = statement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 price = resultSet.getDouble(1);
             }
         } catch (ConnectionPoolException e) {
-            LOGGER.error("Exception occurred while creating connection, " , e);
-            throw new DAOException("Exception occurred while creating connection, " , e);
+            LOGGER.error("Exception occurred while creating connection, ", e);
+            throw new DAOException("Exception occurred while creating connection, ", e);
         } catch (SQLException e) {
             LOGGER.error("An exception occurred in the layer DAO while get price by bikeType id from the DB", e);
             throw new DAOException("An exception occurred in the layer DAO while get price by bikeType id from the DB", e);
-        }finally {
-            close(statement,connection,resultSet);
+        } finally {
+            close(statement, connection, resultSet);
         }
         return price;
     }
 
-    private RentalCost parseRentalCost(ResultSet resultSet)  {
+    private RentalCost parseRentalCost(ResultSet resultSet) {
         RentalCost rentalCost = new RentalCost();
         try {
             rentalCost.setId(resultSet.getLong("rental_cost.id"));

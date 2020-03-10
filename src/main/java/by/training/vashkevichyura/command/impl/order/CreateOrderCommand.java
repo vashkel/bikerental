@@ -19,26 +19,26 @@ import java.util.List;
 
 public class CreateOrderCommand implements ActionCommand {
 
-   private static final Logger LOGGER = LogManager.getLogger(CreateOrderCommand.class);
-   private RentalPointService rentalPointService = ServiceFactory.getRentalPointService();
-   private BikeTypeService bikeTypeService = ServiceFactory.getBikeTypeService();
+    private static final Logger LOGGER = LogManager.getLogger(CreateOrderCommand.class);
+    private RentalPointService rentalPointService = ServiceFactory.getRentalPointService();
+    private BikeTypeService bikeTypeService = ServiceFactory.getBikeTypeService();
 
     @Override
     public Router execute(HttpServletRequest request) {
 
         Router router;
         try {
-            List <RentalPoint> rentalPointList = rentalPointService.getRentalPoints();
-            List <BikeType> bikeTypesList = bikeTypeService.getBikeTypes();
+            List<RentalPoint> rentalPointList = rentalPointService.getRentalPoints();
+            List<BikeType> bikeTypesList = bikeTypeService.getBikeTypes();
 
             request.setAttribute(RequestParameter.RENTAL_POINT_LIST.parameter(), rentalPointList);
             request.setAttribute(RequestParameter.BIKE_TYPE_LIST.parameter(), bikeTypesList);
-            router = new Router(PageConstant.CREATE_ORDER_PAGE,Router.RouterType.FORWARD);
+            router = new Router(PageConstant.CREATE_ORDER_PAGE, Router.RouterType.FORWARD);
         } catch (ServiceException e) {
-            LOGGER.error("Get data error, " ,e);
-            router = new Router(PageConstant.ERROR_PAGE,Router.RouterType.REDIRECT);
+            LOGGER.error("Get data error, ", e);
+            router = new Router(PageConstant.ERROR_PAGE, Router.RouterType.REDIRECT);
 
         }
         return router;
-  }
+    }
 }

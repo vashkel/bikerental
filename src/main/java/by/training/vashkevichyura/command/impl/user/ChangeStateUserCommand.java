@@ -25,11 +25,11 @@ public class ChangeStateUserCommand implements ActionCommand {
         String state = request.getParameter("state");
         try {
             userService.changeStateById(userId, state);
-            router = new Router(PageConstant.REDIRECT_TO_USER_CATALOG_PAGE,Router.RouterType.FORWARD);
+            router = new Router(PageConstant.REDIRECT_TO_USER_CATALOG_PAGE, Router.RouterType.FORWARD);
             request.setAttribute(SessionParameter.MESSAGE.parameter(), PageMessage.USER_STATE_CHANGED.message());
         } catch (ServiceException e) {
             LOGGER.error("An error occurred while the user was changing state , " + e.getMessage());
-            router = new Router(PageConstant.ERROR_PAGE,Router.RouterType.REDIRECT);
+            router = new Router(PageConstant.ERROR_PAGE, Router.RouterType.REDIRECT);
             request.setAttribute(RequestParameter.ERROR.parameter(), e.toString());
         }
         return router;

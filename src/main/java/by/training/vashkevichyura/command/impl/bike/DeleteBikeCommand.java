@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 public class DeleteBikeCommand implements ActionCommand {
     private final static Logger LOGGER = LogManager.getLogger(DeleteBikeCommand.class);
     private BikeService bikeService = ServiceFactory.getBikeService();
+
     @Override
     public Router execute(HttpServletRequest request) {
         Router router;

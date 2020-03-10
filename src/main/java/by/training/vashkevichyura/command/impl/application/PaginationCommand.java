@@ -20,23 +20,23 @@ public class PaginationCommand implements ActionCommand {
     private final static int PREV_PAGE = -1;
 
     @Override
-    public Router execute(HttpServletRequest request)  {
+    public Router execute(HttpServletRequest request) {
         Router router;
         HttpSession httpSession = request.getSession(true);
         PageInfo pageInfo = (PageInfo) httpSession.getAttribute(SessionParameter.PAGE_INFO.parameter());
         if (pageInfo == null) {
-            LOGGER.error( "pageInfo object not found");
-            router = new Router(PageConstant.ERROR_PAGE,Router.RouterType.REDIRECT);
+            LOGGER.error("pageInfo object not found");
+            router = new Router(PageConstant.ERROR_PAGE, Router.RouterType.REDIRECT);
         } else {
             pageInfo.setChangePageFlag(true);
             String pageAction = request.getParameter(RequestParameter.PAGE_ACTION.parameter());
-            router = new Router(pageInfo.getPreviousUrlWithParam(),Router.RouterType.FORWARD);
+            router = new Router(pageInfo.getPreviousUrlWithParam(), Router.RouterType.FORWARD);
             if (RequestParameter.PREVIOUS_PAGE.parameter().equals(pageAction)) {
                 if (pageInfo.getCurrentPage() > 1) {
-                    pageInfo.removeLastPagePoint();		//removing 2 line because user change direction of paging
+                    pageInfo.removeLastPagePoint();        //removing 2 line because user change direction of paging
                     pageInfo.removeLastPagePoint();
                     pageInfo.setPageAction(PREV_PAGE);
-                } else {		// protection against F5
+                } else {        // protection against F5
                     pageInfo.removeLastPagePoint();
                     pageInfo.setPageAction(PREV_PAGE);
                 }
@@ -46,6 +46,7 @@ public class PaginationCommand implements ActionCommand {
                     pageInfo.setPageAction(NEXT_PAGE);
                 }
             }
-        } return router;
+        }
+        return router;
     }
 }

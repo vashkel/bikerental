@@ -9,11 +9,11 @@ import by.training.vashkevichyura.entity.User;
 import by.training.vashkevichyura.exception.DAOException;
 import by.training.vashkevichyura.exception.ServiceException;
 import by.training.vashkevichyura.service.OrderService;
-import by.training.vashkevichyura.util.DateFormatter;
 import by.training.vashkevichyura.util.PageInfo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class OrderServiceImpl implements OrderService {
@@ -48,7 +48,7 @@ public class OrderServiceImpl implements OrderService {
     public Order createOrder(Bike bike, User user, double totalPrice) throws ServiceException {
 
         Order order = new Order();
-        order.setStartDate(DateFormatter.getCurrentDateTimeToDB());
+        order.setStartDate(LocalDateTime.now());
         order.setUser(user);
         order.setBike(bike);
         order.setStatus(OrderStatusEnum.ACTIVE);

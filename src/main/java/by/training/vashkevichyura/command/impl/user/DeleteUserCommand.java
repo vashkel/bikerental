@@ -28,6 +28,7 @@ public class DeleteUserCommand implements ActionCommand {
         } catch (ServiceException e) {
             LOGGER.error("An error occurred while the user was deleting, " + e.getMessage());
             router = new Router(PageConstant.ERROR_PAGE, Router.RouterType.REDIRECT);
-        } return router;
+        }
+        return router;
     }
 }

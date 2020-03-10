@@ -44,22 +44,22 @@ public class UserDAOImpl implements UserDAO {
         try {
             connection = ConnectionPool.getInstance().getConnection();
             statement = connection.prepareStatement(SQL_ADD_USER);
-            statement.setString(1,entity.getName());
-            statement.setString(2,entity.getSurname());
-            statement.setString(3,entity.getLogin());
-            statement.setString(4,entity.getPassword());
-            statement.setString(5,entity.getSalt());
-            statement.setString(6,entity.getTel());
-            statement.setDouble(7,entity.getBalance());
-            statement.setString(8,entity.getEmail());
+            statement.setString(1, entity.getName());
+            statement.setString(2, entity.getSurname());
+            statement.setString(3, entity.getLogin());
+            statement.setString(4, entity.getPassword());
+            statement.setString(5, entity.getSalt());
+            statement.setString(6, entity.getTel());
+            statement.setDouble(7, entity.getBalance());
+            statement.setString(8, entity.getEmail());
         } catch (ConnectionPoolException e) {
-            LOGGER.error("Exception occurred while creating connection, " , e);
-            throw new DAOException("Exception occurred while creating connection, " , e);
+            LOGGER.error("Exception occurred while creating connection, ", e);
+            throw new DAOException("Exception occurred while creating connection, ", e);
         } catch (SQLException e) {
             LOGGER.error("An exception occurred in the layer DAO while add user to the DB", e);
             throw new DAOException("An exception occurred in the layer DAO while add user to the DB", e);
         } finally {
-            close(statement,connection);
+            close(statement, connection);
         }
         return false;
     }
@@ -73,19 +73,19 @@ public class UserDAOImpl implements UserDAO {
         try {
             connection = ConnectionPool.getInstance().getConnection();
             statement = connection.prepareStatement(SQL_GET_USER_BY_ID);
-            statement.setLong(1,id);
-           resultSet = statement.executeQuery();
-           while (resultSet.next()) {
-               user = parseUser(resultSet);
-           }
+            statement.setLong(1, id);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                user = parseUser(resultSet);
+            }
         } catch (ConnectionPoolException e) {
-            LOGGER.error("Exception occurred while creating connection, " , e);
-            throw new DAOException("Exception occurred while creating connection, " , e);
+            LOGGER.error("Exception occurred while creating connection, ", e);
+            throw new DAOException("Exception occurred while creating connection, ", e);
         } catch (SQLException e) {
             LOGGER.error("An exception occurred in the layer DAO while getting userByID from the DB", e);
             throw new DAOException("An exception occurred in the layer DAO while getting userByID from the DB", e);
         } finally {
-                close(statement,connection,resultSet );
+            close(statement, connection, resultSet);
         }
         return user;
     }
@@ -100,18 +100,18 @@ public class UserDAOImpl implements UserDAO {
             connection = ConnectionPool.getInstance().getConnection();
             statement = connection.createStatement();
             resultSet = statement.executeQuery(SQL_GET_ALL_USERS);
-            while (resultSet.next()){
-               User user = parseUser(resultSet);
+            while (resultSet.next()) {
+                User user = parseUser(resultSet);
                 users.add(user);
             }
         } catch (ConnectionPoolException e) {
-            LOGGER.error("Exception occurred while creating connection, " , e);
-            throw new DAOException("Exception occurred while creating connection, " , e);
+            LOGGER.error("Exception occurred while creating connection, ", e);
+            throw new DAOException("Exception occurred while creating connection, ", e);
         } catch (SQLException e) {
-            LOGGER.error("An exception occurred in the layer DAO while getting all users from the DB" , e);
+            LOGGER.error("An exception occurred in the layer DAO while getting all users from the DB", e);
             throw new DAOException("An exception occurred in the layer DAO while getting all users from the DB", e);
         } finally {
-                close(statement,connection,resultSet);
+            close(statement, connection, resultSet);
         }
         return users;
     }
@@ -123,24 +123,24 @@ public class UserDAOImpl implements UserDAO {
         try {
             connection = ConnectionPool.getInstance().getConnection();
             statement = connection.prepareStatement(SQL_UPDATE_USER);
-            statement.setString(1,user.getName());
-            statement.setString(2,user.getSurname());
-            statement.setString(3,user.getLogin());
-            statement.setString(4,user.getPassword());
-            statement.setString(5,user.getSalt());
-            statement.setString(6,user.getTel());
-            statement.setDouble(7,user.getBalance());
-            statement.setString(8,user.getEmail());
-            statement.setLong(9,user.getId());
+            statement.setString(1, user.getName());
+            statement.setString(2, user.getSurname());
+            statement.setString(3, user.getLogin());
+            statement.setString(4, user.getPassword());
+            statement.setString(5, user.getSalt());
+            statement.setString(6, user.getTel());
+            statement.setDouble(7, user.getBalance());
+            statement.setString(8, user.getEmail());
+            statement.setLong(9, user.getId());
             statement.execute();
         } catch (ConnectionPoolException e) {
-            LOGGER.error("Exception occurred while creating connection, " , e);
-            throw new DAOException("Exception occurred while creating connection, " , e);
+            LOGGER.error("Exception occurred while creating connection, ", e);
+            throw new DAOException("Exception occurred while creating connection, ", e);
         } catch (SQLException e) {
-            LOGGER.error("An exception occurred in the layer DAO while update user to the DB" , e);
+            LOGGER.error("An exception occurred in the layer DAO while update user to the DB", e);
             throw new DAOException("An exception occurred in the layer DAO while update user to the DB", e);
         } finally {
-            close(statement,connection);
+            close(statement, connection);
         }
     }
 
@@ -154,13 +154,13 @@ public class UserDAOImpl implements UserDAO {
             statement.setLong(1, entity.getId());
             statement.executeUpdate();
         } catch (ConnectionPoolException e) {
-            LOGGER.error("Exception occurred while creating connection, " , e);
-            throw new DAOException("Exception occurred while creating connection, " , e);
+            LOGGER.error("Exception occurred while creating connection, ", e);
+            throw new DAOException("Exception occurred while creating connection, ", e);
         } catch (SQLException e) {
-            LOGGER.error("An exception occurred in the layer DAO while delete user from the DB" , e);
+            LOGGER.error("An exception occurred in the layer DAO while delete user from the DB", e);
             throw new DAOException("An exception occurred in the layer DAO while delete user from the DB", e);
         } finally {
-            close(statement,connection);
+            close(statement, connection);
         }
     }
 
@@ -173,9 +173,9 @@ public class UserDAOImpl implements UserDAO {
         try {
             connection = ConnectionPool.getInstance().getConnection();
             statement = connection.prepareStatement(SQL_FIND_USER_BY_LOGIN);
-            statement.setString(1,login);
+            statement.setString(1, login);
             resultSet = statement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 user = parseUser(resultSet);
             }
         } catch (ConnectionPoolException e) {
@@ -201,7 +201,7 @@ public class UserDAOImpl implements UserDAO {
             statement = connection.prepareStatement(SQL_GET_USER_BY_ID);
             statement.setString(1, id);
             resultSet = statement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 user = parseUser(resultSet);
             }
         } catch (ConnectionPoolException e) {
@@ -222,23 +222,23 @@ public class UserDAOImpl implements UserDAO {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         long id = -1L;
-            try {
-                connection = ConnectionPool.getInstance().getConnection();
-                statement = connection.prepareStatement(SQL_FIND_ID_BY_LOGIN);
-                statement.setString(1,login);
-                resultSet = statement.executeQuery();
-                while (resultSet.next()) {
-                    id = resultSet.getLong(1);
-                }
-            } catch (ConnectionPoolException e) {
-                LOGGER.error("Exception occurred while creating connection, " , e);
-                throw new DAOException("Exception occurred while creating connection, " , e);
-            } catch (SQLException e) {
-                LOGGER.error("An exception occurred in the layer DAO while getting user by login from the DB" , e);
-                throw new DAOException("An exception occurred in the layer DAO while getting user by login from the DB", e);
-            }finally {
-                    close(statement,connection,resultSet);
+        try {
+            connection = ConnectionPool.getInstance().getConnection();
+            statement = connection.prepareStatement(SQL_FIND_ID_BY_LOGIN);
+            statement.setString(1, login);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                id = resultSet.getLong(1);
             }
+        } catch (ConnectionPoolException e) {
+            LOGGER.error("Exception occurred while creating connection, ", e);
+            throw new DAOException("Exception occurred while creating connection, ", e);
+        } catch (SQLException e) {
+            LOGGER.error("An exception occurred in the layer DAO while getting user by login from the DB", e);
+            throw new DAOException("An exception occurred in the layer DAO while getting user by login from the DB", e);
+        } finally {
+            close(statement, connection, resultSet);
+        }
         return id;
     }
 
@@ -249,21 +249,21 @@ public class UserDAOImpl implements UserDAO {
         try {
             connection = ConnectionPool.getInstance().getConnection();
             statement = connection.prepareStatement(SQL_REGISTER_USER);
-            statement.setString(1,user.getName());
-            statement.setString(2,user.getSurname());
-            statement.setString(3,user.getLogin());
-            statement.setString(4,user.getPassword());
-            statement.setString(5,user.getSalt());
-            statement.setString(6,user.getEmail());
+            statement.setString(1, user.getName());
+            statement.setString(2, user.getSurname());
+            statement.setString(3, user.getLogin());
+            statement.setString(4, user.getPassword());
+            statement.setString(5, user.getSalt());
+            statement.setString(6, user.getEmail());
             statement.executeUpdate();
         } catch (ConnectionPoolException e) {
-            LOGGER.error("Exception occurred while creating connection, " , e);
-            throw new DAOException("Exception occurred while creating connection, " , e);
+            LOGGER.error("Exception occurred while creating connection, ", e);
+            throw new DAOException("Exception occurred while creating connection, ", e);
         } catch (SQLException e) {
             LOGGER.error("An exception occurred in the layer DAO while registration user to the DB", e);
             throw new DAOException("An exception occurred in the layer DAO while registration user to the DB", e);
         } finally {
-            close(statement,connection);
+            close(statement, connection);
         }
     }
 
@@ -274,16 +274,16 @@ public class UserDAOImpl implements UserDAO {
         try {
             connection = ConnectionPool.getInstance().getConnection();
             statement = connection.prepareStatement(SQL_DELETE_USER_BY_ID);
-            statement.setLong(1,id);
+            statement.setLong(1, id);
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error("An exception occurred in the layer DAO while delete user from the DB", e);
             throw new DAOException("An exception occurred in the layer DAO while delete user from the DB", e);
         } catch (ConnectionPoolException e) {
-            LOGGER.error("Exception occurred while creating connection, " , e);
-            throw new DAOException("Exception occurred while creating connection, " , e);
-        }finally {
-            close(statement,connection);
+            LOGGER.error("Exception occurred while creating connection, ", e);
+            throw new DAOException("Exception occurred while creating connection, ", e);
+        } finally {
+            close(statement, connection);
         }
     }
 
@@ -295,17 +295,17 @@ public class UserDAOImpl implements UserDAO {
         try {
             connection = ConnectionPool.getInstance().getConnection();
             statement = connection.prepareStatement(SQL_CHANGE_STATE_BY_ID);
-            statement.setString(1,state);
-            statement.setLong(2,userId);
+            statement.setString(1, state);
+            statement.setLong(2, userId);
             result = statement.executeUpdate();
         } catch (ConnectionPoolException e) {
-            LOGGER.error("Exception occurred while creating connection, " , e);
-            throw new DAOException("Exception occurred while creating connection, " , e);
+            LOGGER.error("Exception occurred while creating connection, ", e);
+            throw new DAOException("Exception occurred while creating connection, ", e);
         } catch (SQLException e) {
             LOGGER.error("An exception occurred in the layer DAO while changing user state to the DB", e);
             throw new DAOException("An exception occurred in the layer DAO while changing user  state the DB", e);
-        }finally {
-            close(statement,connection);
+        } finally {
+            close(statement, connection);
         }
         return result;
     }
@@ -318,13 +318,13 @@ public class UserDAOImpl implements UserDAO {
         try {
             connection = ConnectionPool.getInstance().getConnection();
             statement = connection.prepareStatement("UPDATE users SET password = ? , salt = ? WHERE id = ?");
-            statement.setString(1,user.getPassword());
-            statement.setString(2,user.getSalt());
-            statement.setLong(3,user.getId());
+            statement.setString(1, user.getPassword());
+            statement.setString(2, user.getSalt());
+            statement.setLong(3, user.getId());
             statement.executeUpdate();
         } catch (ConnectionPoolException e) {
-            LOGGER.error("Exception occurred while creating connection, " , e);
-            throw new DAOException("Exception occurred while creating connection, " , e);
+            LOGGER.error("Exception occurred while creating connection, ", e);
+            throw new DAOException("Exception occurred while creating connection, ", e);
         } catch (SQLException e) {
             LOGGER.error("An exception occurred in the layer DAO while changing user password to the DB", e);
             throw new DAOException("An exception occurred in the layer DAO while changing user password the DB", e);

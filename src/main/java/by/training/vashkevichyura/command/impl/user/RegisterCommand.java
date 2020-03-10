@@ -29,7 +29,7 @@ public class RegisterCommand implements ActionCommand {
         String password = request.getParameter(RequestParameter.PASSWORD.parameter());
         try {
             boolean isRegistered = userService.register(requestParameters, password);
-            if(!isRegistered){
+            if (!isRegistered) {
                 request.setAttribute(SessionParameter.MESSAGE.parameter(), PageMessage.USER_ALREADY_EXIST.message());
                 router = new Router(PageConstant.REDIRECT_TO_LOGIN_PAGE, Router.RouterType.FORWARD);
                 return router;

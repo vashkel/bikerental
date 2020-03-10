@@ -17,11 +17,11 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public class BikeCatalogCommand implements ActionCommand {
-     private static final Logger LOGGER = LogManager.getLogger(BikeCatalogCommand.class);
-     private BikeService  bikeService = ServiceFactory.getBikeService();
+    private static final Logger LOGGER = LogManager.getLogger(BikeCatalogCommand.class);
+    private BikeService bikeService = ServiceFactory.getBikeService();
 
     @Override
-    public Router execute(HttpServletRequest request)  {
+    public Router execute(HttpServletRequest request) {
         Router router;
         List<Bike> bikes;
         PageInfo pageInfo = PageInfoHandler.pageInfoInit(request);
@@ -29,10 +29,10 @@ public class BikeCatalogCommand implements ActionCommand {
             bikes = bikeService.getAllBike(pageInfo);
             request.setAttribute(RequestParameter.BIKE_LIST.parameter(), bikes);
             PageInfoHandler.handleAndAddToSession(pageInfo, request, bikes);
-            router = new Router(PageConstant.BIKE_CATALOG_PAGE,Router.RouterType.FORWARD);
+            router = new Router(PageConstant.BIKE_CATALOG_PAGE, Router.RouterType.FORWARD);
         } catch (ServiceException e) {
             LOGGER.error("Get all bike exception " + e.getMessage());
-            router = new Router(PageConstant.ERROR_PAGE,Router.RouterType.REDIRECT);
+            router = new Router(PageConstant.ERROR_PAGE, Router.RouterType.REDIRECT);
         }
         return router;
     }

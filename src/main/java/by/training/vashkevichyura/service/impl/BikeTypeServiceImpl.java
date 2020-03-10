@@ -32,7 +32,7 @@ public class BikeTypeServiceImpl implements BikeTypeService {
     public BikeType getById(long id) throws ServiceException {
         BikeType bikeType;
         try {
-           bikeType = bikeTypeDAO.getById(id);
+            bikeType = bikeTypeDAO.getById(id);
         } catch (DAOException e) {
             LOGGER.error("get Bike by id error: " + e);
             throw new ServiceException("get Bike by id error: " + e.getMessage());

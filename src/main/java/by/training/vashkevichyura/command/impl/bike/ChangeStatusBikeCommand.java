@@ -25,11 +25,11 @@ public class ChangeStatusBikeCommand implements ActionCommand {
         String status = request.getParameter("status");
         try {
             bikeService.changeStatusById(bikeId, status);
-            router = new Router(PageConstant.REDIRECT_TO_BIKE_CATALOG_PAGE,Router.RouterType.FORWARD);
-            request.setAttribute(SessionParameter.MESSAGE.parameter(),PageMessage.BIKE_STATUS_CHANGED.message());
+            router = new Router(PageConstant.REDIRECT_TO_BIKE_CATALOG_PAGE, Router.RouterType.FORWARD);
+            request.setAttribute(SessionParameter.MESSAGE.parameter(), PageMessage.BIKE_STATUS_CHANGED.message());
         } catch (ServiceException e) {
             LOGGER.error("An error occurred while the bike was changing state , " + e.getMessage());
-            router = new Router(PageConstant.ERROR_PAGE,Router.RouterType.REDIRECT);
+            router = new Router(PageConstant.ERROR_PAGE, Router.RouterType.REDIRECT);
             request.setAttribute(RequestParameter.ERROR.parameter(), e.toString());
         }
         return router;
